@@ -1,132 +1,133 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 /*FONT*/
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+ /* FONT */
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+ }
 
-body {
-    font-family: 'Montserrat', sans-serif;
-}
+ body {
+     font-family: 'Montserrat', sans-serif;
+ }
 
-nav {
-    background-color: #122c4f;
-    color: #fbf9e4;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-}
+ nav {
+     background-color: #122c4f;
+     color: #fbf9e4;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding: 10px 20px;
+ }
 
-.logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-left: 1%;
-}
+ .logo {
+     font-size: 1.5rem;
+     font-weight: bold;
+     margin-left: 1%;
+ }
 
-ul {
-    display: flex;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
+ ul {
+     display: flex;
+     list-style: none;
+     padding: 0;
+     margin: 0;
+ }
 
-ul li {
-    margin-right: 20px;
-}
+ ul li {
+     margin-right: 20px;
+ }
 
-ul li a {
-    color: #ffff;
-    text-decoration: none;
-    transition: color 0.3s;
-    font-weight: bold;
-    letter-spacing: 2px;
-}
+ ul li a {
+     color: #ffff;
+     text-decoration: none;
+     transition: color 0.3s;
+     font-weight: bold;
+     letter-spacing: 2px;
+ }
 
-ul li a:hover {
-    color: rgb(238, 7, 7);
-}
+ ul li a:hover {
+     color: rgb(238, 7, 7);
+ }
 
-/* Hamburger Menu */
-.checkbtn {
-    font-size: 30px;
-    color: white;
-    cursor: pointer;
-    display: none;
-}
+ /* Hamburger Menu */
+ .checkbtn {
+     font-size: 30px;
+     color: white;
+     cursor: pointer;
+     display: none;
+ }
 
-#check {
-    display: none;
-}
+ #check {
+     display: none;
+ }
 
-/* Media Query for Smaller Screens (Mobile) */
-@media (max-width: 768px) {
+ /* Media Query for Smaller Screens (Mobile) */
+ @media (max-width: 768px) {
 
-    /* Show the hamburger menu icon */
-    .checkbtn {
-        display: block;
-        /* Show hamburger menu */
-        order: 1;
-        margin-right: 20px;
-    }
+     /* Show the hamburger menu icon */
+     .checkbtn {
+         display: block;
+         /* Show hamburger menu */
+         order: 1;
+         margin-right: 20px;
+     }
 
-    /* Adjust the navigation layout */
-    ul {
-        position: fixed;
-        z-index: 1;
-        top: 80px;
-        right: -100%;
-        width: 100%;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        transition: all 0.3s ease;
-        background-color: #122c4f;
-        justify-content: center;
-        align-items: center;
-    }
+     /* Adjust the navigation layout */
+     ul {
+         position: fixed;
+         z-index: 1;
+         top: 80px;
+         right: -100%;
+         width: 100%;
+         height: 100vh;
+         display: flex;
+         flex-direction: column;
+         transition: all 0.3s ease;
+         background-color: #122c4f;
+         justify-content: center;
+         align-items: center;
+     }
 
-    ul li {
-        margin: 20px 0;
-        text-align: center;
-    }
+     ul li {
+         margin: 20px 0;
+         text-align: center;
+     }
 
-    ul li a {
-        font-size: 20px;
-        background-color: #122c4f;
-        padding: 10px;
-        border-radius: 5px;
-        width: 80%;
-        /* Ensure it's not too wide */
-        text-align: center;
-        /* Align text */
-    }
+     ul li a {
+         font-size: 20px;
+         background-color: #122c4f;
+         padding: 10px;
+         border-radius: 5px;
+         width: 80%;
+         /* Ensure it's not too wide */
+         text-align: center;
+         /* Align text */
+     }
 
-    #check:checked~ul {
-        right: 0;
-        /* Slide in the menu when checkbox is checked */
-    }
-}
+     #check:checked~ul {
+         right: 0;
+         /* Slide in the menu when checkbox is checked */
+     }
+ }
 
-/* Add another media query for even smaller screens */
-@media (max-width: 480px) {
-    .logo {
-        font-size: 1.2rem;
-        /* Adjust logo font size for smaller screens */
-    }
+ /* Add another media query for even smaller screens */
+ @media (max-width: 480px) {
+     .logo {
+         font-size: 1.2rem;
+         /* Adjust logo font size for smaller screens */
+     }
 
-    ul li a {
-        font-size: 18px;
-        /* Make links a bit smaller */
-        padding: 8px;
-    }
+     ul li a {
+         font-size: 18px;
+         /* Make links a bit smaller */
+         padding: 8px;
+     }
 
-    /* Optionally reduce the padding in the nav bar */
-    nav {
-        padding: 10px 15px;
-    }
-}
+     /* Optionally reduce the padding in the nav bar */
+     nav {
+         padding: 10px 15px;
+     }
+ }
 /*Carousel*/
 
 
@@ -243,7 +244,7 @@ ul li a:hover {
 
 body {
    /*background-color: #5B88B2;*/
-   background-color: black;
+   background-color: black !important;
     width: 100vw;
     height: 100vh;
     font-family: "Montserrat", sans-serif;

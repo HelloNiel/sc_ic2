@@ -172,6 +172,30 @@ body {
     margin-bottom: -50%;
 }
 
+/* Position the Previous arrow icon */
+.carousel-control-prev-icon {
+    position: absolute;
+    /* Position relative to the carousel */
+    top: 50%;
+    /* Vertically center */
+    left: 200%;
+    /* Move to the left */
+    transform: translateY(-50%);
+    /* Adjust for exact centering */
+}
+
+/* Position the Next arrow icon */
+.carousel-control-next-icon {
+    position: absolute;
+    /* Position relative to the carousel */
+    top: 50%;
+    /* Vertically center */
+    right: 200%;
+    /* Move to the right */
+    transform: translateY(-50%);
+    /* Adjust for exact centering */
+}
+
 /* Responsive Styles for larger screens */
 @media (min-width: 992px) {
     .carousel-caption h5 {
