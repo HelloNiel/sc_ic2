@@ -253,9 +253,9 @@ h6 {
     padding-inline: var(--container-padding-horizontal);
     display: grid;
     place-items: center;
-    height: 100%; 
+    height: 80%; 
     z-index: 0;
-    margin-top: -130px;
+    
   }
 
 .carousel {
@@ -352,6 +352,7 @@ h6 {
         will-change: transform, opacity;
         -webkit-animation: carousel-animate 27s cubic-bezier(0.37, 0, 0.63, 1) infinite;
         animation: carousel-animate 27s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+        box-shadow: #ffff 5px 5px;
     }
 
     .carousel img {
