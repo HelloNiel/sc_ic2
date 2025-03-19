@@ -10,31 +10,46 @@
  body {
      font-family: 'Montserrat', sans-serif;
  }
-
+ .main{
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(rgba(22, 20, 20, 0.692), rgba(20, 17, 17, 0.589)), url(/assets/img/475833900_1140259974775098_7665956378514966695_n\ \(1\).jpg);
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    }
+ p{
+    color: #ffff;
+    text-align: center;
+    padding-top: 4%;
+}
  nav {
      background-color: #122c4f;
      color: #fbf9e4;
      display: flex;
      justify-content: space-between;
      align-items: center;
-     padding: 10px 20px;
+    padding-top: 10px;
+   
+  
  }
 
  .logo {
      font-size: 1.5rem;
      font-weight: bold;
-     margin-left: 1%;
+     margin-left: 30px;
+     padding-bottom: 15px;
  }
 
  ul {
-     display: flex;
+    display: flex;
      list-style: none;
-     padding: 0;
-     margin: 0;
+    
  }
 
  ul li {
-     margin-right: 20px;
+     margin-right: 30px;
+ 
  }
 
  ul li a {
@@ -49,7 +64,7 @@
  }
 
  ul li a:hover {
-     background-color: black;
+     background-color: #5B88B2;
  }
 
  /* Hamburger Menu */
@@ -106,6 +121,9 @@
          text-align: center;
          /* Align text */
      }
+     ul li a:hover {
+     background-color: rgb(0, 0, 0);
+ }
 
      #check:checked~ul {
          right: 0;
@@ -131,6 +149,7 @@
          padding: 10px 15px;
      }
  }
+ 
 
 /*Carousel*/
 @-webkit-keyframes carousel-animate {
@@ -234,7 +253,7 @@
 }
 
 body {
-    background-color: black !important;
+    /*background-color: black !important;*/
     width: 100vw;
     height: 100vh;
     font-family: "Montserrat", sans-serif;
@@ -340,9 +359,18 @@ h6 {
         opacity: 0;
         will-change: transform, opacity;
         animation: carousel-animate 27s cubic-bezier(0.37, 0, 0.63, 1) infinite;
-        box-shadow: #eccccc 6px 5px;
+        /*box-shadow: #ffffff 6px 5px;*/
+        border: 1px #ffffff solid;
+        padding-top: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 30px;
+        background-color: #ffff;
     }
-
+    h1{
+        color: #000;
+        font-size: 20px !important;
+    }
     .carousel img {
         max-width: 100%;
         object-fit: cover;

@@ -62,7 +62,7 @@ body {
      display: none;
  }
 
- /* Media Query for Smaller Screens (Mobile) */
+ /*(Mobile) */
  @media (max-width: 768px) {
      .checkbtn {
          display: block;
@@ -85,8 +85,6 @@ body {
          justify-content: center;
          align-items: center;
          margin-top: -140px;
-
-
      }
 
      ul li {
@@ -100,9 +98,6 @@ body {
          background-color: #122c4f;
          padding: 10px;
          border-radius: 5px;
-
-
-
      }
 
      #check:checked~ul {
@@ -117,85 +112,45 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 94vh;
-    /* Set the height to 94% of the viewport height by default */
     position: relative;
     padding: 0 30%;
-    /* Padding from the left and right */
-    /* Optional red border for debugging */
     margin-bottom: -50%;
-    /* Adjust the bottom margin to fine-tune positioning */
 }
 
-/* Media query for large screens */
+/*large screens */
 @media (min-width: 1200px) {
     .carousel-slide {
         min-height: 85vh;
-        /* Adjust the height for large screens */
         padding: 0 15%;
-        /* Reduce padding on larger screens */
     }
 }
 
-/* Media query for medium screens (tablets) */
+/*(tablets) */
 @media (min-width: 768px) and (max-width: 1199px) {
     .carousel-slide {
         min-height: 75vh;
-        /* Reduce height for medium screens */
         padding: 0 20%;
-        /* Adjust padding */
     }
 }
 
-/* Media query for small screens (mobiles) */
+/*(mobiles) */
 @media (max-width: 767px) {
     .carousel-slide {
         min-height: 60vh;
-        /* Adjust the height for mobile devices */
         padding: 0 10%;
-        /* Less padding for smaller screens */
     }
 }
 /* Set fixed size for images (500px width and 400px height) */
 .carousel-item img {
     width: 500px;
-    /* Fixed width of 500px */
     height: 400px;
-    /* Fixed height of 400px */
     object-fit: cover;
-    /* Maintain aspect ratio while filling the space */
     object-position: center;
-    /* Center the image inside the container */
 }
 .carousel-inner{
-    border: 1px red solid;
     margin-top: -50%; 
     margin-bottom: -50%;
 }
-
-/* Position the Previous arrow icon */
-.carousel-control-prev-icon {
-    position: absolute;
-    /* Position relative to the carousel */
-    top: 50%;
-    /* Vertically center */
-    left: 200%;
-    /* Move to the left */
-    transform: translateY(-50%);
-    /* Adjust for exact centering */
-}
-
-/* Position the Next arrow icon */
-.carousel-control-next-icon {
-    position: absolute;
-    /* Position relative to the carousel */
-    top: 50%;
-    /* Vertically center */
-    right: 200%;
-    /* Move to the right */
-    transform: translateY(-50%);
-    /* Adjust for exact centering */
-}
-
 /* Responsive Styles for larger screens */
 @media (min-width: 992px) {
     .carousel-caption h5 {
