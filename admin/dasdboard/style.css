@@ -22,11 +22,19 @@ body {
     top: 0;
     display: flex;
     flex-direction: column;
+    transform: translateX(0);
+    transition: transform 0.3s ease-in-out;
 }
-.sidebar a{
+
+.sidebar.active {
+    transform: translateX(0);
+}
+
+.sidebar a {
     text-decoration: none;
     color: white;
 }
+
 .sidebar .logo {
     font-size: 24px;
     font-weight: bold;
@@ -68,8 +76,68 @@ body {
     margin-left: 250px;
     padding: 20px;
     flex: 1;
+    transition: margin-left 0.3s ease-in-out;
 }
 
-.content h1 {
+/* Hamburger Icon */
+.hamburger {
+    display: none;
+    font-size: 30px;
+    color: #34495E;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 20;
+}
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-250px);
+    }
+
+    .content {
+        margin-left: 0;
+    }
+
+    .hamburger {
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .content {
+        padding: 15px;
+    }
+}
+
+/* stats containers */
+.stat-container {
+    background-color: #2C3E50;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.stat-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.stat-value {
     font-size: 36px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    .stat-container {
+        margin-bottom: 15px;
+    }
 }

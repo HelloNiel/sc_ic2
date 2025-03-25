@@ -22,11 +22,19 @@ body {
     top: 0;
     display: flex;
     flex-direction: column;
+    transform: translateX(0);
+    transition: transform 0.3s ease-in-out;
 }
-.sidebar a{
+
+.sidebar.active {
+    transform: translateX(0);
+}
+
+.sidebar a {
     text-decoration: none;
     color: white;
 }
+
 .sidebar .logo {
     font-size: 24px;
     font-weight: bold;
@@ -62,14 +70,50 @@ body {
 .sidebar .footer:hover {
     background-color: #1ABC9C;
 }
-
-/* Content Area */
-.content {
-    margin-left: 250px;
-    padding: 20px;
-    flex: 1;
+.hamburger {
+    display: none;
+    font-size: 30px;
+    color: #34495E;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 20;
 }
 
-.content h1 {
-    font-size: 36px;
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-250px);
+    }
+
+    .content {
+        margin-left: 0;
+    }
+
+    .hamburger {
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .content {
+        margin-left: 0;
+        padding: 15px;
+    }
+
+    .sidebar .logo {
+        font-size: 1.2rem;
+    }
+
+    .sidebar .menu li {
+        font-size: 1rem;
+    }
+
+    .sidebar .footer {
+        font-size: 1rem;
+    }
 }

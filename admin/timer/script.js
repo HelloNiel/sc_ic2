@@ -65,3 +65,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // Initialize timer display on page load
     updateTimer();
 });
+
+
+function toggleSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.classList.toggle('active');
+}
