@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>PTCI Website</title>
+    <link rel="website icon" type="png" sizes="32x32" href="/assets/img/LOGO.png">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins&amp;display=swap">
@@ -88,6 +89,31 @@
                     <div id="heading-partylists-1" class="heading-partylists" style="border-bottom: 1px solid rgba(33,37,41,0.23);"></div>
                 </div>
             </div>
+
+          <!--Timer-->
+            <div
+                style="position: absolute; bottom: 0; right: 15%; transform: translateY(50%); text-align: right; width: auto; padding: 10px; background-color: rgba(0, 0, 0, 0.7); border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); color: white; font-size: 55px; font-family: 'Arial', sans-serif; margin-top:50px;">
+            <div class="timer" id="timer" >
+                <div class="timer-display">00:00:00</div>
+            </div>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    function updateTimer() {
+                        const savedTime = localStorage.getItem('timer');
+                        if (savedTime) {
+                            document.querySelector("#timer .timer-display").textContent = savedTime;
+                        }
+                    }
+                    window.addEventListener('storage', function (event) {
+                        if (event.key === 'timer') {
+                            updateTimer();
+                        }
+                    });
+                    updateTimer();
+                });
+            </script>
+
         </div>
     </div>
     <footer class="text-center py-4" style="margin-bottom: -589px;">
