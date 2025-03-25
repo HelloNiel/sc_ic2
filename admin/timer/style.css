@@ -69,12 +69,9 @@ body {
     flex: 1;
 }
 
-
-/* Wrapper for content */
 .content-wrapper {
     width: 100%;
     max-width: 1200px;
-    /* Maximum width of the content */
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -84,10 +81,8 @@ body {
 
 }
 
-/* Header Section */
 .head {
     margin-bottom: 40px;
-    /* Add space between header and timer */
 }
 
 .head h1 {
@@ -97,7 +92,6 @@ body {
     margin-bottom: 20px;
 }
 
-/* Timer Section */
 .timer {
     background-color: #2C3E50;
     color: white;
