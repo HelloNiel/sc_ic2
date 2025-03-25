@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Page - Timer</title>
+    <style>
+        #timer {
+            font-size: 30px;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="timer">00:00</div>
+
+    <script>
+        // Function to update the timer display based on the stored time
+        function updateTimer() {
+            const elapsedTime = Date.now() - localStorage.getItem('startTime'); // Get elapsed time from localStorage
+            const totalSeconds = Math.floor(elapsedTime / 1000); // Convert to seconds
+            const minutes = Math.floor(totalSeconds / 60); // Get minutes
+            const seconds = totalSeconds % 60; // Get remaining seconds
+
+            // Format minutes and seconds to always show two digits
+            const formattedMinutes = minutes < 10 ? "0" + minutes : minutes;
+            const formattedSeconds = seconds < 10 ? "0" + seconds : seconds;
+
+            // Update the timer display
+            document.getElementById("timer").textContent = `${formattedMinutes}:${formattedSeconds}`;
+        }
+
+        // Update the timer every second
+        setInterval(updateTimer, 1000);
+    </script>
+
+</body>
+
+</html>
