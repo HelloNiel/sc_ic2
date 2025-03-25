@@ -3,10 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="website icon" type="png" sizes="32x32" href="/img/logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Page - Timer Control</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="website icon" type="png" sizes="32x32" href="/img/logo.png">
+    <script src="script.js"></script>
+    
 </head>
 
 <body>
@@ -26,7 +30,7 @@
        <div class="content">
         <div class="content-wrapper">
             <div class="head">
-                <h1>Admin Timer Control</h1>
+                <h1>Timer Control</h1>
             </div>
         
             <div class="timer" id="timer">
@@ -42,73 +46,7 @@
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            let startTime, timerInterval;
-            let isRunning = false;
-
-            // Update the timer display based on stored value
-            function updateTimer() {
-                const savedTime = localStorage.getItem('timer');
-                if (savedTime) {
-                    document.querySelector("#timer .timer-display").textContent = savedTime;
-                }
-            }
-
-            // Function to update timer
-            function updateTimerDisplay(elapsedTime) {
-                const totalSeconds = Math.floor(elapsedTime / 1000);
-                const minutes = Math.floor(totalSeconds / 60);
-                const seconds = totalSeconds % 60;
-                const formattedMinutes = minutes < 10 ? "0" + minutes : minutes;
-                const formattedSeconds = seconds < 10 ? "0" + seconds : seconds;
-                const formattedTime = `${formattedMinutes}:${formattedSeconds}`;
-                document.querySelector("#timer .timer-display").textContent = formattedTime;
-                localStorage.setItem('timer', formattedTime);
-            }
-
-            // Start timer
-            function startTimer() {
-                if (!isRunning) {
-                    isRunning = true;
-                    startTime = Date.now();
-                    localStorage.setItem('startTime', startTime);
-                    timerInterval = setInterval(function () {
-                        const elapsedTime = Date.now() - startTime;
-                        updateTimerDisplay(elapsedTime);
-                    }, 1000);
-
-                    document.getElementById("startButton").disabled = true;
-                    document.getElementById("stopButton").disabled = false;
-                }
-            }
-
-            // Stop timer
-            function stopTimer() {
-                clearInterval(timerInterval);
-                isRunning = false;
-                document.getElementById("startButton").disabled = false;
-                document.getElementById("stopButton").disabled = true;
-            }
-
-            // Reset timer
-            function resetTimer() {
-                clearInterval(timerInterval);
-                isRunning = false;
-                document.getElementById("startButton").disabled = false;
-                document.getElementById("stopButton").disabled = true;
-                localStorage.setItem('timer', '00:00:00');
-                localStorage.removeItem('startTime');
-                updateTimer();  // Reset the display to "00:00:00"
-            }
-
-            // Event listeners
-            document.getElementById("startButton").addEventListener("click", startTimer);
-            document.getElementById("stopButton").addEventListener("click", stopTimer);
-            document.getElementById("resetButton").addEventListener("click", resetTimer);
-
-            // Initialize timer display on page load
-            updateTimer();
-        });
+       
     </script>
 </body>
 
