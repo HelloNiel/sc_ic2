@@ -1,4 +1,6 @@
 <?php
+include ('../../partial/connection.php');
+
 session_start();
 
 // Check status
@@ -7,6 +9,12 @@ if (!isset($_SESSION['id'])) {
     exit();
 }
 
+$presidentQuery = "SELECT `id`, `fullname`, `course`, `partylist` FROM `president` WHERE 1";
+$vicePresidentQuery = "SELECT `id`, `fullname`, `course`, `partylist` FROM `vice_president` WHERE 1";
+
+$presidentResult = mysqli_query($conn, $presidentQuery);
+$vicePresidentResult = mysqli_query($conn, $vicePresidentQuery);
+?>
 ?>
 
 <!DOCTYPE html>
@@ -169,14 +177,14 @@ if (!isset($_SESSION['id'])) {
       </div>
     </div>
     <div class="d-flex flex-row" id="candidates" style="margin-top: 37px">
+      <!-- President Candidates -->
       <div
         class="container flex-row justify-content-center justify-content-md-start"
         id="pres-wrapper"
         style="margin-top: 24px; padding-top: 65px; background: #86a2bc"
       >
         <div
-          class="d-flex d-md-flex d-lg-flex d-xl-flex flex-column justify-content-center align-items-center align-content-center align-items-md-center align-items-lg-center justify-content-xxl-center align-items-xxl-center"
-          style="margin-left: 34px"
+          class="d-flex flex-column justify-content-center align-items-center"
         >
           <h1
             style="
@@ -189,90 +197,33 @@ if (!isset($_SESSION['id'])) {
           >
             Candidates for President
           </h1>
-          <div
-            style="
-              width: 148px;
-              background: #fbf9e4;
-              height: 3px;
-              color: #5b88b2;
-            "
-          ></div>
+          <div style="width: 148px; background: #fbf9e4; height: 3px"></div>
         </div>
+
         <div
-          class="d-flex d-xxl-flex flex-column justify-content-center align-items-center justify-content-xxl-center align-items-xxl-center"
+          class="d-flex flex-column justify-content-center align-items-center"
           id="candidates-wrapper-flex"
-          style="
-            overflow: visible;
-            color: #122c4f;
-            margin-top: 41px;
-            padding-bottom: 53px;
-          "
+          style="overflow: visible; color: #122c4f; margin-top: 41px"
         >
+          <?php
+          // Loop through each president candidate
+          while($president = mysqli_fetch_assoc($presidentResult)) {
+          ?>
           <div
-            class="d-flex align-items-lg-center align-items-xl-center align-items-xxl-start radio-pres_candidate"
-            id="candidate1"
+            class="d-flex align-items-lg-center radio-pres_candidate"
+            id="candidate<?= $president['id'] ?>"
             style="
               background: #ffffff;
               border-radius: 16px;
               padding: 21px;
               margin-bottom: 34px;
-              border: 4px solid rgb(13, 195, 162);
-            "
-            onclick="selectCandidate('candidate1')"
-          >
-            <img
-              class="candidate-pic"
-              src="../../assets/img/Portrait%20Of%20a%20Confident%20Young%20Smart%20Looking%20Man%20_%20Premium%20AI-generated%20image.jpg"
-            />
-            <div class="flex-row" style="margin-left: 33px; margin-top: 17px">
-              <h1
-                class="candidate-name"
-                style="
-                  font-family: Poppins, sans-serif;
-                  font-weight: bold;
-                  color: rgb(75, 90, 105);
-                "
-              >
-                President Candidate #1
-              </h1>
-              <h1
-                class="candidate-dept"
-                style="
-                  font-family: Poppins, sans-serif;
-                  font-weight: bold;
-                  color: rgb(75, 90, 105);
-                  margin-top: -7px;
-                "
-              >
-                Department and School Year
-              </h1>
-              <p
-                class="candidate-desc"
-                style="margin-top: 7px; text-align: justify"
-              >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
-                malesuada nisl in arcu bibendum congue. Lorem ipsum dolor sit
-                amet, consectetur adipiscing elit. Proin semper nisl ac tempus
-                fringilla.
-              </p>
-            </div>
-            <input type="radio" class="d-none" />
-          </div>
-          <div
-            class="d-flex align-items-lg-center align-items-xl-center align-items-xxl-start radio-pres_candidate"
-            id="candidate2"
-            style="
-              background: #ffffff;
-              border-radius: 10px;
-              margin-bottom: 34px;
               border: 2px solid rgba(0, 0, 0, 0.15);
-              padding: 21px;
             "
-            onclick="selectCandidate('candidate2')"
+            onclick="selectCandidate('candidate<?= $president['id'] ?>')"
           >
             <img
               class="candidate-pic"
-              src="../../assets/img/a%2035%20year%20old%20spanish%20entrepreneur%20woman%20in%20a%20posture%20that%20states%20that%20Starting%20Your%20Own%20Business_%20A%20Journey%20of%20Self-Love%20and%20Empowerment_%20Minimalist%20design%20realistic%20warm%20colors%20white%20skin%20brown%20eyes%20self%20love.jpg"
+              src="path_to_image/<?= $president['id'] ?>.jpg"
             />
             <div class="flex-row" style="margin-left: 33px; margin-top: 17px">
               <h1
@@ -283,7 +234,7 @@ if (!isset($_SESSION['id'])) {
                   color: rgb(75, 90, 105);
                 "
               >
-                President Candidate #2
+                <?= $president['fullname'] ?>
               </h1>
               <h1
                 class="candidate-dept"
@@ -294,84 +245,34 @@ if (!isset($_SESSION['id'])) {
                   margin-top: -7px;
                 "
               >
-                Department and School Year
+                <?= $president['course'] ?>
+                -
+                <?= $president['partylist'] ?>
               </h1>
               <p
                 class="candidate-desc"
                 style="margin-top: 7px; text-align: justify"
               >
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
-                malesuada nisl in arcu bibendum congue. Lorem ipsum dolor sit
-                amet, consectetur adipiscing elit. Proin semper nisl ac tempus
-                fringilla.
+                malesuada nisl in arcu bibendum congue.
               </p>
             </div>
             <input type="radio" class="d-none" />
           </div>
-          <div
-            class="d-flex align-items-lg-center align-items-xl-center align-items-xxl-start radio-pres_candidate"
-            id="candidate3"
-            style="
-              background: #ffffff;
-              border-radius: 10px;
-              margin-bottom: 34px;
-              border: 2px solid rgba(0, 0, 0, 0.15);
-              padding: 21px;
-            "
-            onclick="selectCandidate('candidate3')"
-          >
-            <img
-              class="candidate-pic"
-              src="../../assets/img/Portrait%20Of%20a%20Confident%20Young%20Smart%20Looking%20Man%20_%20Premium%20AI-generated%20image.jpg"
-            />
-            <div class="flex-row" style="margin-left: 33px; margin-top: 17px">
-              <h1
-                class="candidate-name"
-                style="
-                  font-family: Poppins, sans-serif;
-                  font-weight: bold;
-                  color: rgb(75, 90, 105);
-                "
-              >
-                President Candidate #3
-              </h1>
-              <h1
-                class="candidate-dept"
-                style="
-                  font-family: Poppins, sans-serif;
-                  font-weight: bold;
-                  color: rgb(75, 90, 105);
-                  margin-top: -7px;
-                "
-              >
-                Department and School Year
-              </h1>
-              <p
-                class="candidate-desc"
-                style="margin-top: 7px; text-align: justify"
-              >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
-                malesuada nisl in arcu bibendum congue. Lorem ipsum dolor sit
-                amet, consectetur adipiscing elit. Proin semper nisl ac tempus
-                fringilla.
-              </p>
-            </div>
-            <input type="radio" class="d-none" />
-          </div>
+          <?php
+          }
+          ?>
         </div>
       </div>
+
+      <!-- Vice President Candidates -->
       <div
         class="container flex-row justify-content-center justify-content-md-start"
         id="vpres-wrapper"
         style="margin-top: 24px; padding-top: 65px"
       >
         <div
-          class="d-flex d-md-flex d-lg-flex d-xl-flex flex-column justify-content-center align-items-center align-content-center align-items-md-center align-items-lg-center justify-content-xxl-center align-items-xxl-center"
-          style="margin-left: 34px"
-        ></div>
-        <div
-          class="d-flex d-md-flex d-lg-flex d-xl-flex flex-column justify-content-center align-items-center align-content-center align-items-md-center align-items-lg-center justify-content-xxl-center align-items-xxl-center"
-          style="margin-left: 34px"
+          class="d-flex flex-column justify-content-center align-items-center"
         >
           <h1
             style="
@@ -384,17 +285,11 @@ if (!isset($_SESSION['id'])) {
           >
             Candidates for Vice President
           </h1>
-          <div
-            style="
-              width: 148px;
-              background: #5b88b2;
-              height: 3px;
-              color: #5b88b2;
-            "
-          ></div>
+          <div style="width: 148px; background: #5b88b2; height: 3px"></div>
         </div>
+
         <div
-          class="d-flex d-xxl-flex flex-column justify-content-center align-items-center justify-content-xxl-center align-items-xxl-center"
+          class="d-flex flex-column justify-content-center align-items-center"
           id="candidates-wrapper-flex-1"
           style="
             overflow: visible;
@@ -403,9 +298,13 @@ if (!isset($_SESSION['id'])) {
             margin-top: 41px;
           "
         >
+          <?php
+    // Loop through each vice president candidate
+    while($vicePresident = mysqli_fetch_assoc($vicePresidentResult)) {
+    ?>
           <div
-            class="d-flex align-items-lg-center align-items-xl-center align-items-xxl-start radio-pres_candidate"
-            id="candidate1-1"
+            class="d-flex align-items-lg-center radio-pres_candidate"
+            id="candidate<?= $vicePresident['id'] ?>"
             style="
               background: #ffffff;
               border-radius: 10px;
@@ -413,10 +312,11 @@ if (!isset($_SESSION['id'])) {
               border: 2px solid rgba(0, 0, 0, 0.15);
               padding: 21px;
             "
+            onclick="selectCandidate('candidate<?= $vicePresident['id'] ?>')"
           >
             <img
               class="candidate-pic"
-              src="../../assets/img/a%2035%20year%20old%20spanish%20entrepreneur%20woman%20in%20a%20posture%20that%20states%20that%20Starting%20Your%20Own%20Business_%20A%20Journey%20of%20Self-Love%20and%20Empowerment_%20Minimalist%20design%20realistic%20warm%20colors%20white%20skin%20brown%20eyes%20self%20love.jpg"
+              src="path_to_image/<?= $vicePresident['id'] ?>.jpg"
             />
             <div class="flex-row" style="margin-left: 33px; margin-top: 17px">
               <h1
@@ -427,7 +327,7 @@ if (!isset($_SESSION['id'])) {
                   color: rgb(75, 90, 105);
                 "
               >
-                Vice President Candidate #1
+                <?= $vicePresident['fullname'] ?>
               </h1>
               <h1
                 class="candidate-dept"
@@ -438,119 +338,31 @@ if (!isset($_SESSION['id'])) {
                   margin-top: -7px;
                 "
               >
-                Department and School Year
-              </h1>
-              <p
-                class="candidate-desc"
-                style="margin-top: 7px; text-align: justify; font-size: 13px"
-              >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
-                malesuada nisl in arcu bibendum congue. Lorem ipsum dolor sit
-                amet, consectetur adipiscing elit. Proin semper nisl ac tempus
-                fringilla.
-              </p>
-            </div>
-          </div>
-          <div
-            class="d-flex align-items-lg-center align-items-xl-center align-items-xxl-start radio-pres_candidate"
-            id="candidate1-3"
-            style="
-              background: #ffffff;
-              border-radius: 10px;
-              margin-bottom: 34px;
-              border: 2px solid rgba(0, 0, 0, 0.15);
-              padding: 21px;
-            "
-          >
-            <img
-              class="candidate-pic"
-              src="../../assets/img/Portrait%20Of%20a%20Confident%20Young%20Smart%20Looking%20Man%20_%20Premium%20AI-generated%20image.jpg"
-            />
-            <div class="flex-row" style="margin-left: 33px; margin-top: 17px">
-              <h1
-                class="candidate-name"
-                style="
-                  font-family: Poppins, sans-serif;
-                  font-weight: bold;
-                  color: rgb(75, 90, 105);
-                "
-              >
-                Vice President Candidate #2
-              </h1>
-              <h1
-                class="candidate-dept"
-                style="
-                  font-family: Poppins, sans-serif;
-                  font-weight: bold;
-                  color: rgb(75, 90, 105);
-                  margin-top: -7px;
-                "
-              >
-                Department and School Year
+                <?= $vicePresident['course'] ?>
+                -
+                <?= $vicePresident['partylist'] ?>
               </h1>
               <p
                 class="candidate-desc"
                 style="margin-top: 7px; text-align: justify"
               >
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
-                malesuada nisl in arcu bibendum congue. Lorem ipsum dolor sit
-                amet, consectetur adipiscing elit. Proin semper nisl ac tempus
-                fringilla.
+                malesuada nisl in arcu bibendum congue.
               </p>
             </div>
+            <input type="radio" class="d-none" />
           </div>
-          <div
-            class="d-flex align-items-lg-center align-items-xl-center align-items-xxl-start radio-pres_candidate"
-            id="candidate1-2"
-            style="
-              background: #ffffff;
-              border-radius: 16px;
-              margin-bottom: 34px;
-              padding: 21px;
-              border: 4px solid rgb(5, 176, 214);
-            "
-          >
-            <img
-              class="candidate-pic"
-              src="../../assets/img/a%2035%20year%20old%20spanish%20entrepreneur%20woman%20in%20a%20posture%20that%20states%20that%20Starting%20Your%20Own%20Business_%20A%20Journey%20of%20Self-Love%20and%20Empowerment_%20Minimalist%20design%20realistic%20warm%20colors%20white%20skin%20brown%20eyes%20self%20love.jpg"
-            />
-            <div class="flex-row" style="margin-left: 33px; margin-top: 17px">
-              <h1
-                class="candidate-name"
-                style="
-                  font-family: Poppins, sans-serif;
-                  font-weight: bold;
-                  color: rgb(75, 90, 105);
-                "
-              >
-                Vice President Candidate #
-              </h1>
-              <h1
-                class="candidate-dept"
-                style="
-                  font-family: Poppins, sans-serif;
-                  font-weight: bold;
-                  color: rgb(75, 90, 105);
-                  margin-top: -7px;
-                "
-              >
-                Department and School Year
-              </h1>
-              <p
-                class="candidate-desc"
-                style="margin-top: 7px; text-align: justify"
-              >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
-                malesuada nisl in arcu bibendum congue. Lorem ipsum dolor sit
-                amet, consectetur adipiscing elit. Proin semper nisl ac tempus
-                fringilla.
-              </p>
-            </div>
-          </div>
+          <?php
+    }
+    ?>
         </div>
-        <input type="radio" class="d-none" />
       </div>
     </div>
+
+    <?php
+mysqli_close($conn);
+?>
+
     <div id="vicepres-wrapper"></div>
     <div
       class="container d-xxl-flex justify-content-xxl-center align-items-xxl-start"
@@ -760,14 +572,15 @@ if (!isset($_SESSION['id'])) {
     <script src="assets/js/untitled.js"></script>
     <script>
       function selectCandidate(candidateId) {
-        // Manipulate card borders
-        const candidates = document.querySelectorAll('.radio-pres_candidate');
-        candidates.forEach(candidate => {
-          candidate.style.border = '2px solid rgba(0, 0, 0, 0.15)'; // Default
+        // Reseter for border
+        const candidates = document.querySelectorAll(".radio-pres_candidate");
+        candidates.forEach((candidate) => {
+          candidate.style.border = "2px solid rgba(0, 0, 0, 0.15)"; // default
         });
 
+        // Set the border 
         const selectedCandidate = document.getElementById(candidateId);
-        selectedCandidate.style.border = '4px solid rgb(13, 195, 162)'; // Set color
+        selectedCandidate.style.border = "4px solid rgb(13, 195, 162)"; 
       }
     </script>
   </body>
