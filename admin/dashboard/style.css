@@ -70,7 +70,16 @@ body {
 .sidebar .footer:hover {
     background-color: #1ABC9C;
 }
-
+.menu-label {
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 10px 0 5px;
+    padding: 5px 10px;
+    color: #fbf9E4;
+    border-bottom: #ffffff solid 1px;
+    font-size: 15px;
+   
+}
 /* Content Area */
 .content {
     margin-left: 250px;
