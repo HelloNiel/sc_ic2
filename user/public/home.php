@@ -16,12 +16,8 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>PTCI Website</title>
-<<<<<<< HEAD:index.html
     <link rel="website icon" type="png" sizes="32x32" href="/img/logo/PTCI-logo.png">
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-=======
     <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
->>>>>>> upstream/main:user/public/home.php
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins&amp;display=swap">
     <link rel="stylesheet" href="../../assets/css/swiper-icons.css">
