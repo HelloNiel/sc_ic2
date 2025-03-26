@@ -6,49 +6,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagination Table</title>
-    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-        .container {
-            max-width: 950px;
-        }
-        .table th, .table td {
-            text-align: center;
-            vertical-align: middle;
-        }
-        .pagination {
-            justify-content: center;
-        }
-        .page-item.active .page-link {
-            background-color: #007bff;
-            border-color: #007bff;
-        }
-        .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
-        }
-        .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
-        }
-        .thead-light th {
-            background-color: #e9ecef;
-        }
-        .card {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border: none;
-            margin-top: 20px;
-        }
-        .table-responsive {
-            margin-bottom: 20px;
-        }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="../src/stelcom-bootswatch/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
-<div class="container mt-4">
+<style>
+    .main-content {
+        position: absolute;
+        top: 50px;
+        left: 25%;
+    }
+</style>
+
+<?php include 'components/sidebar.php'; ?>
+
+<div class="container mt-4 main-content">
     <div class="card p-3">
         <h2 class="text-center mb-4">Voters Validation</h2>
         <form method="POST">
