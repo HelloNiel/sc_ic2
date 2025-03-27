@@ -3,18 +3,39 @@ include ('../../partial/connection.php');
 
 session_start();
 
-// Check status
+// Check if the user is logged in
 if (!isset($_SESSION['id'])) {
     header("Location: login.php?error=You must log in first.");
     exit();
 }
 
-$presidentQuery = "SELECT `id`, `fullname`, `course`, `partylist` FROM `president` WHERE 1";
-$vicePresidentQuery = "SELECT `id`, `fullname`, `course`, `partylist` FROM `vice_president` WHERE 1";
+// president
+$sql = "SELECT `id`, `full_name`, `course`, `slogan`, `image`, `created_at` FROM `president_candidates` WHERE 1";
+$presidentResult = $conn->query($sql);
 
-$presidentResult = mysqli_query($conn, $presidentQuery);
-$vicePresidentResult = mysqli_query($conn, $vicePresidentQuery);
-?>
+if ($presidentResult->num_rows > 0) {
+    $candidates = [];
+    // Loop through each president 
+    while ($president = $presidentResult->fetch_assoc()) {
+        $candidates[] = $president;
+    }
+} else {
+    $candidates = [];
+}
+
+// vice president
+$vicePresidentSql = "SELECT `id`, `full_name`, `course`, `slogan`, `image`, `created_at` FROM `vice_president_candidates` WHERE 1";
+$vicePresidentResult = $conn->query($vicePresidentSql);
+
+if ($vicePresidentResult->num_rows > 0) {
+    $viceCandidates = [];
+    // Loop through each vice president 
+    while ($vicePresident = $vicePresidentResult->fetch_assoc()) {
+        $viceCandidates[] = $vicePresident;
+    }
+} else {
+    $viceCandidates = [];
+}
 ?>
 
 <!DOCTYPE html>
@@ -205,10 +226,7 @@ $vicePresidentResult = mysqli_query($conn, $vicePresidentQuery);
           id="candidates-wrapper-flex"
           style="overflow: visible; color: #122c4f; margin-top: 41px"
         >
-          <?php
-          // Loop through each president candidate
-          while($president = mysqli_fetch_assoc($presidentResult)) {
-          ?>
+          <?php foreach ($candidates as $president) : ?>
           <div
             class="d-flex align-items-lg-center radio-pres_candidate"
             id="candidate<?= $president['id'] ?>"
@@ -221,10 +239,13 @@ $vicePresidentResult = mysqli_query($conn, $vicePresidentQuery);
             "
             onclick="selectCandidate('candidate<?= $president['id'] ?>')"
           >
+            <!-- Uploads root -->
             <img
               class="candidate-pic"
-              src="path_to_image/<?= $president['id'] ?>.jpg"
+              src="uploads/<?= $president['image'] ?>"
+              onerror="this.onerror=null; this.src='uploads/default.jpg';"
             />
+
             <div class="flex-row" style="margin-left: 33px; margin-top: 17px">
               <h1
                 class="candidate-name"
@@ -234,7 +255,7 @@ $vicePresidentResult = mysqli_query($conn, $vicePresidentQuery);
                   color: rgb(75, 90, 105);
                 "
               >
-                <?= $president['fullname'] ?>
+                <?= htmlspecialchars($president['full_name']) ?>
               </h1>
               <h1
                 class="candidate-dept"
@@ -245,23 +266,18 @@ $vicePresidentResult = mysqli_query($conn, $vicePresidentQuery);
                   margin-top: -7px;
                 "
               >
-                <?= $president['course'] ?>
-                -
-                <?= $president['partylist'] ?>
+                <?= htmlspecialchars($president['course']) ?>
               </h1>
               <p
                 class="candidate-desc"
                 style="margin-top: 7px; text-align: justify"
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
-                malesuada nisl in arcu bibendum congue.
+                <?= htmlspecialchars($president['slogan']) ?>
               </p>
             </div>
             <input type="radio" class="d-none" />
           </div>
-          <?php
-          }
-          ?>
+          <?php endforeach; ?>
         </div>
       </div>
 
@@ -298,10 +314,7 @@ $vicePresidentResult = mysqli_query($conn, $vicePresidentQuery);
             margin-top: 41px;
           "
         >
-          <?php
-    // Loop through each vice president candidate
-    while($vicePresident = mysqli_fetch_assoc($vicePresidentResult)) {
-    ?>
+          <?php foreach ($viceCandidates as $vicePresident) : ?>
           <div
             class="d-flex align-items-lg-center radio-pres_candidate"
             id="candidate<?= $vicePresident['id'] ?>"
@@ -316,7 +329,8 @@ $vicePresidentResult = mysqli_query($conn, $vicePresidentQuery);
           >
             <img
               class="candidate-pic"
-              src="path_to_image/<?= $vicePresident['id'] ?>.jpg"
+              src="uploads/<?= $vicePresident['image'] ?>"
+              onerror="this.onerror=null; this.src='uploads/default.jpg';"
             />
             <div class="flex-row" style="margin-left: 33px; margin-top: 17px">
               <h1
@@ -327,7 +341,7 @@ $vicePresidentResult = mysqli_query($conn, $vicePresidentQuery);
                   color: rgb(75, 90, 105);
                 "
               >
-                <?= $vicePresident['fullname'] ?>
+                <?= htmlspecialchars($vicePresident['full_name']) ?>
               </h1>
               <h1
                 class="candidate-dept"
@@ -338,23 +352,18 @@ $vicePresidentResult = mysqli_query($conn, $vicePresidentQuery);
                   margin-top: -7px;
                 "
               >
-                <?= $vicePresident['course'] ?>
-                -
-                <?= $vicePresident['partylist'] ?>
+                <?= htmlspecialchars($vicePresident['course']) ?>
               </h1>
               <p
                 class="candidate-desc"
                 style="margin-top: 7px; text-align: justify"
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
-                malesuada nisl in arcu bibendum congue.
+                <?= htmlspecialchars($vicePresident['slogan']) ?>
               </p>
             </div>
             <input type="radio" class="d-none" />
           </div>
-          <?php
-    }
-    ?>
+          <?php endforeach; ?>
         </div>
       </div>
     </div>
@@ -572,15 +581,22 @@ mysqli_close($conn);
     <script src="assets/js/untitled.js"></script>
     <script>
       function selectCandidate(candidateId) {
-        // Reseter for border
-        const candidates = document.querySelectorAll(".radio-pres_candidate");
+        // check if the clicked candidate 
+        const clickedElement = document.getElementById(candidateId);
+        const isPresident = clickedElement.closest("#pres-wrapper") !== null;
+
+        const candidates = isPresident
+          ? document.querySelectorAll("#pres-wrapper .radio-pres_candidate")
+          : document.querySelectorAll("#vpres-wrapper .radio-pres_candidate");
+
+        // reset borders for the candidates
         candidates.forEach((candidate) => {
           candidate.style.border = "2px solid rgba(0, 0, 0, 0.15)"; // default
         });
 
-        // Set the border 
+        // set the border for the selected candidate
         const selectedCandidate = document.getElementById(candidateId);
-        selectedCandidate.style.border = "4px solid rgb(13, 195, 162)"; 
+        selectedCandidate.style.border = "4px solid rgb(13, 195, 162)";
       }
     </script>
   </body>
