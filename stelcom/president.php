@@ -1,24 +1,6 @@
 <?php
-include('../partial/connection.php');
+include ('../back-end/getpresident.php')
 
-// Pagination
-$limit = 10;
-$page = isset($_GET['page']) ? $_GET['page'] : 1;
-$offset = ($page - 1) * $limit;
-
-// Query la ang
-$sql = "SELECT `fullname`, `course`, `partylist`
-        FROM `president` 
-        LIMIT $limit OFFSET $offset";
-$result = mysqli_query($conn, $sql);
-
-$totalQuery = "SELECT COUNT(*) FROM valid_account";
-$totalResult = mysqli_query($conn, $totalQuery);
-$totalRecords = mysqli_fetch_row($totalResult)[0];
-
-$totalPages = ceil($totalRecords / $limit);
-
-mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>
@@ -26,29 +8,25 @@ mysqli_close($conn);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Validated Voters Account</title>
+    <title>President Election Candidates</title>
     <link href="../src/stelcom-bootswatch/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <style>
-    </style>
-</head>
-<body>
-
-<style>
     .main-content {
         position: absolute;
         top: 50px;
         left: 25%;
     }
-</style>
-
+    </style>
+</head>
+<body>
 
 <?php include 'components/sidebar.php'; ?>
 
 <div class="container mt-4 main-content">
     <div class="table-container">
         <div class="card p-3">
-            <h2 class="text-center mb-4">President Election</h2>
+            <h2 class="text-center mb-4">President Election Candidates</h2>
 
             <div class="table-responsive">
                 <table class="table table-bordered table-hover table-striped">
@@ -56,20 +34,43 @@ mysqli_close($conn);
                         <tr>
                             <th>Full Name</th>
                             <th>Course</th>
-                            <th>Party List</th>
+                            <th>Slogan</th>
+                            <th>Created At</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php while ($row = mysqli_fetch_assoc($result)): ?>
                         <tr>
-                            <td><?php echo $row['fullname']; ?></td>
+                            <td><?php echo $row['full_name']; ?></td>
                             <td><?php echo $row['course']; ?></td>
-                            <td><?php echo $row['partylist']; ?></td>
+                            <td><?php echo $row['slogan']; ?></td>
+                            <td><?php echo $row['created_at']; ?></td>
                         </tr>
                         <?php endwhile; ?>
                     </tbody>
                 </table>
             </div>
+
+            <!-- Pagination -->
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item <?php echo ($page == 1) ? 'disabled' : ''; ?>">
+                        <a class="page-link" href="?page=<?php echo $page - 1; ?>" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                        <li class="page-item <?php echo ($page == $i) ? 'active' : ''; ?>">
+                            <a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                        </li>
+                    <?php endfor; ?>
+                    <li class="page-item <?php echo ($page == $totalPages) ? 'disabled' : ''; ?>">
+                        <a class="page-link" href="?page=<?php echo $page + 1; ?>" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 </div>

@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Page - Timer Control</title>
-    <link rel="stylesheet" href="style.css" />
-    <script src="script.js"></script>
+    <link rel="stylesheet" href="../assets/css/timer.css" />
+
     
 </head>
 
@@ -20,13 +20,13 @@
             <div class="logo">Admin</div>
                 <ul class="menu list-unstyled">
                     <div class="menu-label">Home</div>
-                    <li><a href="/admin/dashboard/index.html">Dashboard</a></li>
-                    <li><a href="/admin/candidates/index.html">Candidates</a></li>
-                    <li><a href="/admin/timer/index.html">Start/End</a></li>
+                    <li><a href="dashboard.php">Dashboard</a></li>
+                    <li><a href="candidates.php">Candidates</a></li>
+                    <li><a href="#">Start/End</a></li>
             
                     <div class="menu-label">Account</div>
-                    <li><a href="#">Create</a></li>
-                    <li><a href="#">View</a></li>
+                    <li><a href="createcandidates.php">Create</a></li>
+                    <li><a href="viewcandidates.php">View</a></li>
                 </ul>
             
                 <div class="footer">
@@ -61,6 +61,7 @@
        </div>
     </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./js/timer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

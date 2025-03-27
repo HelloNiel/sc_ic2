@@ -8,8 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="website icon" type="png" sizes="32x32" href="/img/logo/PTCI-logo.png">
     <title>Admin Page - Candidates</title>
-    <link rel="stylesheet" href="style.css" />
-    <script src="script.js"></script>
+    <link rel="stylesheet" href="../assets/css/candidates.css" />
 </head>
 
 <body>
@@ -19,9 +18,9 @@
             <div class="logo">Admin</div>
                 <ul class="menu list-unstyled">
                     <div class="menu-label">Home</div>
-                    <li><a href="/admin/dashboard/index.html">Dashboard</a></li>
-                    <li><a href="/admin/candidates/index.html">Candidates</a></li>
-                    <li><a href="/admin/timer/index.html">Start/End</a></li>
+                    <li><a href="dashboard.php">Dashboard</a></li>
+                    <li><a href="#">Candidates</a></li>
+                    <li><a href="timer.php">Start/End</a></li>
             
                     <div class="menu-label">Account</div>
                     <li><a href="#">Create</a></li>
@@ -104,7 +103,12 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('active');
+        }
+    </script>
 </body>
 
 </html>

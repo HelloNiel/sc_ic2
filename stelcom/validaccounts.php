@@ -1,24 +1,6 @@
 <?php
-include('../partial/connection.php');
 
-// Pagination
-$limit = 10;
-$page = isset($_GET['page']) ? $_GET['page'] : 1;
-$offset = ($page - 1) * $limit;
-
-// Query la ang
-$sql = "SELECT `id`, `student_id`, `account_name`, `last_name`, `created_at` 
-        FROM `valid_account` 
-        LIMIT $limit OFFSET $offset";
-$result = mysqli_query($conn, $sql);
-
-$totalQuery = "SELECT COUNT(*) FROM valid_account";
-$totalResult = mysqli_query($conn, $totalQuery);
-$totalRecords = mysqli_fetch_row($totalResult)[0];
-
-$totalPages = ceil($totalRecords / $limit);
-
-mysqli_close($conn);
+include ('../back-end/getvalidaccounts.php')
 ?>
 
 <!DOCTYPE html>
@@ -30,6 +12,12 @@ mysqli_close($conn);
     <link href="../src/stelcom-bootswatch/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <style>
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -41,7 +29,6 @@ mysqli_close($conn);
         left: 25%;
     }
 </style>
-
 
 <?php include 'components/sidebar.php'; ?>
 
@@ -76,7 +63,7 @@ mysqli_close($conn);
             </div>
 
             <!-- Pagination -->
-            <div class="d-flex justify-content-between">
+            <div class="pagination-container">
                 <nav aria-label="Page navigation">
                     <ul class="pagination">
                         <li class="page-item <?php echo ($page == 1) ? 'disabled' : ''; ?>">

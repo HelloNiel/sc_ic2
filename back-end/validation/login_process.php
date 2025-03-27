@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['last_name'] = $last_name;
             $_SESSION['created_at'] = $created_at;
 
-            header("Location: ../../user/public/scbanner.php");
+            header("Location: ../../user/public/voteinformation.php");
             exit();
         } else {
             header("Location: ../../user/private/login.php?error=Invalid School ID or Last Name!");
