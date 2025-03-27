@@ -76,9 +76,9 @@ body {
     margin: 10px 0 5px;
     padding: 5px 10px;
     color: #fbf9E4;
-    border-bottom: #ffffff solid 1px;
+    border-bottom: #5B88B2 solid 1px;
     font-size: 15px;
-   
+    width: 50%;
 }
 /* Content Area */
 .content {
