@@ -596,7 +596,9 @@ mysqli_close($conn);
 
         // set the border for the selected candidate
         const selectedCandidate = document.getElementById(candidateId);
-        selectedCandidate.style.border = "4px solid #00FFD1";
+        selectedCandidate.style.border = isPresident 
+          ? "4px solid #00FFD1"  // President
+          : "4px solid #05B0D6"; // Vice President 
       }
     </script>
   </body>

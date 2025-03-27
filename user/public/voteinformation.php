@@ -62,7 +62,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                         <h1 class="text-uppercase" style="font-size: 15px;font-family: Poppins, sans-serif;font-weight: bold;">Party lists</h1>
                         <div style="width: 86.02px;border-bottom: 4px solid #5b88b2;"></div>
                     </div>
-                    <div class="d-flex partylists-card" id="partylists-card" style="padding-top: 20px;padding-bottom: 20px;"><img id="partylist-img" class="partylist-img" src="assets/img/Yellow%20and%20Red%20Landscape%20Campaign%20Posters.png" style="width: 307px;">
+                    <div class="d-flex partylists-card" id="partylists-card" style="padding-top: 20px;padding-bottom: 20px;"><img id="partylist-img" class="partylist-img" src="../../assets/img/Yellow%20and%20Red%20Landscape%20Campaign%20Posters.png" style="width: 307px;">
                         <div class="d-xxl-flex flex-column partylist-details" id="partylist-details" style="width: auto;margin-left: 38px;">
                             <h1 id="partlyst-name" class="partlyst-name" style="font-family: Poppins, sans-serif;font-weight: bold;color: rgb(75,90,105);font-size: 22px;">Party list #1</h1>
                             <h1 id="partylist-dept" class="partylist-dept" style="font-family: 'Open Sans', sans-serif;color: rgb(75,90,105);font-size: 18px;margin-top: -3px;">Department</h1>
@@ -70,7 +70,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                             <div class="d-xxl-flex justify-content-xxl-start" id="button-wrapper"><button class="btn btn-primary ms-md-2" type="button" style="font-family: Poppins, sans-serif;background: rgba(56,57,59,0);border-radius: 6px;border: 2.05263px solid #122c4f;color: rgb(79,74,74);">READ MORE</button></div>
                         </div>
                     </div>
-                    <div class="d-flex partylists-card" id="partylists-card-1" style="padding-top: 20px;padding-bottom: 20px;"><img id="partylist-img-1" class="partylist-img" src="assets/img/Yellow%20and%20Red%20Landscape%20Campaign%20Posters.png" style="width: 307px;">
+                    <div class="d-flex partylists-card" id="partylists-card-1" style="padding-top: 20px;padding-bottom: 20px;"><img id="partylist-img-1" class="partylist-img" src="../../assets/img/Yellow%20and%20Red%20Landscape%20Campaign%20Posters.png" style="width: 307px;">
                         <div class="d-xxl-flex flex-column partylist-details" id="partylist-details-1" style="width: auto;margin-left: 38px;">
                             <h1 id="partlyst-name-1" class="partlyst-name" style="font-family: Poppins, sans-serif;font-weight: bold;color: rgb(75,90,105);font-size: 22px;">Party list #2</h1>
                             <h1 id="partylist-dept-1" class="partylist-dept" style="font-family: 'Open Sans', sans-serif;color: rgb(75,90,105);font-size: 18px;margin-top: -3px;">Department</h1>
@@ -78,7 +78,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                             <div class="d-xxl-flex justify-content-xxl-start" id="button-wrapper-1"><button class="btn btn-primary ms-md-2" type="button" style="font-family: Poppins, sans-serif;background: rgba(56,57,59,0);border-radius: 6px;border: 2.05263px solid #122c4f;color: rgb(79,74,74);">READ MORE</button></div>
                         </div>
                     </div>
-                    <div class="d-flex partylists-card" id="partylists-card-2" style="padding-top: 20px;padding-bottom: 20px;"><img id="partylist-img-2" class="partylist-img" src="assets/img/Yellow%20and%20Red%20Landscape%20Campaign%20Posters.png" style="width: 307px;">
+                    <div class="d-flex partylists-card" id="partylists-card-2" style="padding-top: 20px;padding-bottom: 20px;"><img id="partylist-img-2" class="partylist-img" src="../../assets/img/Yellow%20and%20Red%20Landscape%20Campaign%20Posters.png" style="width: 307px;">
                         <div class="d-xxl-flex flex-column partylist-details" id="partylist-details-2" style="width: auto;margin-left: 38px;">
                             <h1 id="partlyst-name-2" class="partlyst-name" style="font-family: Poppins, sans-serif;font-weight: bold;color: rgb(75,90,105);font-size: 22px;">Party list #2</h1>
                             <h1 id="partylist-dept-2" class="partylist-dept" style="font-family: 'Open Sans', sans-serif;color: rgb(75,90,105);font-size: 18px;margin-top: -3px;">Department</h1>
@@ -89,7 +89,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                 </div>
             </div>
             <div class="col-md-6 col-xxl-3" id="school-wrapper" style="padding: 0px;background: #ffffff;height: 474px;position: relative;margin-top: 30px;">
-                <div class="d-flex flex-column align-items-center"><img width="100" height="80" src="assets/img/LOGO.png" style="width: 238px;height: 203px;margin-top: 35px;">
+                <div class="d-flex flex-column align-items-center"><img width="100" height="80" src="../../assets/img/LOGO.png" style="width: 238px;height: 203px;margin-top: 35px;">
                     <h1 style="font-family: 'Open Sans', sans-serif;font-size: 18px;color: rgb(66,64,64);font-weight: bold;margin-bottom: 4px;text-align: center;margin-top: 22px;padding-right: 50px;padding-left: 50px;">Palawan Technological College Inc.</h1>
                 </div>
                 <div class="d-flex flex-column align-items-center" style="padding-top: 14px;">
@@ -106,7 +106,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
         <footer class="text-white bg-dark" style="margin-bottom: -36px;">
             <div class="container py-4 py-lg-5" style="margin-bottom: -39px;">
                 <div class="row justify-content-center">
-                    <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column align-items-xxl-center item"><img src="assets/img/294834923_451650346969401_7788761739934683317_n__1_-removebg-preview.png" style="width: 176.02px;margin-bottom: 13px;">
+                    <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column align-items-xxl-center item"><img src="../../assets/img/294834923_451650346969401_7788761739934683317_n__1_-removebg-preview.png" style="width: 176.02px;margin-bottom: 13px;">
                         <p style="margin-left: 27px;margin-top: 7px;">Palawan Technological College Inc.</p>
                     </div>
                     <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column item" style="padding-left: 51px;">
@@ -132,7 +132,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                     <p class="mb-0">Copyright © 2025 Palawan Technological College Inc. All rights reserved.</p>
                     <ul class="list-inline mb-0">
                         <li class="list-inline-item">Powered by&nbsp;</li>
-                        <li class="list-inline-item"><img src="assets/img/461514192_122108110472537146_3222580666165080691_n-removebg-preview.png" style="width: 69px;"></li>
+                        <li class="list-inline-item"><img src="../../assets/img/461514192_122108110472537146_3222580666165080691_n-removebg-preview.png" style="width: 69px;"></li>
                     </ul>
                 </div>
             </div>
