@@ -596,7 +596,7 @@ mysqli_close($conn);
 
         // set the border for the selected candidate
         const selectedCandidate = document.getElementById(candidateId);
-        selectedCandidate.style.border = "4px solid rgb(13, 195, 162)";
+        selectedCandidate.style.border = "4px solid #00FFD1";
       }
     </script>
   </body>
