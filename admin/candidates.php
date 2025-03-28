@@ -1,3 +1,39 @@
+<?php
+require_once('../partial/connection.php'); 
+
+session_start();
+
+// Check if the user is logged in
+if (!isset($_SESSION['user_id'])) { 
+    header("Location: adminlogin.php?error=You must log in first.");
+    exit();
+}
+
+// oresident votes
+$presidentVoteCounts = [];
+$query = "SELECT candidate_id, COUNT(*) as vote_count FROM president_votes GROUP BY candidate_id";
+$result = mysqli_query($conn, $query);
+while($row = mysqli_fetch_assoc($result)) {
+    $presidentVoteCounts[$row['candidate_id']] = $row['vote_count'];
+}
+
+// vice President votes
+$vicePresidentVoteCounts = [];
+$query = "SELECT candidate_id, COUNT(*) as vote_count FROM vice_president_votes GROUP BY candidate_id";
+$result = mysqli_query($conn, $query);
+while($row = mysqli_fetch_assoc($result)) {
+    $vicePresidentVoteCounts[$row['candidate_id']] = $row['vote_count'];
+}
+
+// president candidates
+$query = "SELECT id, full_name, course, image FROM president_candidates ORDER BY id";
+$presidentCandidates = mysqli_query($conn, $query);
+
+// vice President candidates
+$query = "SELECT id, full_name, course, image FROM vice_president_candidates ORDER BY id";
+$vicePresidentCandidates = mysqli_query($conn, $query);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,6 +45,8 @@
     <link rel="website icon" type="png" sizes="32x32" href="/img/logo/PTCI-logo.png">
     <title>Admin Page - Candidates</title>
     <link rel="stylesheet" href="../assets/css/candidates.css" />
+    <link rel="stylesheet" href="../src/stelcom-bootswatch/bootstrap.min.css">
+
 </head>
 
 <body>
@@ -17,18 +55,21 @@
         <div class="sidebar">
             <div class="logo">Admin</div>
                 <ul class="menu list-unstyled">
-                    <div class="menu-label">Home</div>
+                    <div class="menu-label">Information</div>
                     <li><a href="dashboard.php">Dashboard</a></li>
-                    <li><a href="#">Candidates</a></li>
-                    <li><a href="timer.php">Start/End</a></li>
-            
+                    <li><a href="#">Candidates</a></li>            
                     <div class="menu-label">Account</div>
-                    <li><a href="#">Create</a></li>
-                    <li><a href="#">View</a></li>
+                    <li><a href="createcandidates.php">Create Student Council</a></li>
+                    <li><a href="createstelcom.php">Create Stelcom</a></li>
+                    <li><a href="createadmin.php">Create Admin</a></li>
+
+
+                    <div class="menu-label">Configuration</div>
+                    <li><a href="timer.php">Start/End</a></li>
                 </ul>
             
                 <div class="footer">
-                    <a href="/logout" class="text-decoration-none">Logout</a>
+                    <a href="../back-end/adminlogout.php" class="text-decoration-none">Logout</a>
                 </div>
             </div>
         <div class="hamburger" onclick="toggleSidebar()">
@@ -43,61 +84,44 @@
 
         <!-- Main Content -->
         <div class="content">
+            <!-- President Section -->
+            <h2 class="section-title">PRESIDENT VOTES</h2>
             <div class="candidate-container">
-                <!-- Candidate 1 -->
-                <div class="candidate" id="candidate1">
-                    <img src="/img/candidatesImg/try-img.png" alt="Candidate 1" class="candidate-image">
+                <?php while($candidate = mysqli_fetch_assoc($presidentCandidates)): ?>
+                <div class="candidate" id="candidate<?php echo $candidate['id']; ?>">
+                    <img src="../user/private/uploads/<?php echo htmlspecialchars($candidate['image']); ?>" 
+                         alt="<?php echo htmlspecialchars($candidate['full_name']); ?>" 
+                         class="candidate-image"
+                         onerror="this.onerror=null; this.src='../user/private/uploads/';">
                     <div class="candidate-info">
-                        <p class="candidate-name">Candidate 1</p>
-                        <p class="vote-count" id="vote-count1">Votes: 0</p>
+                        <p class="candidate-name"><?php echo htmlspecialchars($candidate['full_name']); ?></p>
+                        <p class="candidate-course"><?php echo htmlspecialchars($candidate['course']); ?></p>
+                        <p class="vote-count" id="vote-count<?php echo $candidate['id']; ?>">
+                            Votes: <?php echo isset($presidentVoteCounts[$candidate['id']]) ? $presidentVoteCounts[$candidate['id']] : 0; ?>
+                        </p>
                     </div>
                 </div>
+                <?php endwhile; ?>
+            </div>
 
-                <!-- Candidate 2 -->
-                <div class="candidate" id="candidate2">
-                    <img src="/img/candidatesImg/try-img.png" alt="Candidate 2" class="candidate-image">
+            <!-- Vice President Section -->
+            <h2 class="section-title mt-5">VICE PRESIDENT VOTES</h2>
+            <div class="candidate-container">
+                <?php while($candidate = mysqli_fetch_assoc($vicePresidentCandidates)): ?>
+                <div class="candidate" id="vp-candidate<?php echo $candidate['id']; ?>">
+                    <img src="../user/private/uploads/<?php echo htmlspecialchars($candidate['image']); ?>" 
+                         alt="<?php echo htmlspecialchars($candidate['full_name']); ?>" 
+                         class="candidate-image"
+                         onerror="this.onerror=null; this.src='../user/private/uploads/';">
                     <div class="candidate-info">
-                        <p class="candidate-name">Candidate 2</p>
-                        <p class="vote-count" id="vote-count2">Votes: 0</p>
+                        <p class="candidate-name"><?php echo htmlspecialchars($candidate['full_name']); ?></p>
+                        <p class="candidate-course"><?php echo htmlspecialchars($candidate['course']); ?></p>
+                        <p class="vote-count" id="vp-vote-count<?php echo $candidate['id']; ?>">
+                            Votes: <?php echo isset($vicePresidentVoteCounts[$candidate['id']]) ? $vicePresidentVoteCounts[$candidate['id']] : 0; ?>
+                        </p>
                     </div>
                 </div>
-
-                <!-- Candidate 3 -->
-                <div class="candidate" id="candidate3">
-                    <img src="/img/candidatesImg/try-img.png" alt="Candidate 3" class="candidate-image">
-                    <div class="candidate-info">
-                        <p class="candidate-name">Candidate 3</p>
-                        <p class="vote-count" id="vote-count3">Votes: 0</p>
-                    </div>
-                </div>
-
-                <!-- Candidate 4 -->
-                <div class="candidate" id="candidate4">
-                    <img src="/img/candidatesImg/try-img.png" alt="Candidate 4" class="candidate-image">
-                    <div class="candidate-info">
-                        <p class="candidate-name">Candidate 4</p>
-                        <p class="vote-count" id="vote-count4">Votes: 0</p>
-                    </div>
-                </div>
-
-                <!-- Candidate 5 -->
-                <div class="candidate" id="candidate5">
-                    <img src="/img/candidatesImg/try-img.png" alt="Candidate 5" class="candidate-image">
-                    <div class="candidate-info">
-                        <p class="candidate-name">Candidate 5</p>
-                        <p class="vote-count" id="vote-count5">Votes: 0</p>
-                    </div>
-                </div>
-
-                <!-- Candidate 6 -->
-                <div class="candidate" id="candidate6">
-                    <img src="/img/candidatesImg/try-img.png" alt="Candidate 6" class="candidate-image">
-                    <div class="candidate-info">
-                        <p class="candidate-name">Candidate 6</p>
-                        <p class="vote-count" id="vote-count6">Votes: 0</p>
-                    </div>
-                </div>
-
+                <?php endwhile; ?>
             </div>
         </div>
     </div>

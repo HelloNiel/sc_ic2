@@ -1,5 +1,13 @@
 <?php
-include('../back-end/createcandidates.php');
+    include('../back-end/createcandidates.php');
+
+    session_start();
+
+    // Check if the user is logged in
+    if (!isset($_SESSION['user_id'])) { 
+        header("Location: adminlogin.php?error=You must log in first.");
+        exit();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +18,7 @@ include('../back-end/createcandidates.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="website icon" type="png" sizes="32x32" href="/img/logo/PTCI-logo.png">
-    <title>Admin Page - Candidates</title>
+    <title>Admin Page - Create Candidates</title>
     <link rel="stylesheet" href="../assets/css/createcandidates.css" />
     <link rel="stylesheet" href="../src/stelcom-bootswatch/bootstrap.min.css" />
 </head>
@@ -20,18 +28,21 @@ include('../back-end/createcandidates.php');
         <div class="sidebar">
             <div class="logo">Admin</div>
             <ul class="menu list-unstyled">
-                <div class="menu-label">Home</div>
-                <li><a href="dashboard.php">Dashboard</a></li>
-                <li><a href="#">Candidates</a></li>
-                <li><a href="timer.php">Start/End</a></li>
+                    <div class="menu-label">Information</div>
+                    <li><a href="dashboard.php">Dashboard</a></li>
+                    <li><a href="candidates.php">Candidates</a></li>            
+                    <div class="menu-label">Account</div>
+                    <li><a href="#">Create Student Council</a></li>
+                    <li><a href="createstelcom.php">Create Stelcom</a></li>
+                    <li><a href="createadmin.php">Create Admin</a></li>
 
-                <div class="menu-label">Account</div>
-                <li><a href="createcandidates.php">Create</a></li>
-                <li><a href="viewcandidates.php">View</a></li>
+
+                    <div class="menu-label">Configuration</div>
+                    <li><a href="timer.php">Start/End</a></li>
             </ul>
 
             <div class="footer">
-                <a href="/logout" class="text-decoration-none">Logout</a>
+                <a href="../back-end/adminlogout.php" class="text-decoration-none">Logout</a>
             </div>
         </div>
 

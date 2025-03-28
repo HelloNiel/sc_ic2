@@ -14,7 +14,7 @@ $sql = "SELECT `id`, `full_name`, `course`, `slogan`, `image`, `created_at` FROM
 $presidentResult = $conn->query($sql);
 
 if ($presidentResult->num_rows > 0) {
-    $candidates = [];
+    $candidates = []; 
     // Loop through each president 
     while ($president = $presidentResult->fetch_assoc()) {
         $candidates[] = $president;
