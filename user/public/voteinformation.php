@@ -48,7 +48,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                         <div class="swiper-container">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide" style="background: url(&quot;../../assets/img/crocodile%20farm.png&quot;) center center / cover no-repeat;"></div>
-                                <div class="swiper-slide" style="background: url(&quot;../../assets/img/undergroundriver(2).png&quot;) center center / cover no-repeat;"></div>
+                                <div class="swiper-slide" style="background: url(&quot;../../assets/img/undergroundriver2.png&quot;) center center / cover no-repeat;"></div>
                                 <div class="swiper-slide" style="background: url(&quot;../../assets/img/undergroundriver.png&quot;) center center / cover no-repeat;"></div>
                             </div>
                             <div class="visually-hidden visible swiper-pagination"></div>
@@ -94,54 +94,78 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                 </div>
                 <div class="d-flex flex-column align-items-center" style="padding-top: 14px;">
                     <ul>
-                        <li><a href="https://www.facebook.com/profile.php?id=100063733196484" style="color: rgb(227,177,4);font-family: Poppins, sans-serif;border-color: rgb(227,177,4);">PTCI Official Page</a></li>
-                        <li><a href="#" style="color: rgb(227,177,4);font-family: Poppins, sans-serif;border-color: rgb(227,177,4);">PTCI Student Council Page</a></li>
+                        <li><a href="https://www.facebook.com/profile.php?id=100063733196484" style="color: rgb(227,177,4);font-family: Poppins, sans-serif;border-color: rgb(227,177,4); text-decoration:none;">PTCI Official Page</a></li>
+                        <li><a href="#" style="color: rgb(227,177,4);font-family: Poppins, sans-serif;border-color: rgb(227,177,4); text-decoration:none;">PTCI Student Council Page</a></li>
                     </ul>
                     <div id="heading-partylists-1" class="heading-partylists" style="border-bottom: 1px solid rgba(33,37,41,0.23);"></div>
                 </div>
             </div>
+
+            <!--Timer-->
+            <div
+                style="position: absolute; bottom: 0; right: 15%; transform: translateY(50%); text-align: right; width: auto; padding: 10px; background-color: rgba(0, 0, 0, 0.7); border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); color: white; font-size: 55px; font-family: 'Arial', sans-serif; margin-top:50px;">
+                <div class="timer" id="timer">
+                    <div class="timer-display">00:00:00</div>
+                </div>
+
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        function updateTimer() {
+                            const savedTime = localStorage.getItem('timer');
+                            if (savedTime) {
+                                document.querySelector("#timer .timer-display").textContent = savedTime;
+                            }
+                        }
+                        window.addEventListener('storage', function(event) {
+                            if (event.key === 'timer') {
+                                updateTimer();
+                            }
+                        });
+                        updateTimer();
+                    });
+                </script>
+            </div>
         </div>
-    </div>
-    <footer class="text-center py-4" style="margin-bottom: -589px;">
-        <footer class="text-white bg-dark" style="margin-bottom: -36px;">
-            <div class="container py-4 py-lg-5" style="margin-bottom: -39px;">
-                <div class="row justify-content-center">
-                    <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column align-items-xxl-center item"><img src="../../assets/img/294834923_451650346969401_7788761739934683317_n__1_-removebg-preview.png" style="width: 176.02px;margin-bottom: 13px;">
-                        <p style="margin-left: 27px;margin-top: 7px;">Palawan Technological College Inc.</p>
+        <footer class="text-center py-4" style="margin-bottom: -589px;">
+            <footer class="text-white bg-dark" style="margin-bottom: -36px;">
+                <div class="container py-4 py-lg-5" style="margin-bottom: -39px;">
+                    <div class="row justify-content-center">
+                        <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column align-items-xxl-center item"><img src="../../assets/img/294834923_451650346969401_7788761739934683317_n__1_-removebg-preview.png" style="width: 176.02px;margin-bottom: 13px;">
+                            <p style="margin-left: 27px;margin-top: 7px;">Palawan Technological College Inc.</p>
+                        </div>
+                        <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column item" style="padding-left: 51px;">
+                            <h3 class="fs-6 text-white" style="margin-top: 29px;">Contacts</h3>
+                            <ul class="list-unstyled">
+                                <li class="d-xxl-flex align-items-xxl-center" style="margin-bottom: 3px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-facebook" style="width: 14.9868px;margin-right: 15px;margin-left: 16px;margin-bottom: 3px;">
+                                        <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"></path>
+                                    </svg><a class="link-light" href="https://www.facebook.com/profile.php?id=100063733196484" style="margin-bottom: 3px;  text-decoration:none;">Official Page PTCI</a></li>
+                                <li class="d-xxl-flex align-items-xxl-center" style="margin-bottom: 3px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-facebook" style="width: 14.9868px;margin-right: 15px;margin-left: 16px;margin-bottom: 3px;">
+                                        <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"></path>
+                                    </svg><a class="link-light" href="https://www.facebook.com/profile.php?id=100064562656878" style="margin-bottom: 3px;  text-decoration:none;">PTCI&nbsp;Student Council</a></li>
+                                <li class="d-xxl-flex align-items-xxl-center" style="margin-bottom: 3px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-facebook" style="width: 14.9868px;margin-right: 15px;margin-left: 16px;">
+                                        <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"></path>
+                                    </svg><a class="link-light" href="https://www.facebook.com/profile.php?id=61566114403265 " style=" text-decoration:none;">IC2&nbsp;</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-3 text-center text-lg-start d-flex flex-column align-items-center order-first align-items-lg-start order-lg-last item social" style="padding-left: 51px;">
+                            <h3 class="fs-6 text-white" style="margin-top: 29px;">Directory</h3><a class="link-light" href="index.html" style="margin-bottom: 3px; text-decoration:none;">Home</a><a class="link-light" href="candidates.html" style="margin-bottom: 3px;  text-decoration:none;">Candidates</a>
+                        </div>
                     </div>
-                    <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column item" style="padding-left: 51px;">
-                        <h3 class="fs-6 text-white" style="margin-top: 29px;">Contacts</h3>
-                        <ul class="list-unstyled">
-                            <li class="d-xxl-flex align-items-xxl-center" style="margin-bottom: 3px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-facebook" style="width: 14.9868px;margin-right: 15px;margin-left: 16px;margin-bottom: 3px;">
-                                    <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"></path>
-                                </svg><a class="link-light" href="https://www.facebook.com/profile.php?id=100063733196484" style="margin-bottom: 3px;">Official Page PTCI</a></li>
-                            <li class="d-xxl-flex align-items-xxl-center" style="margin-bottom: 3px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-facebook" style="width: 14.9868px;margin-right: 15px;margin-left: 16px;margin-bottom: 3px;">
-                                    <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"></path>
-                                </svg><a class="link-light" href="https://www.facebook.com/profile.php?id=100064562656878" style="margin-bottom: 3px;">PTCI&nbsp;Student Council</a></li>
-                            <li class="d-xxl-flex align-items-xxl-center" style="margin-bottom: 3px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-facebook" style="width: 14.9868px;margin-right: 15px;margin-left: 16px;">
-                                    <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"></path>
-                                </svg><a class="link-light" href="https://www.facebook.com/profile.php?id=61566114403265">IC2&nbsp;</a></li>
+                    <hr>
+                    <div class="d-flex justify-content-between align-items-center pt-3">
+                        <p class="mb-0">Copyright © 2025 Palawan Technological College Inc. All rights reserved.</p>
+                        <ul class="list-inline mb-0">
+                            <li class="list-inline-item">Powered by&nbsp;</li>
+                            <li class="list-inline-item"><img src="../../assets/img/461514192_122108110472537146_3222580666165080691_n-removebg-preview.png" style="width: 69px;"></li>
                         </ul>
                     </div>
-                    <div class="col-lg-3 text-center text-lg-start d-flex flex-column align-items-center order-first align-items-lg-start order-lg-last item social" style="padding-left: 51px;">
-                        <h3 class="fs-6 text-white" style="margin-top: 29px;">Directory</h3><a class="link-light" href="index.html" style="margin-bottom: 3px;">Home</a><a class="link-light" href="candidates.html" style="margin-bottom: 3px;">Candidates</a>
-                    </div>
                 </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center pt-3">
-                    <p class="mb-0">Copyright © 2025 Palawan Technological College Inc. All rights reserved.</p>
-                    <ul class="list-inline mb-0">
-                        <li class="list-inline-item">Powered by&nbsp;</li>
-                        <li class="list-inline-item"><img src="../../assets/img/461514192_122108110472537146_3222580666165080691_n-removebg-preview.png" style="width: 69px;"></li>
-                    </ul>
-                </div>
-            </div>
+            </footer>
         </footer>
-    </footer>
-    <script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../../assets/js/Simple-Slider-swiper-bundle.min.js"></script>
-    <script src="../../assets/js/Simple-Slider.js"></script>
-    <script src="../../assets/js/untitled.js"></script>
+        <script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../../assets/js/Simple-Slider-swiper-bundle.min.js"></script>
+        <script src="../../assets/js/Simple-Slider.js"></script>
+        <script src="../../assets/js/untitled.js"></script>
 </body>
 
 </html>

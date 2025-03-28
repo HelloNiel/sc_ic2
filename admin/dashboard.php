@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="website icon" type="png" sizes="32x32" href="/img/logo/PTCI-logo.png">
+    <link rel="website icon" type="png" sizes="32x32" href="/img/logo/PTCI-logo.png">
     <title>Admin Page - Dashboard</title>
     <link rel="stylesheet" href="../assets/css/dashboard.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
@@ -15,25 +15,25 @@
     <div class="container-fluid d-flex">
         <!-- Sidebar -->
         <div class="sidebar">
-                <div class="logo">Admin</div>
-                <ul class="menu list-unstyled">
-                    <div class="menu-label">Home</div>
-                    <li><a href="#">Dashboard</a></li>
-                    <li><a href="candidates.php">Candidates</a></li>
-                    <li><a href="timer.php">Start/End</a></li>
-            
-                    <div class="menu-label">Account</div>
-                    <li><a href="createcandidates.php">Create</a></li>
-                    <li><a href="viewcandidates.php">View</a></li>
-                </ul>
-            
-                <div class="footer">
-                    <a href="/logout" class="text-decoration-none">Logout</a>
-                </div>
+            <div class="logo">Admin</div>
+            <ul class="menu list-unstyled">
+                <div class="menu-label">Home</div>
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="candidates.php">Candidates</a></li>
+                <li><a href="timer.php">Start/End</a></li>
+
+                <div class="menu-label">Account</div>
+                <li><a href="createcandidates.php">Create</a></li>
+                <li><a href="viewcandidates.php">View</a></li>
+            </ul>
+
+            <div class="footer">
+                <a href="/logout" class="text-decoration-none">Logout</a>
             </div>
+        </div>
         <div class="hamburger" onclick="toggleSidebar()">
             &#9776;
-    </div>
+        </div>
 
 
         <!-- Content Area -->
@@ -81,7 +81,7 @@
                         <th scope="row">1</th>
                         <td>Mark</td>
                         <td>BAST</td>
-                        <td>DS</td>  
+                        <td>DS</td>
                         <td>Vice-pres</td>
                         <td>2st year</td>
                     </tr>
@@ -110,9 +110,10 @@
 </body>
 
 <script>
+    // Hamburger Display
     function toggleSidebar() {
-    const sidebar = document.querySelector('.sidebar');
-    sidebar.classList.toggle('active');
+        const sidebar = document.querySelector('.sidebar');
+        sidebar.classList.toggle('active');
     }
 </script>
 

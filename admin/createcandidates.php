@@ -4,6 +4,7 @@ include('../back-end/createcandidates.php');
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,6 +15,7 @@ include('../back-end/createcandidates.php');
     <link rel="stylesheet" href="../assets/css/createcandidates.css" />
     <link rel="stylesheet" href="../src/stelcom-bootswatch/bootstrap.min.css" />
 </head>
+
 <body>
     <div class="container-fluid d-flex p-0">
         <!-- Sidebar -->
@@ -91,10 +93,12 @@ include('../back-end/createcandidates.php');
     </div>
 
     <script>
+        // Hamburger Display
         function toggleSidebar() {
             const sidebar = document.querySelector('.sidebar');
             sidebar.classList.toggle('active');
         }
     </script>
 </body>
+
 </html>
