@@ -36,6 +36,26 @@ if ($vicePresidentResult->num_rows > 0) {
 } else {
     $viceCandidates = [];
 }
+
+echo '<div id="alert-container" style="
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    display: none;
+"></div>';
+
+// pop up
+if (isset($_GET['error']) || isset($_GET['success'])) {
+    $alertClass = isset($_GET['error']) ? 'alert-danger' : 'alert-success';
+    $message = isset($_GET['error']) ? $_GET['error'] : $_GET['success'];
+    echo '<script>
+        document.addEventListener("DOMContentLoaded", function() {
+            showAlert("' . htmlspecialchars($message) . '", "' . $alertClass . '");
+        });
+    </script>';
+}
 ?>
 
 <!DOCTYPE html>
@@ -404,34 +424,31 @@ mysqli_close($conn);
             </p>
           </div>
         </div>
-        <div class="text-end" style="margin-top: 28px">
-          <button
-            class="btn btn-primary ms-md-2"
-            type="button"
-            style="
-              font-family: Poppins, sans-serif;
-              background: rgb(41, 231, 143);
-              border-radius: 6px;
-              border: 2.05263px solid #fbf9e4;
-              color: #040404;
-              font-size: 20px;
-            "
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="1em"
-              height="1em"
-              viewBox="0 0 24 24"
-              fill="none"
-              style="width: 23.9868px; height: 22.9868px; margin-right: 8px"
-            >
-              <path
-                d="M10.5858 13.4142L7.75735 10.5858L6.34314 12L10.5858 16.2427L17.6568 9.1716L16.2426 7.75739L10.5858 13.4142Z"
-                fill="currentColor"
-              ></path></svg
-            >SUBMIT
-          </button>
-        </div>
+        <form method="POST" action="../../back-end/submitvote.php">
+            <input type="hidden" name="president_id" id="president_input" value="">
+            <input type="hidden" name="vice_president_id" id="vice_president_input" value="">
+            
+            <!-- submit button -->
+            <div class="text-end" style="margin-top: 28px">
+                <button
+                    class="btn btn-primary ms-md-2"
+                    type="submit"
+                    name="submit_vote"
+                    style="
+                        font-family: Poppins, sans-serif;
+                        background: rgb(41, 231, 143);
+                        border-radius: 6px;
+                        border: 2.05263px solid #fbf9e4;
+                        color: #040404;
+                        font-size: 20px;
+                    "
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" style="width: 23.9868px; height: 22.9868px; margin-right: 8px">
+                        <path d="M10.5858 13.4142L7.75735 10.5858L6.34314 12L10.5858 16.2427L17.6568 9.1716L16.2426 7.75739L10.5858 13.4142Z" fill="currentColor"></path>
+                    </svg>SUBMIT
+                </button>
+            </div>
+        </form>
       </div>
     </div>
     <footer class="text-center py-4" style="margin-bottom: -589px">
@@ -581,25 +598,54 @@ mysqli_close($conn);
     <script src="assets/js/untitled.js"></script>
     <script>
       function selectCandidate(candidateId) {
-        // check if the clicked candidate 
         const clickedElement = document.getElementById(candidateId);
         const isPresident = clickedElement.closest("#pres-wrapper") !== null;
 
         const candidates = isPresident
-          ? document.querySelectorAll("#pres-wrapper .radio-pres_candidate")
-          : document.querySelectorAll("#vpres-wrapper .radio-pres_candidate");
+            ? document.querySelectorAll("#pres-wrapper .radio-pres_candidate")
+            : document.querySelectorAll("#vpres-wrapper .radio-pres_candidate");
 
-        // reset borders for the candidates
         candidates.forEach((candidate) => {
-          candidate.style.border = "2px solid rgba(0, 0, 0, 0.15)"; // default
+            candidate.style.border = "2px solid rgba(0, 0, 0, 0.15)";
         });
 
-        // set the border for the selected candidate
-        const selectedCandidate = document.getElementById(candidateId);
-        selectedCandidate.style.border = isPresident 
-          ? "4px solid #00FFD1"  // President
-          : "4px solid #05B0D6"; // Vice President 
+        clickedElement.style.border = isPresident 
+            ? "4px solid #00FFD1"
+            : "4px solid #05B0D6";
+
+        // pdate the hidden inputs
+        const candidateValue = candidateId.replace('candidate', '');
+        if (isPresident) {
+            document.getElementById('president_input').value = candidateValue;
+        } else {
+            document.getElementById('vice_president_input').value = candidateValue;
+        }
       }
+
+      function showAlert(message, alertClass) {
+        const alertContainer = document.getElementById('alert-container');
+        const alertDiv = document.createElement('div');
+        alertDiv.className = `alert ${alertClass} alert-dismissible fade show`;
+        alertDiv.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+        alertDiv.innerHTML = `
+            ${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        `;
+        
+        alertContainer.style.display = 'block';
+        alertContainer.appendChild(alertDiv);
+
+        // pop up dom, fade-out
+        setTimeout(() => {
+            alertDiv.classList.remove('show');
+            setTimeout(() => {
+                alertDiv.remove();
+                if (alertContainer.children.length === 0) {
+                    alertContainer.style.display = 'none';
+                }
+            }, 150);
+        }, 3000);
+    }
     </script>
   </body>
 </html>
