@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-<<<<<<< HEAD
     <title>PTCI Student Council Election</title>
     <!-- Required meta tags -->
     <meta charset="UTF-8">
@@ -14,21 +13,6 @@
     <script src="script.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     
-=======
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>PTCI Website</title>
-    <link rel="website icon" type="png" sizes="32x32" href="/img/logo/PTCI-logo.png">
-    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins&amp;display=swap">
-    <link rel="stylesheet" href="../../assets/css/swiper-icons.css">
-    <link rel="stylesheet" href="../../assets/css/Navbar-Right-Links-Dark-icons.css">
-    <link rel="stylesheet" href="../../assets/css/responsiv_index.css">
-    <link rel="stylesheet" href="../../assets/css/Simple-Slider-swiper-bundle.min.css">
-    <link rel="stylesheet" href="../../assets/css/Simple-Slider.css">
-    <link rel="stylesheet" href="../../assets/css/styles.css">
->>>>>>> c4f30f7f0366057c986d16be09b2e2093e574ca7
 </head>
 <body>
     <!-- class for heading -->
