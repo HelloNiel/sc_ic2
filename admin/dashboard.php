@@ -23,12 +23,17 @@
     <link rel="stylesheet" href="../src/stelcom-bootswatch/bootstrap.min.css">
 </head>
 
+<style>
+
+
+</style>
+
 <body>
     <div class="container-fluid d-flex">
         <!-- Sidebar -->
         <div class="sidebar">
-                <div class="logo">Admin</div>
-                <ul class="menu list-unstyled">
+            <div class="logo">Admin</div>
+            <ul class="menu list-unstyled">
                     <div class="menu-label">Information</div>
                     <li><a href="#">Dashboard</a></li>
                     <li><a href="candidates.php">Candidates</a></li>            
@@ -41,14 +46,14 @@
                     <div class="menu-label">Configuration</div>
                     <li><a href="timer.php">Start/End</a></li>
                 </ul>
-            
-                <div class="footer">
-                    <a href="../back-end/adminlogout.php" class="text-decoration-none">Logout</a>
-                </div>
+
+            <div class="footer">
+                <a href="/logout" class="text-decoration-none">Logout</a>
             </div>
+        </div>
         <div class="hamburger" onclick="toggleSidebar()">
             &#9776;
-    </div>
+        </div>
 
 
         <!-- Content Area -->
