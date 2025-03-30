@@ -1,22 +1,27 @@
 <?php
 include('../partial/connection.php');
 
-// Pagination
-$limit = 10;
-$page = isset($_GET['page']) ? $_GET['page'] : 1;
-$offset = ($page - 1) * $limit;
+session_start();
 
-// Query la ang
-$sql = "SELECT `fullname`, `course`, `partylist`
-        FROM `vice_president` 
-        LIMIT $limit OFFSET $offset";
-$result = mysqli_query($conn, $sql);
+// Check if user is not logged in
+if (!isset($_SESSION['username'])) {
+    header("Location: stelcomlogin.php?error=Please login first");
+    exit();
+}
 
-$totalQuery = "SELECT COUNT(*) FROM valid_account";
-$totalResult = mysqli_query($conn, $totalQuery);
-$totalRecords = mysqli_fetch_row($totalResult)[0];
+// President vote count and candidate info
+$sql_president = "SELECT c.full_name, c.course, COUNT(v.id) AS votes_count
+                  FROM president_candidates c
+                  LEFT JOIN president_votes v ON c.id = v.candidate_id
+                  GROUP BY c.id";
+$result_president = mysqli_query($conn, $sql_president);
 
-$totalPages = ceil($totalRecords / $limit);
+// Vice President vote count and candidate info
+$sql_vice_president = "SELECT c.full_name, c.course, COUNT(v.id) AS votes_count
+                       FROM vice_president_candidates c
+                       LEFT JOIN vice_president_votes v ON c.id = v.candidate_id
+                       GROUP BY c.id";
+$result_vice_president = mysqli_query($conn, $sql_vice_president);
 
 mysqli_close($conn);
 ?>
@@ -27,25 +32,24 @@ mysqli_close($conn);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Validated Voters Account</title>
-    <link href="../src/stelcom-bootswatch/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/bootstrap/bootswatch/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-    <style>
-    </style>
 </head>
 <body>
 
 <style>
-    .main-content {
+    .container {
         position: absolute;
-        top: 50px;
+        top: 5%;
         left: 25%;
     }
 </style>
 
-
 <?php include 'components/sidebar.php'; ?>
 
 <div class="container mt-4 main-content mb-5">
+
+    <!-- President Table -->
     <div class="table-container">
         <div class="card p-3">
             <h2 class="text-center mb-4">President</h2>
@@ -56,23 +60,24 @@ mysqli_close($conn);
                         <tr>
                             <th>Full Name</th>
                             <th>Course</th>
-                            <th>Party List</th>
-                            <th>Votes count</th>
+                            <th>Votes Count</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php while ($row = mysqli_fetch_assoc($result)): ?>
+                        <?php while ($row = mysqli_fetch_assoc($result_president)): ?>
                         <tr>
-                            <td><?php echo $row['fullname']; ?></td>
+                            <td><?php echo $row['full_name']; ?></td>
                             <td><?php echo $row['course']; ?></td>
-                            <td><?php echo $row['partylist']; ?></td>
+                            <td><?php echo $row['votes_count']; ?></td>
                         </tr>
                         <?php endwhile; ?>
                     </tbody>
                 </table>
             </div>
         </div>
+    </div>
 
+    <!-- Vice President Table -->
     <div class="table-container mt-5">
         <div class="card p-3">
             <h2 class="text-center mb-4">Vice President</h2>
@@ -83,16 +88,15 @@ mysqli_close($conn);
                         <tr>
                             <th>Full Name</th>
                             <th>Course</th>
-                            <th>Party List</th>
-                            <th>Votes count</th>
+                            <th>Votes Count</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php while ($row = mysqli_fetch_assoc($result)): ?>
+                        <?php while ($row = mysqli_fetch_assoc($result_vice_president)): ?>
                         <tr>
-                            <td><?php echo $row['fullname']; ?></td>
+                            <td><?php echo $row['full_name']; ?></td>
                             <td><?php echo $row['course']; ?></td>
-                            <td><?php echo $row['partylist']; ?></td>
+                            <td><?php echo $row['votes_count']; ?></td>
                         </tr>
                         <?php endwhile; ?>
                     </tbody>
@@ -100,9 +104,7 @@ mysqli_close($conn);
             </div>
         </div>
     </div>
-    
 
-    
 </div>
 
 </body>
