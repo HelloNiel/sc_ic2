@@ -1,4 +1,14 @@
-<?php include('../back-end/validation/processvalidation.php'); ?>
+<?php include('../back-end/validation/processvalidation.php'); 
+
+session_start();
+
+// Check if user is not logged in
+if (!isset($_SESSION['username'])) {
+    header("Location: stelcomlogin.php?error=Please login first");
+    exit();
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagination Table</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="../src/stelcom-bootswatch/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/bootstrap/bootswatch/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 

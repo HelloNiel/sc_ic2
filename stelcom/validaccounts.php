@@ -1,6 +1,15 @@
 <?php
 
-include ('../back-end/getvalidaccounts.php')
+include ('../back-end/getvalidaccounts.php');
+
+
+session_start();
+
+// Check if user is not logged in
+if (!isset($_SESSION['username'])) {
+    header("Location: stelcomlogin.php?error=Please login first");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -9,7 +18,7 @@ include ('../back-end/getvalidaccounts.php')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Validated Voters Account</title>
-    <link href="../src/stelcom-bootswatch/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/bootstrap/bootswatch/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <style>
         .pagination-container {
