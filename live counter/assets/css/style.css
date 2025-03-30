@@ -1,0 +1,20 @@
+.card-body {
+  display: flex;
+}
+
+.card-body h4 {
+  margin-left: 20px;
+}
+
+.progress-bar-vc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  color: var(--bs-progress-bar-color);
+  text-align: center;
+  white-space: nowrap;
+  background-color: var(--bs-yellow);
+  transition: var(--bs-progress-bar-transition);
+}
+
