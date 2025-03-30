@@ -1,13 +1,14 @@
 <?php
- session_start();
+    session_start();
 
- // Check if the user is logged in
- if (!isset($_SESSION['user_id'])) { 
-     header("Location: adminlogin.php?error=You must log in first.");
-     exit();
- }
+
+    // Check if the user is logged in
+    if (!isset($_SESSION['user_id'])) { 
+        header("Location: adminlogin.php?error=You must log in first.");
+        exit();
+    }
+
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="website icon" type="png" sizes="32x32" href="/img/logo/PTCI-logo.png">
-    <title>Admin Page - Register Stelcom</title>
+    <title>Admin Page - Register Admin</title>
     <link rel="stylesheet" href="../assets/css/createcandidates.css" />
     <link rel="stylesheet" href="../src/stelcom-bootswatch/bootstrap.min.css" />
 </head>
@@ -31,8 +32,8 @@
                     <li><a href="candidates.php">Candidates</a></li>            
                     <div class="menu-label">Account</div>
                     <li><a href="createcandidates.php">Create Student Council</a></li>
-                    <li><a href="#">Create Stelcom</a></li>
-                    <li><a href="createadmin.php">Create Admin</a></li>
+                    <li><a href="createstelcom.php">Create Stelcom</a></li>
+                    <li><a href="#">Create Admin</a></li>
 
 
                     <div class="menu-label">Configuration</div>
@@ -40,7 +41,7 @@
             </ul>
 
             <div class="footer">
-                <a href="../back-end/adminlogout.php" class="text-decoration-none">Logout</a>
+                <a href="/logout" class="text-decoration-none">Logout</a>
             </div>
         </div>
 
@@ -53,7 +54,7 @@
         <div class="mainbox flex-grow-1 d-flex justify-content-center align-items-center">
             <div class="form-box p-4 border rounded shadow-sm" style="max-width: 500px; width: 100%;">
                 <div class="word text-center mb-4">
-                    <h1>Create Stelcom Account</h1>
+                    <h1>Create Admin Account</h1>
                 </div>
 
                 <?php if (isset($_GET['success']) && $_GET['success'] == 'true'): ?>
@@ -68,9 +69,9 @@
                     </div>
                 <?php endif; ?>
 
-                <form action="../back-end/createstelcom.php" method="POST" id="register" class="input-group">
+                <form action="../back-end/createadmin.php" method="POST" id="register" class="input-group">
                     <div class="field mb-3">
-                        <input type="text" name="username" class="form-control" placeholder="Username" required />
+                        <input type="text" name="account_name" class="form-control" placeholder="Account Name" required />
                     </div>
                     <div class="field mb-3">
                         <input type="password" name="password" class="form-control" placeholder="Password" required />

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2025 at 12:21 PM
+-- Generation Time: Mar 28, 2025 at 05:17 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -34,6 +34,26 @@ CREATE TABLE `account_validation` (
   `last_name` varchar(100) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin_account`
+--
+
+CREATE TABLE `admin_account` (
+  `id` int(11) NOT NULL,
+  `account_name` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `admin_account`
+--
+
+INSERT INTO `admin_account` (`id`, `account_name`, `password`) VALUES
+(1, 'Niel', '$2y$10$82GM2lvTwN/qcPn2grkSOOyH2RbgRlhZMJ9JqE.HpMoFOLoIQ5uHy'),
+(2, 'Sample', '$2y$10$zWkeUh8cUVVDX1T5OHm9XOu4lsCsb35OoiQxXYrlcGR2xVm7.ouya');
 
 -- --------------------------------------------------------
 
@@ -77,7 +97,9 @@ CREATE TABLE `president_votes` (
 --
 
 INSERT INTO `president_votes` (`id`, `student_id`, `candidate_id`, `voted_at`) VALUES
-(3, '1', 16, '2025-03-28 11:18:38');
+(3, '1', 16, '2025-03-28 11:18:38'),
+(4, '4', 16, '2025-03-28 16:14:24'),
+(5, '2', 17, '2025-03-28 16:15:46');
 
 -- --------------------------------------------------------
 
@@ -120,7 +142,10 @@ CREATE TABLE `valid_account` (
 --
 
 INSERT INTO `valid_account` (`id`, `student_id`, `account_name`, `last_name`, `created_at`) VALUES
-(1, '220056', 'Niel', 'Penlas', '2025-03-28 11:09:38');
+(1, '220056', 'Niel', 'Penlas', '2025-03-28 11:09:38'),
+(2, '220051', 'Hello', 'World', '2025-03-28 16:13:16'),
+(3, '220052', 'World', 'Hello', '2025-03-28 16:13:42'),
+(4, '220053', 'jizz', 'jizz', '2025-03-28 16:13:49');
 
 -- --------------------------------------------------------
 
@@ -164,7 +189,9 @@ CREATE TABLE `vice_president_votes` (
 --
 
 INSERT INTO `vice_president_votes` (`id`, `student_id`, `candidate_id`, `voted_at`) VALUES
-(3, '1', 9, '2025-03-28 11:18:38');
+(3, '1', 9, '2025-03-28 11:18:38'),
+(4, '4', 9, '2025-03-28 16:14:24'),
+(5, '2', 8, '2025-03-28 16:15:46');
 
 --
 -- Indexes for dumped tables
@@ -174,6 +201,12 @@ INSERT INTO `vice_president_votes` (`id`, `student_id`, `candidate_id`, `voted_a
 -- Indexes for table `account_validation`
 --
 ALTER TABLE `account_validation`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `admin_account`
+--
+ALTER TABLE `admin_account`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -225,7 +258,13 @@ ALTER TABLE `vice_president_votes`
 -- AUTO_INCREMENT for table `account_validation`
 --
 ALTER TABLE `account_validation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `admin_account`
+--
+ALTER TABLE `admin_account`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `president_candidates`
@@ -237,7 +276,7 @@ ALTER TABLE `president_candidates`
 -- AUTO_INCREMENT for table `president_votes`
 --
 ALTER TABLE `president_votes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `stelcom_users`
@@ -261,7 +300,7 @@ ALTER TABLE `vice_president_candidates`
 -- AUTO_INCREMENT for table `vice_president_votes`
 --
 ALTER TABLE `vice_president_votes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
