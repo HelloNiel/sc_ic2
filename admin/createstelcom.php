@@ -30,8 +30,8 @@
                     <li><a href="dashboard.php">Dashboard</a></li>
                     <li><a href="candidates.php">Candidates</a></li>            
                     <div class="menu-label">Account</div>
-                    <li><a href="#">Create Student Council</a></li>
-                    <li><a href="createstelcom.php">Create Stelcom</a></li>
+                    <li><a href="createcandidates.php">Create Student Council</a></li>
+                    <li><a href="#">Create Stelcom</a></li>
                     <li><a href="createadmin.php">Create Admin</a></li>
 
 
@@ -53,7 +53,7 @@
         <div class="mainbox flex-grow-1 d-flex justify-content-center align-items-center">
             <div class="form-box p-4 border rounded shadow-sm" style="max-width: 500px; width: 100%;">
                 <div class="word text-center mb-4">
-                    <h1>Create Admin Account</h1>
+                    <h1>Create Stelcom Account</h1>
                 </div>
 
                 <?php if (isset($_GET['success']) && $_GET['success'] == 'true'): ?>
