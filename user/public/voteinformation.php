@@ -103,7 +103,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
 
             <!--Timer-->
             <div
-                style="position: absolute; bottom: 0; right: 15%; transform: translateY(50%); text-align: right; width: auto; padding: 10px; background-color: rgba(0, 0, 0, 0.7); border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); color: white; font-size: 55px; font-family: 'Arial', sans-serif; margin-top:50px;">
+                style="position: fixed; bottom: 30px; right: 50px; text-align: right; width: auto; padding: 5px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px);border-radius:10px; font-size: 55px; font-family: 'Arial', sans-serif; margin-top:50px;">
                 <div class="timer" id="timer">
                     <div class="timer-display">00:00:00</div>
                 </div>
