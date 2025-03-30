@@ -1,6 +1,15 @@
 <?php
 
-include ('../back-end/getvalidaccounts.php')
+include ('../back-end/getvalidaccounts.php');
+
+
+session_start();
+
+// Check if user is not logged in
+if (!isset($_SESSION['username'])) {
+    header("Location: stelcomlogin.php?error=Please login first");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
