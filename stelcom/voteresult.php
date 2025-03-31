@@ -9,14 +9,14 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
-// President vote count and candidate info
+// president vote count and candidate info
 $sql_president = "SELECT c.full_name, c.course, COUNT(v.id) AS votes_count
                   FROM president_candidates c
                   LEFT JOIN president_votes v ON c.id = v.candidate_id
                   GROUP BY c.id";
 $result_president = mysqli_query($conn, $sql_president);
 
-// Vice President vote count and candidate info
+// vice President vote count and candidate info
 $sql_vice_president = "SELECT c.full_name, c.course, COUNT(v.id) AS votes_count
                        FROM vice_president_candidates c
                        LEFT JOIN vice_president_votes v ON c.id = v.candidate_id
@@ -40,12 +40,26 @@ mysqli_close($conn);
 <style>
     .container {
         position: absolute;
+        top: 10%;
+        left: 24%;
+    }
+
+    .btn-export {
+        position: absolute;
         top: 5%;
-        left: 25%;
+        left: 24%;
+        margin-left: 13px;
     }
 </style>
 
 <?php include 'components/sidebar.php'; ?>
+
+    <!-- Export Button -->
+    <div class="btn-export text-center mb-4">
+        <form method="post" action="../back-end/exportexcel.php">
+            <button type="submit" class="btn btn-success">Export to Excel</button>
+        </form>
+    </div>
 
 <div class="container mt-4 main-content mb-5">
 
@@ -78,7 +92,7 @@ mysqli_close($conn);
     </div>
 
     <!-- Vice President Table -->
-    <div class="table-container mt-5">
+    <div class="table-container mt-3">
         <div class="card p-3">
             <h2 class="text-center mb-4">Vice President</h2>
 
@@ -104,6 +118,7 @@ mysqli_close($conn);
             </div>
         </div>
     </div>
+
 
 </div>
 

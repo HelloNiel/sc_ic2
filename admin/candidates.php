@@ -45,7 +45,7 @@ $vicePresidentCandidates = mysqli_query($conn, $query);
     <link rel="website icon" type="png" sizes="32x32" href="/img/logo/PTCI-logo.png">
     <title>Admin Page - Candidates</title>
     <link rel="stylesheet" href="../assets/css/candidates.css" />
-    <link rel="stylesheet" href="../src/stelcom-bootswatch/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/bootstrap/bootswatch/bootstrap.min.css">
 
 </head>
 
