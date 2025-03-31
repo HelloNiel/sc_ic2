@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Page - Login</title>
-    <link rel="stylesheet" href="../src/stelcom-bootswatch/bootstrap.min.css" />
+    <link rel="stylesheet" href="../assets/bootstrap/bootswatch/bootstrap.min.css">
 </head>
 <body>
     <div class="container d-flex justify-content-center align-items-center min-vh-100">

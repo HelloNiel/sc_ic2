@@ -15,7 +15,7 @@ session_start();
 <body class="bg-light">
 
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
-        <div class="card shadow-lg p-4" style="width: 100%; max-width: 500px;">
+        <div class="card shadow-lg p-4" style="width: 100%; max-width: 600px;">
             <div class="card-body">
                 <h1 class="text-center mb-4">Log In</h1>
 

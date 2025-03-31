@@ -20,7 +20,7 @@
    <link rel="website icon" type="png" sizes="32x32" href="/img/logo/PTCI-logo.png">
     <title>Admin Page - Dashboard</title>
     <link rel="stylesheet" href="../assets/css/dashboard.css" />
-    <link rel="stylesheet" href="../src/stelcom-bootswatch/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/bootstrap/bootswatch/bootstrap.min.css">
 </head>
 
 <style>

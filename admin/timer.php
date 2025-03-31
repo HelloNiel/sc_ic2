@@ -26,7 +26,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Page - Timer Control</title>
     <link rel="stylesheet" href="../assets/css/timer.css" />
-    <link rel="stylesheet" href="../src/stelcom-bootswatch/bootstrap.min.css" />
+    <link rel="stylesheet" href="../assets/bootstrap/bootswatch/bootstrap.min.css">
   </head>
 
   <style></style>
