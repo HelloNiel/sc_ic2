@@ -55,6 +55,7 @@
                         <button id="startButton">Start</button>
                         <button id="stopButton" disabled>Stop</button>
                         <!--<button id="resetButton">Reset</button>-->
+                        <button id="resetButton">Reset</button>
                     </div>
                 </div>
             </div>
