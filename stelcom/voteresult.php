@@ -40,14 +40,14 @@ mysqli_close($conn);
 <style>
     .container {
         position: absolute;
-        top: 10%;
-        left: 24%;
+        top: 5%;
+        left: 25%;
     }
 
     .btn-export {
         position: absolute;
-        top: 5%;
-        left: 24%;
+        bottom: -1%;
+        left: 25%;
         margin-left: 13px;
     }
 </style>
