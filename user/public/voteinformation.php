@@ -104,7 +104,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
 
             <!--Timer-->
             <div
-                style="position: fixed; bottom: 30px; right: 50px; text-align: right; width: auto; padding: 5px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px);border-radius:10px; font-size: 55px; font-family: 'Arial', sans-serif; margin-top:50px;">
+                style="position: fixed; bottom: 50px; right: 50px; text-align: right; width: auto; padding: 5px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px);border-radius:10px; font-size: 30px; font-family: 'Arial', sans-serif; margin-top:50px;">
                 <div class="timer" id="timer">
                     <div class="timer-display">00:00:00</div>
                 </div>
@@ -162,7 +162,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                         if (savedTime === "00:00:00") {
                             return false; // Prevent navigation to the vote page
                         } else {
-                            window.location.href = '../tryTimer12hr/Vote.php';
+                            window.location.href = '../private/vote.php'; // Redirect to the vote page      
                         }
                     }
                 </script>
