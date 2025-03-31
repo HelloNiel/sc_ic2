@@ -35,11 +35,12 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                     <li class="nav-item" style="font-family: Poppins, sans-serif;"><a class="nav-link active" href="#" style="font-family: Poppins, sans-serif;">Home</a></li>
                     <li class="nav-item" style="font-family: Poppins, sans-serif;"><a class="nav-link" href="#" style="font-family: Poppins, sans-serif;">Candidates</a></li>
                     <li class="nav-item" style="font-family: Poppins, sans-serif;"></li>
-                </ul><button class="btn btn-primary ms-md-2" type="button" style="font-family: Poppins, sans-serif;background: rgba(56,57,59,0);border-radius: 6px;border: 2.05263px solid #fbf9e4;" onclick="window.location.href='../private/vote.php';">VOTE NOW</button>
+                </ul><button class="btn btn-primary ms-md-2" id="voteButton" type="button" style="font-family: Poppins, sans-serif;background: rgba(56,57,59,0);border-radius: 6px;border: 2.05263px solid #fbf9e4;" onclick="window.location.href='../private/vote.php';">VOTE NOW</button>
 
             </div>
         </div>
     </nav>
+
     <div class="container" style="margin-top: 141px;">
         <div class="row justify-content-around">
             <div class="col-md-6 col-xxl-8">
@@ -116,13 +117,54 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                                 document.querySelector("#timer .timer-display").textContent = savedTime;
                             }
                         }
+
                         window.addEventListener('storage', function(event) {
                             if (event.key === 'timer') {
                                 updateTimer();
                             }
                         });
+
                         updateTimer();
                     });
+
+                    function updateVoteButton(isTimerActive) {
+                        var voteButton = document.getElementById("voteButton");
+                        var message = document.getElementById("votingMessage");
+
+                        if (!isTimerActive) {
+                            voteButton.style.display = "none";
+                            message.style.display = "block";
+                        } else {
+                            voteButton.style.display = "inline";
+                            message.style.display = "none";
+                        }
+                    }
+
+                    function checkTimerStatus() {
+                        const savedTime = localStorage.getItem('timer');
+                        if (savedTime === "00:00:00") {
+                            updateVoteButton(false);
+                        } else {
+                            updateVoteButton(true);
+                        }
+                    }
+
+                    function timerStopped() {
+                        updateVoteButton(false);
+                    }
+
+                    window.onload = function() {
+                        checkTimerStatus();
+                    };
+
+                    function navigateToVote() {
+                        const savedTime = localStorage.getItem('timer');
+                        if (savedTime === "00:00:00") {
+                            return false; // Prevent navigation to the vote page
+                        } else {
+                            window.location.href = '../tryTimer12hr/Vote.php';
+                        }
+                    }
                 </script>
             </div>
         </div>
