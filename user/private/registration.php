@@ -31,6 +31,20 @@
             <input type="text" name="AccountName" id="accountName" class="form-control" placeholder="Enter Account Name" required />
           </div>
 
+          <!-- new: student department selection  -->
+          <div style="margin-bottom: 20px;">
+            <label for="exampleSelect1" class="form-label mt-4">Department</label>
+            <select class="form-select" id="exampleSelect1">
+              <option>Select Department</option>
+              <option>Senior Highschool</option>
+              <option>Associate in Computer Technology</option>
+              <option>Bachelor of Science in Hospitality Management</option>
+              <option>Bachelor of Science in Information Communication Technology</option>
+              <option>Bachelor of Science in Information Systems</option>
+              <option>Bachelor of Science in Office Administration</option>
+            </select>
+          </div>
+
           <div class="mb-3">
             <label for="lastName" class="form-label">Last Name</label>
             <input type="text" name="LastName" id="lastName" class="form-control" placeholder="Enter Last Name" required />
