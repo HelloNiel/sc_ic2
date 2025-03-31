@@ -31,19 +31,21 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     <link rel="stylesheet" href="assets/css/css/Simple-Slider.css">
 </head>
 
-<body style="background:#efefef;border-radius:22px;">
-    <nav class="navbar navbar-expand-md fixed-top py-3" style="width:100vw;background:#122c4f;box-shadow:0px 0px 13px;" data-bs-theme="dark">
-        <div class="container"><a class="navbar-brand d-flex align-items-center" href="#"><span style="font-family:Poppins, sans-serif;">PTCI Student Council Election</span></a><button data-bs-toggle="collapse" data-bs-target="#navcol-5" class="navbar-toggler" style="font-family:Poppins, sans-serif;"><span class="visually-hidden" style="font-family:Poppins, sans-serif;">Toggle navigation</span><span class="navbar-toggler-icon" style="font-family:Poppins, sans-serif;"></span></button>
-            <div class="collapse navbar-collapse" id="navcol-5" style="transform-origin:0px;font-family:Poppins, sans-serif;">
-                <ul class="navbar-nav ms-auto" style="font-family:Poppins, sans-serif;">
-                    <li class="nav-item" style="font-family:Poppins, sans-serif;"><a class="nav-link active" href="#" style="font-family:Poppins, sans-serif;">Home</a></li>
-                    <li class="nav-item" style="font-family:Poppins, sans-serif;"><a class="nav-link" href="#" style="font-family:Poppins, sans-serif;">Candidates</a></li>
-                    <li class="nav-item" style="font-family:Poppins, sans-serif;"></li>
-                </ul><button class="btn btn-primary ms-md-2" style="font-family:Poppins, sans-serif;background:rgba(56,57,59,0);border-radius:6px;border:2.05263px solid #fbf9e4;" type="button">VOTE NOW</button>
+
+<body style="background: #efefef;border-radius: 22px;">
+    <nav class="navbar navbar-expand-md fixed-top py-3" style="width: 100vw;background: #122c4f;box-shadow: 0px 0px 13px;" data-bs-theme="dark">
+        <div class="container"><a class="navbar-brand d-flex align-items-center" href="#"><span style="font-family: Poppins, sans-serif;">PTCI Student Council Election</span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-5" style="font-family: Poppins, sans-serif;"><span class="visually-hidden" style="font-family: Poppins, sans-serif;">Toggle navigation</span><span class="navbar-toggler-icon" style="font-family: Poppins, sans-serif;"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-5" style="transform-origin: 0px;font-family: Poppins, sans-serif;">
+                <ul class="navbar-nav ms-auto" style="font-family: Poppins, sans-serif;">
+                    <li class="nav-item" style="font-family: Poppins, sans-serif;"><a class="nav-link active" href="#" style="font-family: Poppins, sans-serif;">Home</a></li>
+                    <li class="nav-item" style="font-family: Poppins, sans-serif;"><a class="nav-link" href="#" style="font-family: Poppins, sans-serif;">Candidates</a></li>
+                    <li class="nav-item" style="font-family: Poppins, sans-serif;"></li>
+                </ul><button class="btn btn-primary ms-md-2" id="voteButton" type="button" style="font-family: Poppins, sans-serif;background: rgba(56,57,59,0);border-radius: 6px;border: 2.05263px solid #fbf9e4;" onclick="window.location.href='../private/vote.php';">VOTE NOW</button>
+
             </div>
         </div>
     </nav>
-    <div class="container" style="margin-top:141px;">
+
         <div class="row justify-content-around">
             <div class="col-md-6 col-xxl-8">
                 <div id="slider" class="slider" style="padding:25px;background:#ffffff;">
@@ -102,7 +104,12 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                     </ul>
                     <div id="heading-partylists-1" class="heading-partylists" style="border-bottom:1px solid rgba(33,37,41,0.23);"></div>
                 </div>
-            </div><div style="position:fixed;bottom:30px;right:50px;text-align:right;width:auto;padding:5px;background:rgba(255, 255, 255, 0.2);backdrop-filter:blur(10px);border-radius:10px;font-size:55px;font-family:'Arial', sans-serif;margin-top:50px;">
+
+            </div>
+          
+            <!--Timer-->
+            <div
+                style="position: fixed; bottom: 50px; right: 50px; text-align: right; width: auto; padding: 5px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px);border-radius:10px; font-size: 30px; font-weight: Bold; font-family: 'Arial', sans-serif; margin-top:50px;">
                 <div class="timer" id="timer">
                     <div class="timer-display">00:00:00</div>
                 </div>
@@ -115,13 +122,54 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                                 document.querySelector("#timer .timer-display").textContent = savedTime;
                             }
                         }
+
                         window.addEventListener('storage', function(event) {
                             if (event.key === 'timer') {
                                 updateTimer();
                             }
                         });
+
                         updateTimer();
                     });
+
+                    function updateVoteButton(isTimerActive) {
+                        var voteButton = document.getElementById("voteButton");
+                        var message = document.getElementById("votingMessage");
+
+                        if (!isTimerActive) {
+                            voteButton.style.display = "none";
+                            message.style.display = "block";
+                        } else {
+                            voteButton.style.display = "inline";
+                            message.style.display = "none";
+                        }
+                    }
+
+                    function checkTimerStatus() {
+                        const savedTime = localStorage.getItem('timer');
+                        if (savedTime === "00:00:00") {
+                            updateVoteButton(false);
+                        } else {
+                            updateVoteButton(true);
+                        }
+                    }
+
+                    function timerStopped() {
+                        updateVoteButton(false);
+                    }
+
+                    window.onload = function() {
+                        checkTimerStatus();
+                    };
+
+                    function navigateToVote() {
+                        const savedTime = localStorage.getItem('timer');
+                        if (savedTime === "00:00:00") {
+                            return false; // Prevent navigation to the vote page
+                        } else {
+                            window.location.href = '../private/vote.php'; // Redirect to the vote page      
+                        }
+                    }
                 </script>
             </div>
         </div><script src="bootstrap/js/bootstrap.min.js"></script><script src="../../assets/js/Simple-Slider-swiper-bundle.min.js"></script><script src="../../assets/js/Simple-Slider.js"></script><script src="../../assets/js/untitled.js"></script>
