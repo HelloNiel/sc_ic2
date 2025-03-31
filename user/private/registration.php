@@ -35,7 +35,7 @@
           <div style="margin-bottom: 20px;">
             <label for="exampleSelect1" class="form-label mt-4">Department</label>
             <select class="form-select" id="exampleSelect1">
-              <option></option>
+              <option>Select Department</option>
               <option>Senior Highschool</option>
               <option>Associate in Computer Technology</option>
               <option>Bachelor of Science in Hospitality Management</option>
