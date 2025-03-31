@@ -52,9 +52,9 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                     <div class="simple-slider">
                         <div class="swiper-container">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide" style="background:url(&quot;crocodile farm.pngcover no-repeat;"></div>
+                                <div class="swiper-slide" style="background:url(&quot;crocodile-farm.png) cover no-repeat;"></div>
                                 <div class="swiper-slide" style="background:url(&quot;../../assets/img/undergroundriver2.png&quot;) center center / cover no-repeat;"></div>
-                                <div class="swiper-slide" style="background:url(&quot;undergroundriver.png/ cover no-repeat;"></div>
+                                <div class="swiper-slide" style="background:url(&quot;undergroundriver.png) cover no-repeat;"></div>
                             </div>
                             <div class="visually-hidden visible swiper-pagination"></div>
                             <div class="swiper-button-prev" style="color:rgb(255,255,255);text-shadow:0px 0px 6px rgba(0,0,0,0.76);"></div>
