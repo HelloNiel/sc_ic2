@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Selection</title>
-    <link href="./src/stelcom-bootswatch/bootstrap.min.css" rel="stylesheet">
+    <link href="./assets/bootstrap/bootswatch/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="d-flex justify-content-center align-items-center" style="height: 100vh; background-color: #f8f9fa;">
     
