@@ -35,7 +35,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                     <li class="nav-item" style="font-family: Poppins, sans-serif;"><a class="nav-link active" href="#" style="font-family: Poppins, sans-serif;">Home</a></li>
                     <li class="nav-item" style="font-family: Poppins, sans-serif;"><a class="nav-link" href="#" style="font-family: Poppins, sans-serif;">Candidates</a></li>
                     <li class="nav-item" style="font-family: Poppins, sans-serif;"></li>
-                </ul><button class="btn btn-primary ms-md-2" type="button" style="font-family: Poppins, sans-serif;background: rgba(56,57,59,0);border-radius: 6px;border: 2.05263px solid #fbf9e4;" onclick="window.location.href='../private/vote.php';">VOTE NOW</button>
+                </ul><button class="btn btn-primary ms-md-2" id="voteButton" type="button" style="font-family: Poppins, sans-serif;background: rgba(56,57,59,0);border-radius: 6px;border: 2.05263px solid #fbf9e4;" onclick="window.location.href='../private/vote.php';">VOTE NOW</button>
 
             </div>
         </div>
@@ -47,8 +47,8 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                     <div class="simple-slider">
                         <div class="swiper-container">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide" style="background: url(&quot;../../assets/img/crocodile%20farm.png&quot;) center center / cover no-repeat;"></div>
-                                <div class="swiper-slide" style="background: url(&quot;../../assets/img/undergroundriver(2).png&quot;) center center / cover no-repeat;"></div>
+                                <div class="swiper-slide" style="background: url(&quot;../../assets/img/crocodile-farm.png&quot;) center center / cover no-repeat;"></div>
+                                <div class="swiper-slide" style="background: url(&quot;../../assets/img/undergroundriver2.png&quot;) center center / cover no-repeat;"></div>
                                 <div class="swiper-slide" style="background: url(&quot;../../assets/img/undergroundriver.png&quot;) center center / cover no-repeat;"></div>
                             </div>
                             <div class="visually-hidden visible swiper-pagination"></div>
@@ -85,9 +85,6 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                             <p style="text-align:justify;"><span style="color:rgb(18, 44, 79);">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut malesuada nisl in arcu bibendum congue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin semper nisl ac tempus fringilla.</span></p>
                             <div class="d-xxl-flex justify-content-xxl-start" id="button-wrapper-2"><button class="btn btn-primary ms-md-2" type="button" style="font-family:Poppins, sans-serif;background:rgba(56,57,59,0);border-radius:6px;border:2.05263px solid #122c4f;color:rgb(79,74,74);">READ MORE</button></div>
                         </div>
-                        <div class="visually-hidden visible swiper-pagination"></div>
-                        <div class="swiper-button-prev" style="color:rgb(255,255,255);text-shadow:0px 0px 6px rgba(0,0,0,0.76);"></div>
-                        <div class="swiper-button-next" style="color:rgb(255,255,255);text-shadow:0px 0px 6px rgba(0,0,0,0.76);"></div>
                     </div>
                 </div>
             </div>
@@ -95,116 +92,84 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                 <div class="d-flex flex-column align-items-center"><img width="100" height="80" src="../../assets/img/LOGO.png" style="width:238px;height:203px;margin-top:35px;">
                     <h1 style="font-family:'Open Sans', sans-serif;font-size:18px;color:rgb(66,64,64);font-weight:bold;margin-bottom:4px;text-align:center;margin-top:22px;padding-right:50px;padding-left:50px;">Palawan Technological College Inc.</h1>
                 </div>
-                <div class="d-flex partylists-card" id="partylists-card" style="padding-top:20px;padding-bottom:20px;"><img id="partylist-img" class="partylist-img" src="assets/img/Yellow%20and%20Red%20Landscape%20Campaign%20Posters.png" style="width:307px;">
-                    <div class="d-xxl-flex flex-column partylist-details" id="partylist-details" style="width:auto;margin-left:38px;">
-                        <h1 id="partlyst-name" class="partlyst-name" style="font-family:Poppins, sans-serif;font-weight:bold;color:rgb(75,90,105);font-size:22px;">Party list #1</h1>
-                        <h1 id="partylist-dept" class="partylist-dept" style="font-family:'Open Sans', sans-serif;color:rgb(75,90,105);font-size:18px;margin-top:-3px;">Department</h1>
-                        <p style="text-align:justify;"><span style="color:rgb(18, 44, 79);">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut malesuada nisl in arcu bibendum congue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin semper nisl ac tempus fringilla.</span></p>
-                        <div class="d-xxl-flex justify-content-xxl-start" id="button-wrapper"><button class="btn btn-primary ms-md-2" type="button" style="font-family:Poppins, sans-serif;background:rgba(56,57,59,0);border-radius:6px;border:2.05263px solid #122c4f;color:rgb(79,74,74);">READ MORE</button></div>
-                    </div>
-                </div>
-                <div class="d-flex partylists-card" id="partylists-card-1" style="padding-top:20px;padding-bottom:20px;"><img id="partylist-img-1" class="partylist-img" src="assets/img/Yellow%20and%20Red%20Landscape%20Campaign%20Posters.png" style="width:307px;">
-                    <div class="d-xxl-flex flex-column partylist-details" id="partylist-details-1" style="width:auto;margin-left:38px;">
-                        <h1 id="partlyst-name-1" class="partlyst-name" style="font-family:Poppins, sans-serif;font-weight:bold;color:rgb(75,90,105);font-size:22px;">Party list #2</h1>
-                        <h1 id="partylist-dept-1" class="partylist-dept" style="font-family:'Open Sans', sans-serif;color:rgb(75,90,105);font-size:18px;margin-top:-3px;">Department</h1>
-                        <p style="text-align:justify;"><span style="color:rgb(18, 44, 79);">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut malesuada nisl in arcu bibendum congue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin semper nisl ac tempus fringilla.</span></p>
-                        <div class="d-xxl-flex justify-content-xxl-start" id="button-wrapper-1"><button class="btn btn-primary ms-md-2" type="button" style="font-family:Poppins, sans-serif;background:rgba(56,57,59,0);border-radius:6px;border:2.05263px solid #122c4f;color:rgb(79,74,74);">READ MORE</button></div>
-                    </div>
-                </div>
-                <div class="d-flex partylists-card" id="partylists-card-2" style="padding-top:20px;padding-bottom:20px;"><img id="partylist-img-2" class="partylist-img" src="assets/img/Yellow%20and%20Red%20Landscape%20Campaign%20Posters.png" style="width:307px;">
-                    <div class="d-xxl-flex flex-column partylist-details" id="partylist-details-2" style="width:auto;margin-left:38px;">
-                        <h1 id="partlyst-name-2" class="partlyst-name" style="font-family:Poppins, sans-serif;font-weight:bold;color:rgb(75,90,105);font-size:22px;">Party list #2</h1>
-                        <h1 id="partylist-dept-2" class="partylist-dept" style="font-family:'Open Sans', sans-serif;color:rgb(75,90,105);font-size:18px;margin-top:-3px;">Department</h1>
-                        <p style="text-align:justify;"><span style="color:rgb(18, 44, 79);">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut malesuada nisl in arcu bibendum congue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin semper nisl ac tempus fringilla.</span></p>
-                        <div class="d-xxl-flex justify-content-xxl-start" id="button-wrapper-2"><button class="btn btn-primary ms-md-2" type="button" style="font-family:Poppins, sans-serif;background:rgba(56,57,59,0);border-radius:6px;border:2.05263px solid #122c4f;color:rgb(79,74,74);">READ MORE</button></div>
-                    </div>
+                <div class="d-flex flex-column align-items-center" style="padding-top:14px;">
+                    <ul>
+                        <li><a href="https://www.facebook.com/profile.php?id=100063733196484" style="color:rgb(227,177,4);font-family:Poppins, sans-serif;border-color:rgb(227,177,4);text-decoration:none;">PTCI Official Page</a></li>
+                        <li><a href="#" style="color:rgb(227,177,4);font-family:Poppins, sans-serif;border-color:rgb(227,177,4);text-decoration:none;">PTCI Student Council Page</a></li>
+                    </ul>
+                    <div id="heading-partylists-1" class="heading-partylists" style="border-bottom:1px solid rgba(33,37,41,0.23);"></div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-6 col-xxl-3" id="school-wrapper" style="padding:0px;background:#ffffff;height:474px;position:relative;margin-top:30px;">
-            <div class="d-flex flex-column align-items-center"><img width="100" height="80" src="assets/img/LOGO.png" style="width:238px;height:203px;margin-top:35px;">
-                <h1 style="font-family:'Open Sans', sans-serif;font-size:18px;color:rgb(66,64,64);font-weight:bold;margin-bottom:4px;text-align:center;margin-top:22px;padding-right:50px;padding-left:50px;">Palawan Technological College Inc.</h1>
-            </div>
-            <div class="d-flex flex-column align-items-center" style="padding-top:14px;">
-                <ul>
-                    <li><a href="https://www.facebook.com/profile.php?id=100063733196484" style="color:rgb(227,177,4);font-family:Poppins, sans-serif;border-color:rgb(227,177,4);text-decoration:none;">PTCI Official Page</a></li>
-                    <li><a href="#" style="color:rgb(227,177,4);font-family:Poppins, sans-serif;border-color:rgb(227,177,4);text-decoration:none;">PTCI Student Council Page</a></li>
-                </ul>
-                <div id="heading-partylists-1" class="heading-partylists" style="border-bottom:1px solid rgba(33,37,41,0.23);"></div>
-            </div>
+            <!--Timer-->
+            <div
+                style="position: fixed; bottom: 50px; right: 50px; text-align: right; width: auto; padding: 5px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px);border-radius:10px; font-size: 30px; font-weight: Bold; font-family: 'Arial', sans-serif; margin-top:50px;">
+                <div class="timer" id="timer">
+                    <div class="timer-display">00:00:00</div>
+                </div>
 
-        </div>
-
-        <!--Timer-->
-        <div
-            style="position: fixed; bottom: 50px; right: 50px; text-align: right; width: auto; padding: 5px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px);border-radius:10px; font-size: 30px; font-weight: Bold; font-family: 'Arial', sans-serif; margin-top:50px;">
-            <div class="timer" id="timer">
-                <div class="timer-display">00:00:00</div>
-            </div>
-
-            <script>
-                document.addEventListener("DOMContentLoaded", function() {
-                    function updateTimer() {
-                        const savedTime = localStorage.getItem('timer');
-                        if (savedTime) {
-                            document.querySelector("#timer .timer-display").textContent = savedTime;
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        function updateTimer() {
+                            const savedTime = localStorage.getItem('timer');
+                            if (savedTime) {
+                                document.querySelector("#timer .timer-display").textContent = savedTime;
+                            }
                         }
-                    }
 
-                    window.addEventListener('storage', function(event) {
-                        if (event.key === 'timer') {
-                            updateTimer();
-                        }
+                        window.addEventListener('storage', function(event) {
+                            if (event.key === 'timer') {
+                                updateTimer();
+                            }
+                        });
+
+                        updateTimer();
                     });
 
-                    updateTimer();
-                });
+                    function updateVoteButton(isTimerActive) {
+                        var voteButton = document.getElementById("voteButton");
+                        var message = document.getElementById("votingMessage");
 
-                function updateVoteButton(isTimerActive) {
-                    var voteButton = document.getElementById("voteButton");
-                    var message = document.getElementById("votingMessage");
-
-                    if (!isTimerActive) {
-                        voteButton.style.display = "none";
-                        message.style.display = "block";
-                    } else {
-                        voteButton.style.display = "inline";
-                        message.style.display = "none";
+                        if (!isTimerActive) {
+                            voteButton.style.display = "none";
+                            message.style.display = "block";
+                        } else {
+                            voteButton.style.display = "inline";
+                            message.style.display = "none";
+                        }
                     }
-                }
 
-                function checkTimerStatus() {
-                    const savedTime = localStorage.getItem('timer');
-                    if (savedTime === "00:00:00") {
+                    function checkTimerStatus() {
+                        const savedTime = localStorage.getItem('timer');
+                        if (savedTime === "00:00:00") {
+                            updateVoteButton(false);
+                        } else {
+                            updateVoteButton(true);
+                        }
+                    }
+
+                    function timerStopped() {
                         updateVoteButton(false);
-                    } else {
-                        updateVoteButton(true);
                     }
-                }
 
-                function timerStopped() {
-                    updateVoteButton(false);
-                }
+                    window.onload = function() {
+                        checkTimerStatus();
+                    };
 
-                window.onload = function() {
-                    checkTimerStatus();
-                };
-
-                function navigateToVote() {
-                    const savedTime = localStorage.getItem('timer');
-                    if (savedTime === "00:00:00") {
-                        return false; // Prevent navigation to the vote page
-                    } else {
-                        window.location.href = '../private/vote.php'; // Redirect to the vote page      
+                    function navigateToVote() {
+                        const savedTime = localStorage.getItem('timer');
+                        if (savedTime === "00:00:00") {
+                            return false; // Prevent navigation to the vote page
+                        } else {
+                            window.location.href = '../private/vote.php'; // Redirect to the vote page      
+                        }
                     }
-                }
-            </script>
+                </script>
+            </div>
         </div>
-    </div>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-    <script src="../../assets/js/Simple-Slider-swiper-bundle.min.js"></script>
-    <script src="../../assets/js/Simple-Slider.js"></script>
-    <script src="../../assets/js/untitled.js"></script>
+        <script src="../../bootstrap/js/bootstrap.min.js"></script>
+        <script src="../../assets/js/Simple-Slider-swiper-bundle.min.js"></script>
+        <script src="../../assets/js/Simple-Slider.js"></script>
+        <script src="../../assets/js/untitled.js"></script>
     </div>
     <footer class="text-center py-4" style="margin-bottom: -589px;">
         <footer class="text-white bg-dark" style="margin-bottom: -36px;">
