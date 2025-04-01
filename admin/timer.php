@@ -58,7 +58,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             let timerInterval;
-            let timeRemaining = parseInt(localStorage.getItem('timeRemaining')) || 10 * 60 * 60; // Default 10 hours if not set
+            let timeRemaining = parseInt(localStorage.getItem('timeRemaining')) || 10 * 60 * 60; 
             let lastUpdateTime = Date.now();
             let isTimerRunning = false;
 
@@ -92,16 +92,16 @@
                 const elapsed = now - lastUpdateTime;
 
                 if (timeRemaining > 0) {
-                    timeRemaining -= elapsed / 1000; // Decrease time based on the frame time
+                    timeRemaining -= elapsed / 1000; // This decrease time based on the frame time
                     updateTimerDisplay(timeRemaining * 1000); // Update in milliseconds
                     localStorage.setItem('timeRemaining', Math.floor(timeRemaining)); // Save to local storage
 
                     lastUpdateTime = now; // Update last update time
                     timerInterval = requestAnimationFrame(countdownStep); // Keep the countdown running
                 } else {
-                    cancelAnimationFrame(timerInterval); // Stop the countdown when it reaches 0
+                    cancelAnimationFrame(timerInterval); // This stop the countdown when it reaches 0
                     isTimerRunning = false;
-                    alert('Time is up!');
+                    alert('Vote is over!');
                     document.getElementById("startButton").disabled = false;
                     document.getElementById("stopButton").disabled = true;
                 }
@@ -135,6 +135,20 @@
             document.getElementById("startButton").addEventListener("click", startCountdown);
             document.getElementById("stopButton").addEventListener("click", stopCountdown);
             document.getElementById("resetButton").addEventListener("click", resetCountdown);
+
+            // Listen for visibility change to keep the countdown running
+            document.addEventListener('visibilitychange', function() {
+                if (document.hidden && isTimerRunning) {
+                    localStorage.setItem('timeRemaining', timeRemaining);
+                }
+            });
+
+            // Listen for focus change to continue countdown when the page regains focus
+            window.addEventListener('focus', function() {
+                if (document.visibilityState === 'visible' && !isTimerRunning) {
+                    startCountdown();
+                }
+            });
         });
 
         // Hamburger Display
