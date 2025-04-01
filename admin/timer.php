@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Page - Timer Control</title>
-    <link rel="stylesheet" href="../assets/bootstrap/bootswatch/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/timer.css" />
 </head>
 
@@ -25,8 +24,6 @@
                     <li><a href="createcandidates.php">Create Student Council</a></li>
                     <li><a href="createstelcom.php">Create Stelcom</a></li>
                     <li><a href="createadmin.php">Create Admin</a></li>
-
-
                     <div class="menu-label">Configuration</div>
                     <li><a href="#">Start/End</a></li>
             </ul>
