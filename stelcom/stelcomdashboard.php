@@ -15,6 +15,7 @@ if (!isset($_SESSION['username'])) {
         <title>Stelcom Dashboard</title>
         <link href="../assets/bootstrap/bootswatch/bootstrap.min.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+        <link rel="website icon" type="png" sizes="32x32" href="../img/logo/PTCI-logo.png">
     </head>
     <body>
         <div class="container-fluid">
