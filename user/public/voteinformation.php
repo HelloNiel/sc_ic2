@@ -183,17 +183,17 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                         <ul class="list-unstyled">
                             <li class="d-xxl-flex align-items-xxl-center" style="margin-bottom: 3px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-facebook" style="width: 14.9868px;margin-right: 15px;margin-left: 16px;margin-bottom: 3px;">
                                     <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"></path>
-                                </svg><a class="link-light" href="https://www.facebook.com/profile.php?id=100063733196484" style="margin-bottom: 3px;">Official Page PTCI</a></li>
+                                </svg><a class="link-light" href="https://www.facebook.com/profile.php?id=100063733196484" style="margin-bottom: 3px; text-decoration:none;">Official Page PTCI</a></li>
                             <li class="d-xxl-flex align-items-xxl-center" style="margin-bottom: 3px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-facebook" style="width: 14.9868px;margin-right: 15px;margin-left: 16px;margin-bottom: 3px;">
                                     <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"></path>
-                                </svg><a class="link-light" href="https://www.facebook.com/profile.php?id=100064562656878" style="margin-bottom: 3px;">PTCI&nbsp;Student Council</a></li>
+                                </svg><a class="link-light" href="https://www.facebook.com/profile.php?id=100064562656878" style="margin-bottom: 3px; text-decoration:none;">PTCI&nbsp;Student Council</a></li>
                             <li class="d-xxl-flex align-items-xxl-center" style="margin-bottom: 3px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-facebook" style="width: 14.9868px;margin-right: 15px;margin-left: 16px;">
                                     <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"></path>
-                                </svg><a class="link-light" href="https://www.facebook.com/profile.php?id=61566114403265">IC2&nbsp;</a></li>
+                                </svg><a class="link-light" href="https://www.facebook.com/profile.php?id=61566114403265" style=" text-decoration:none;">IC2&nbsp;</a></li>
                         </ul>
                     </div>
                     <div class="col-lg-3 text-center text-lg-start d-flex flex-column align-items-center order-first align-items-lg-start order-lg-last item social" style="padding-left: 51px;">
-                        <h3 class="fs-6 text-white" style="margin-top: 29px;">Directory</h3><a class="link-light" href="index.html" style="margin-bottom: 3px;">Home</a><a class="link-light" href="candidates.html" style="margin-bottom: 3px;">Candidates</a>
+                        <h3 class="fs-6 text-white" style="margin-top: 29px;">Directory</h3><a class="link-light" href="index.html" style="margin-bottom: 3px; text-decoration:none;">Home</a><a class="link-light" href="candidates.html" style="margin-bottom: 3px; text-decoration:none;">Candidates</a>
                     </div>
                 </div>
                 <hr>
