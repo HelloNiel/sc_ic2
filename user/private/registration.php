@@ -19,7 +19,6 @@
             Registration successful! You can now <a href="login.php" class="alert-link">log in</a>.
           </div>
         <?php endif; ?>
-
         <form action="../../back-end/registerquery.php" method="POST" id="register">
           <div class="mb-3">
             <label for="schoolID" class="form-label">School ID</label>

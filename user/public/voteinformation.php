@@ -10,27 +10,22 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
 ?>
 
 <!DOCTYPE html>
-<html data-bs-theme="light" lang="en" data-bss-forced-theme="light">
+<html data-bs-theme="light" lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>PTCI Website</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins&amp;display=swap">
-    <link rel="stylesheet" href="assets/css/swiper-icons.css">
-    <link rel="stylesheet" href="assets/css/Navbar-Right-Links-Dark-icons.css">
-    <link rel="stylesheet" href="assets/css/responsiv_index.css">
-    <link rel="stylesheet" href="assets/css/Simple-Slider-swiper-bundle.min.css">
-    <link rel="stylesheet" href="assets/css/Simple-Slider.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="assets/css/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/css/Navbar-Right-Links-Dark-icons.css">
-    <link rel="stylesheet" href="assets/css/css/Simple-Slider-swiper-bundle.min.css">
-    <link rel="stylesheet" href="assets/css/css/Simple-Slider.css">
+    <link rel="stylesheet" href="../../assets/css/swiper-icons.css">
+    <link rel="stylesheet" href="../../assets/css/Navbar-Right-Links-Dark-icons.css">
+    <link rel="stylesheet" href="../../assets/css/responsiv_index.css">
+    <link rel="stylesheet" href="../../assets/css/Simple-Slider-swiper-bundle.min.css">
+    <link rel="stylesheet" href="../../assets/css/Simple-Slider.css">
+    <link rel="stylesheet" href="../../assets/css/styles.css">
 </head>
-
 
 <body style="background: #efefef;border-radius: 22px;">
     <nav class="navbar navbar-expand-md fixed-top py-3" style="width: 100vw;background: #122c4f;box-shadow: 0px 0px 13px;" data-bs-theme="dark">
@@ -40,21 +35,21 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                     <li class="nav-item" style="font-family: Poppins, sans-serif;"><a class="nav-link active" href="#" style="font-family: Poppins, sans-serif;">Home</a></li>
                     <li class="nav-item" style="font-family: Poppins, sans-serif;"><a class="nav-link" href="#" style="font-family: Poppins, sans-serif;">Candidates</a></li>
                     <li class="nav-item" style="font-family: Poppins, sans-serif;"></li>
-                </ul><button class="btn btn-primary ms-md-2" id="voteButton" type="button" style="font-family: Poppins, sans-serif;background: rgba(56,57,59,0);border-radius: 6px;border: 2.05263px solid #fbf9e4;" onclick="window.location.href='../private/vote.php';">VOTE NOW</button>
+                </ul><button class="btn btn-primary ms-md-2" type="button" style="font-family: Poppins, sans-serif;background: rgba(56,57,59,0);border-radius: 6px;border: 2.05263px solid #fbf9e4;" onclick="window.location.href='../private/vote.php';">VOTE NOW</button>
 
             </div>
         </div>
     </nav>
-
+    <div class="container" style="margin-top:141px;">
         <div class="row justify-content-around">
             <div class="col-md-6 col-xxl-8">
                 <div id="slider" class="slider" style="padding:25px;background:#ffffff;">
                     <div class="simple-slider">
                         <div class="swiper-container">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide" style="background:url(&quot;crocodile farm.pngcover no-repeat;"></div>
-                                <div class="swiper-slide" style="background:url(&quot;../../assets/img/undergroundriver2.png&quot;) center center / cover no-repeat;"></div>
-                                <div class="swiper-slide" style="background:url(&quot;undergroundriver.png/ cover no-repeat;"></div>
+                                <div class="swiper-slide" style="background: url(&quot;../../assets/img/crocodile%20farm.png&quot;) center center / cover no-repeat;"></div>
+                                <div class="swiper-slide" style="background: url(&quot;../../assets/img/undergroundriver(2).png&quot;) center center / cover no-repeat;"></div>
+                                <div class="swiper-slide" style="background: url(&quot;../../assets/img/undergroundriver.png&quot;) center center / cover no-repeat;"></div>
                             </div>
                             <div class="visually-hidden visible swiper-pagination"></div>
                             <div class="swiper-button-prev" style="color:rgb(255,255,255);text-shadow:0px 0px 6px rgba(0,0,0,0.76);"></div>
@@ -67,7 +62,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                         <h1 class="text-uppercase" style="font-size:15px;font-family:Poppins, sans-serif;font-weight:bold;">Party lists</h1>
                         <div style="width:86.02px;border-bottom:4px solid #5b88b2;"></div>
                     </div>
-                    <div class="d-flex partylists-card" id="partylists-card" style="padding-top:20px;padding-bottom:20px;"><img id="partylist-img" class="partylist-img" src="assets/img/Yellow%20and%20Red%20Landscape%20Campaign%20Posters.png" style="width:307px;">
+                    <div class="d-flex partylists-card" id="partylists-card" style="padding-top:20px;padding-bottom:20px;"><img id="partylist-img" class="partylist-img" src="../../assets/img/Yellow%20and%20Red%20Landscape%20Campaign%20Posters.png" style="width:307px;">
                         <div class="d-xxl-flex flex-column partylist-details" id="partylist-details" style="width:auto;margin-left:38px;">
                             <h1 id="partlyst-name" class="partlyst-name" style="font-family:Poppins, sans-serif;font-weight:bold;color:rgb(75,90,105);font-size:22px;">Party list #1</h1>
                             <h1 id="partylist-dept" class="partylist-dept" style="font-family:'Open Sans', sans-serif;color:rgb(75,90,105);font-size:18px;margin-top:-3px;">Department</h1>
@@ -75,7 +70,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                             <div class="d-xxl-flex justify-content-xxl-start" id="button-wrapper"><button class="btn btn-primary ms-md-2" type="button" style="font-family:Poppins, sans-serif;background:rgba(56,57,59,0);border-radius:6px;border:2.05263px solid #122c4f;color:rgb(79,74,74);">READ MORE</button></div>
                         </div>
                     </div>
-                    <div class="d-flex partylists-card" id="partylists-card-1" style="padding-top:20px;padding-bottom:20px;"><img id="partylist-img-1" class="partylist-img" src="assets/img/Yellow%20and%20Red%20Landscape%20Campaign%20Posters.png" style="width:307px;">
+                    <div class="d-flex partylists-card" id="partylists-card-1" style="padding-top:20px;padding-bottom:20px;"><img id="partylist-img-1" class="partylist-img" src="../../assets/img/Yellow%20and%20Red%20Landscape%20Campaign%20Posters.png" style="width:307px;">
                         <div class="d-xxl-flex flex-column partylist-details" id="partylist-details-1" style="width:auto;margin-left:38px;">
                             <h1 id="partlyst-name-1" class="partlyst-name" style="font-family:Poppins, sans-serif;font-weight:bold;color:rgb(75,90,105);font-size:22px;">Party list #2</h1>
                             <h1 id="partylist-dept-1" class="partylist-dept" style="font-family:'Open Sans', sans-serif;color:rgb(75,90,105);font-size:18px;margin-top:-3px;">Department</h1>
@@ -83,7 +78,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                             <div class="d-xxl-flex justify-content-xxl-start" id="button-wrapper-1"><button class="btn btn-primary ms-md-2" type="button" style="font-family:Poppins, sans-serif;background:rgba(56,57,59,0);border-radius:6px;border:2.05263px solid #122c4f;color:rgb(79,74,74);">READ MORE</button></div>
                         </div>
                     </div>
-                    <div class="d-flex partylists-card" id="partylists-card-2" style="padding-top:20px;padding-bottom:20px;"><img id="partylist-img-2" class="partylist-img" src="assets/img/Yellow%20and%20Red%20Landscape%20Campaign%20Posters.png" style="width:307px;">
+                    <div class="d-flex partylists-card" id="partylists-card-2" style="padding-top:20px;padding-bottom:20px;"><img id="partylist-img-2" class="partylist-img" src="../../assets/img/Yellow%20and%20Red%20Landscape%20Campaign%20Posters.png" style="width:307px;">
                         <div class="d-xxl-flex flex-column partylist-details" id="partylist-details-2" style="width:auto;margin-left:38px;">
                             <h1 id="partlyst-name-2" class="partlyst-name" style="font-family:Poppins, sans-serif;font-weight:bold;color:rgb(75,90,105);font-size:22px;">Party list #2</h1>
                             <h1 id="partylist-dept-2" class="partylist-dept" style="font-family:'Open Sans', sans-serif;color:rgb(75,90,105);font-size:18px;margin-top:-3px;">Department</h1>
@@ -94,7 +89,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                 </div>
             </div>
             <div class="col-md-6 col-xxl-3" id="school-wrapper" style="padding:0px;background:#ffffff;height:474px;position:relative;margin-top:30px;">
-                <div class="d-flex flex-column align-items-center"><img width="100" height="80" src="assets/img/LOGO.png" style="width:238px;height:203px;margin-top:35px;">
+                <div class="d-flex flex-column align-items-center"><img width="100" height="80" src="../../assets/img/LOGO.png" style="width:238px;height:203px;margin-top:35px;">
                     <h1 style="font-family:'Open Sans', sans-serif;font-size:18px;color:rgb(66,64,64);font-weight:bold;margin-bottom:4px;text-align:center;margin-top:22px;padding-right:50px;padding-left:50px;">Palawan Technological College Inc.</h1>
                 </div>
                 <div class="d-flex flex-column align-items-center" style="padding-top:14px;">
@@ -104,12 +99,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                     </ul>
                     <div id="heading-partylists-1" class="heading-partylists" style="border-bottom:1px solid rgba(33,37,41,0.23);"></div>
                 </div>
-
-            </div>
-          
-            <!--Timer-->
-            <div
-                style="position: fixed; bottom: 50px; right: 50px; text-align: right; width: auto; padding: 5px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px);border-radius:10px; font-size: 30px; font-weight: Bold; font-family: 'Arial', sans-serif; margin-top:50px;">
+            </div><div style="position:fixed;bottom:30px;right:50px;text-align:right;width:auto;padding:5px;background:rgba(255, 255, 255, 0.2);backdrop-filter:blur(10px);border-radius:10px;font-size:55px;font-family:'Arial', sans-serif;margin-top:50px;">
                 <div class="timer" id="timer">
                     <div class="timer-display">00:00:00</div>
                 </div>
@@ -122,63 +112,22 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                                 document.querySelector("#timer .timer-display").textContent = savedTime;
                             }
                         }
-
                         window.addEventListener('storage', function(event) {
                             if (event.key === 'timer') {
                                 updateTimer();
                             }
                         });
-
                         updateTimer();
                     });
-
-                    function updateVoteButton(isTimerActive) {
-                        var voteButton = document.getElementById("voteButton");
-                        var message = document.getElementById("votingMessage");
-
-                        if (!isTimerActive) {
-                            voteButton.style.display = "none";
-                            message.style.display = "block";
-                        } else {
-                            voteButton.style.display = "inline";
-                            message.style.display = "none";
-                        }
-                    }
-
-                    function checkTimerStatus() {
-                        const savedTime = localStorage.getItem('timer');
-                        if (savedTime === "00:00:00") {
-                            updateVoteButton(false);
-                        } else {
-                            updateVoteButton(true);
-                        }
-                    }
-
-                    function timerStopped() {
-                        updateVoteButton(false);
-                    }
-
-                    window.onload = function() {
-                        checkTimerStatus();
-                    };
-
-                    function navigateToVote() {
-                        const savedTime = localStorage.getItem('timer');
-                        if (savedTime === "00:00:00") {
-                            return false; // Prevent navigation to the vote page
-                        } else {
-                            window.location.href = '../private/vote.php'; // Redirect to the vote page      
-                        }
-                    }
                 </script>
             </div>
-        </div><script src="bootstrap/js/bootstrap.min.js"></script><script src="../../assets/js/Simple-Slider-swiper-bundle.min.js"></script><script src="../../assets/js/Simple-Slider.js"></script><script src="../../assets/js/untitled.js"></script>
+        </div><script src="../../bootstrap/js/bootstrap.min.js"></script><script src="../../assets/js/Simple-Slider-swiper-bundle.min.js"></script><script src="../../assets/js/Simple-Slider.js"></script><script src="../../assets/js/untitled.js"></script>
     </div>
     <footer class="text-center py-4" style="margin-bottom: -589px;">
         <footer class="text-white bg-dark" style="margin-bottom: -36px;">
             <div class="container py-4 py-lg-5" style="margin-bottom: -39px;">
                 <div class="row justify-content-center">
-                    <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column align-items-xxl-center item"><img src="assets/img/294834923_451650346969401_7788761739934683317_n__1_-removebg-preview.png" style="width: 176.02px;margin-bottom: 13px;">
+                    <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column align-items-xxl-center item"><img src="../../assets/img/294834923_451650346969401_7788761739934683317_n__1_-removebg-preview.png" style="width: 176.02px;margin-bottom: 13px;">
                         <p style="margin-left: 27px;margin-top: 7px;">Palawan Technological College Inc.</p>
                     </div>
                     <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column item" style="padding-left: 51px;">
@@ -204,17 +153,17 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                     <p class="mb-0">Copyright © 2025 Palawan Technological College Inc. All rights reserved.</p>
                     <ul class="list-inline mb-0">
                         <li class="list-inline-item">Powered by&nbsp;</li>
-                        <li class="list-inline-item"><img src="assets/img/461514192_122108110472537146_3222580666165080691_n-removebg-preview.png" style="width: 69px;"></li>
+                        <li class="list-inline-item"><img src="../../assets/img/461514192_122108110472537146_3222580666165080691_n-removebg-preview.png" style="width: 69px;"></li>
                     </ul>
                 </div>
             </div>
         </footer>
     </footer>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/Simple-Slider-swiper-bundle.min.js"></script>
-    <script src="assets/js/Simple-Slider.js"></script>
-    <script src="assets/js/untitled.js"></script>
-    <script src="assets/js/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/Simple-Slider-swiper-bundle.min.js"></script>
+    <script src="../../assets/js/Simple-Slider.js"></script>
+    <script src="../../assets/js/untitled.js"></script>
+    <script src="../../assets/js/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>
