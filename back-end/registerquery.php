@@ -1,24 +1,28 @@
 <?php
 include('../partial/connection.php');
 
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+// Pagination
+$limit = 7;
+$page = isset($_GET['page']) ? $_GET['page'] : 1;
+$offset = ($page - 1) * $limit;
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $student_id = mysqli_real_escape_string($conn, $_POST['SchoolID']);
-    $account_name = mysqli_real_escape_string($conn, $_POST['AccountName']);
-    $last_name = mysqli_real_escape_string($conn, $_POST['LastName']);    
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    $sql = "INSERT INTO account_validation (student_id, account_name, last_name) 
-            VALUES ('$student_id', '$account_name', '$last_name')";
-
-    if ($conn->query($sql) === TRUE) {
+    $schoolID = mysqli_real_escape_string($conn, $_POST['SchoolID']);
+    $accountName = mysqli_real_escape_string($conn, $_POST['AccountName']);
+    $lastName = mysqli_real_escape_string($conn, $_POST['LastName']);
+    $department = mysqli_real_escape_string($conn, $_POST['Department']); 
+    
+    // Insert the data into the database
+    $insertQuery = "INSERT INTO `account_validation` (`student_id`, `account_name`, `last_name`, `department`, `created_at`) 
+                    VALUES ('$schoolID', '$accountName', '$lastName', '$department', NOW())";
+    
+    if (mysqli_query($conn, $insertQuery)) {
         header("Location: ../user/private/registration.php?success=true");
-        exit();
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error: " . mysqli_error($conn);
     }
 }
 
-$conn->close();
+mysqli_close($conn);
 ?>
