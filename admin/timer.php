@@ -92,14 +92,14 @@
                 const elapsed = now - lastUpdateTime;
 
                 if (timeRemaining > 0) {
-                    timeRemaining -= elapsed / 1000; // This decrease time based on the frame time
-                    updateTimerDisplay(timeRemaining * 1000); // Update in milliseconds
-                    localStorage.setItem('timeRemaining', Math.floor(timeRemaining)); // Save to local storage
+                    timeRemaining -= elapsed / 1000; 
+                    updateTimerDisplay(timeRemaining * 1000); 
+                    localStorage.setItem('timeRemaining', Math.floor(timeRemaining)); 
 
-                    lastUpdateTime = now; // Update last update time
-                    timerInterval = requestAnimationFrame(countdownStep); // Keep the countdown running
+                    lastUpdateTime = now; 
+                    timerInterval = requestAnimationFrame(countdownStep); 
                 } else {
-                    cancelAnimationFrame(timerInterval); // This stop the countdown when it reaches 0
+                    cancelAnimationFrame(timerInterval); 
                     isTimerRunning = false;
                     alert('Vote is over!');
                     document.getElementById("startButton").disabled = false;
@@ -108,7 +108,7 @@
             }
 
             function stopCountdown() {
-                cancelAnimationFrame(timerInterval); // Stop the countdown
+                cancelAnimationFrame(timerInterval);
                 isTimerRunning = false;
                 document.getElementById("startButton").disabled = false;
                 document.getElementById("stopButton").disabled = true;
@@ -118,17 +118,15 @@
                 const confirmReset = confirm("Are you sure you want to reset the timer?");
                 if (confirmReset) {
                     stopCountdown();
-                    timeRemaining = 10 * 60 * 60; // Reset to 10 hours
+                    timeRemaining = 10 * 60 * 60;
                     localStorage.setItem('timeRemaining', timeRemaining);
                     localStorage.setItem('timer', '10:00:00');
                     updateTimerDisplay(timeRemaining * 1000);
                 }
             }
 
-            // Load saved time if available and the timer is running
-            updateTimerDisplay(timeRemaining * 1000); // Show initial 10 hours
+            updateTimerDisplay(timeRemaining * 1000); 
             if (localStorage.getItem('timeRemaining') && !isTimerRunning) {
-                // If the timer is running when the page reloads, continue the countdown
                 startCountdown();
             }
 
@@ -136,14 +134,12 @@
             document.getElementById("stopButton").addEventListener("click", stopCountdown);
             document.getElementById("resetButton").addEventListener("click", resetCountdown);
 
-            // Listen for visibility change to keep the countdown running
             document.addEventListener('visibilitychange', function() {
                 if (document.hidden && isTimerRunning) {
                     localStorage.setItem('timeRemaining', timeRemaining);
                 }
             });
 
-            // Listen for focus change to continue countdown when the page regains focus
             window.addEventListener('focus', function() {
                 if (document.visibilityState === 'visible' && !isTimerRunning) {
                     startCountdown();
