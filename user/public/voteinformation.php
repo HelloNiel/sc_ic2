@@ -159,7 +159,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                             myModal.show();
                             return false;
                         } else {
-                            window.location.href = '../tryTimer12hr/Vote.php';
+                            window.location.href = '../private/vote.php';
                         }
                     }
                 </script>
