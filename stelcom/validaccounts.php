@@ -27,17 +27,15 @@ if (!isset($_SESSION['username'])) {
             width: 100%;
             margin-top: 20px;
         }
+
+        .main-content {
+            position: absolute;
+            top: 50px;
+            left: 25%;
+        }
     </style>
 </head>
 <body>
-
-<style>
-    .main-content {
-        position: absolute;
-        top: 50px;
-        left: 25%;
-    }
-</style>
 
 <?php include 'components/sidebar.php'; ?>
 
@@ -45,6 +43,13 @@ if (!isset($_SESSION['username'])) {
     <div class="table-container">
         <div class="card p-3">
             <h2 class="text-center mb-4">Validated Voters Account</h2>
+
+            <form method="GET" action="" class="mb-4">
+                <div class="input-group">
+                    <input type="text" name="search" class="form-control" placeholder="Search by Student ID or Last Name" value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+            </form>
 
             <div class="table-responsive">
                 <table class="table table-bordered table-hover table-striped">
@@ -54,6 +59,7 @@ if (!isset($_SESSION['username'])) {
                             <th>Student Number</th>
                             <th>Account Name</th>
                             <th>Last Name</th>
+                            <th>Department</th>
                             <th>Created At</th>
                         </tr>
                     </thead>
@@ -64,6 +70,7 @@ if (!isset($_SESSION['username'])) {
                             <td><?php echo $row['student_id']; ?></td>
                             <td><?php echo $row['account_name']; ?></td>
                             <td><?php echo $row['last_name']; ?></td>
+                            <td><?php echo $row['department']; ?></td>
                             <td><?php echo $row['created_at']; ?></td>
                         </tr>
                         <?php endwhile; ?>
