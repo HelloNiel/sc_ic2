@@ -7,7 +7,6 @@ if (!isset($_SESSION['username'])) {
     header("Location: stelcomlogin.php?error=Please login first");
     exit();
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -43,6 +42,8 @@ if (!isset($_SESSION['username'])) {
                             <th>Student Number</th>
                             <th>Account Name</th>
                             <th>Last Name</th>
+                            <th>Department</th> 
+                            <th>Created At</th> 
                         </tr>
                     </thead>
                     <tbody>
@@ -52,6 +53,8 @@ if (!isset($_SESSION['username'])) {
                             <td><?php echo $row['student_id']; ?></td>
                             <td><?php echo $row['account_name']; ?></td>
                             <td><?php echo $row['last_name']; ?></td>
+                            <td><?php echo $row['department']; ?></td> 
+                            <td><?php echo $row['created_at']; ?></td> 
                         </tr>
                         <?php endwhile; ?>
                     </tbody>
@@ -83,7 +86,7 @@ if (!isset($_SESSION['username'])) {
     document.getElementById('select-all').addEventListener('click', function () {
         var checkboxes = document.querySelectorAll('.student-checkbox');
         checkboxes.forEach(function (checkbox) {
-            checkbox.checked = this.checked;
+            checkbox.checked = document.getElementById('select-all').checked;  // Use document.getElementById('select-all') to get the checkbox state
         });
     });
 </script>

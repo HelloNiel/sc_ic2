@@ -33,16 +33,17 @@
           <!-- new: student department selection  -->
           <div style="margin-bottom: 20px;">
             <label for="exampleSelect1" class="form-label mt-4">Department</label>
-            <select class="form-select" id="exampleSelect1">
-              <option>Select Department</option>
-              <option>Senior Highschool</option>
-              <option>Associate in Computer Technology</option>
-              <option>Bachelor of Science in Hospitality Management</option>
-              <option>Bachelor of Science in Information Communication Technology</option>
-              <option>Bachelor of Science in Information Systems</option>
-              <option>Bachelor of Science in Office Administration</option>
+            <select class="form-select" id="exampleSelect1" name="Department">
+              <option value="">Select Department</option> <!-- Add empty value for better form validation -->
+              <option value="Senior Highschool">Senior Highschool</option>
+              <option value="Associate in Computer Technology">Associate in Computer Technology</option>
+              <option value="Bachelor of Science in Hospitality Management">Bachelor of Science in Hospitality Management</option>
+              <option value="Bachelor of Science in Information Communication Technology">Bachelor of Science in Information Communication Technology</option>
+              <option value="Bachelor of Science in Information Systems">Bachelor of Science in Information Systems</option>
+              <option value="Bachelor of Science in Office Administration">Bachelor of Science in Office Administration</option>
             </select>
           </div>
+
 
           <div class="mb-3">
             <label for="lastName" class="form-label">Last Name</label>
