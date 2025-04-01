@@ -10,8 +10,6 @@
     <title>Admin Page - Timer Control</title>
     <link rel="stylesheet" href="../assets/bootstrap/bootswatch/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/timer.css" />
-
-
 </head>
 
 <body>
@@ -41,11 +39,6 @@
             &#9776;
         </div>
 
-        <!-- Hamburger Icon -->
-        <div class="hamburger" onclick="toggleSidebar()">
-            &#9776;
-        </div>
-
         <!-- Main Content Area -->
         <div class="content">
             <div class="content-wrapper">
@@ -58,7 +51,6 @@
                     <div class="timer-controls">
                         <button id="startButton">Start</button>
                         <button id="stopButton" disabled>Stop</button>
-                        <!--<button id="resetButton">Reset</button>-->
                         <button id="resetButton">Reset</button>
                     </div>
                 </div>
@@ -119,15 +111,19 @@
             }
 
             function resetTimer() {
-                clearInterval(timerInterval);
-                isRunning = false;
-                localStorage.setItem('timer', '00:00:00');
-                localStorage.removeItem('startTime');
-                localStorage.removeItem('elapsedTime');
-                updateTimer();
-                document.getElementById("startButton").disabled = false;
-                document.getElementById("stopButton").disabled = true;
+                const confirmReset = confirm("Are you sure you want to reset the timer?");
+                if (confirmReset) {
+                    clearInterval(timerInterval);
+                    isRunning = false;
+                    localStorage.setItem('timer', '00:00:00');
+                    localStorage.removeItem('startTime');
+                    localStorage.removeItem('elapsedTime');
+                    updateTimer();
+                    document.getElementById("startButton").disabled = false;
+                    document.getElementById("stopButton").disabled = true;
+                }
             }
+
 
             const savedStartTime = localStorage.getItem('startTime');
             if (savedStartTime) {
