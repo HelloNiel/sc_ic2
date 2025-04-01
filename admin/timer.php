@@ -58,95 +58,63 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             let timerInterval;
-            let timeRemaining = parseInt(localStorage.getItem('timeRemaining')) || 10 * 60 * 60; 
-            let lastUpdateTime = Date.now();
-            let isTimerRunning = false;
+            let timeRemaining = parseInt(localStorage.getItem('timeRemaining')) || 10 * 60 * 60;
+            let isTimerRunning = localStorage.getItem('isTimerRunning') === 'true';
 
-            function updateTimerDisplay(elapsedTime) {
-                const totalSeconds = Math.floor(elapsedTime / 1000);
-                let minutes = Math.floor(totalSeconds / 60);
-                let seconds = totalSeconds % 60;
-                let hours = Math.floor(minutes / 60);
-                minutes = minutes % 60;
-
-                const formattedHours = hours < 10 ? "0" + hours : hours;
-                const formattedMinutes = minutes < 10 ? "0" + minutes : minutes;
-                const formattedSeconds = seconds < 10 ? "0" + seconds : seconds;
-                const formattedTime = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
-
-                document.querySelector("#timer .timer-display").textContent = formattedTime;
-                localStorage.setItem('timer', formattedTime);
+            function updateTimerDisplay() {
+                let hours = Math.floor(timeRemaining / 3600);
+                let minutes = Math.floor((timeRemaining % 3600) / 60);
+                let seconds = timeRemaining % 60;
+                document.querySelector("#timer .timer-display").textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
             }
 
             function startCountdown() {
                 if (!isTimerRunning) {
                     isTimerRunning = true;
-                    timerInterval = requestAnimationFrame(countdownStep);
+                    localStorage.setItem('isTimerRunning', 'true');
+                    localStorage.setItem('startTime', Date.now());
+                    timerInterval = setInterval(() => {
+                        if (timeRemaining > 0) {
+                            timeRemaining--;
+                            localStorage.setItem('timeRemaining', timeRemaining);
+                            updateTimerDisplay();
+                        } else {
+                            clearInterval(timerInterval);
+                            isTimerRunning = false;
+                            localStorage.setItem('isTimerRunning', 'false');
+                            alert('Vote is over!');
+                        }
+                    }, 1000);
                     document.getElementById("startButton").disabled = true;
                     document.getElementById("stopButton").disabled = false;
                 }
             }
 
-            function countdownStep() {
-                const now = Date.now();
-                const elapsed = now - lastUpdateTime;
-
-                if (timeRemaining > 0) {
-                    timeRemaining -= elapsed / 1000; 
-                    updateTimerDisplay(timeRemaining * 1000); 
-                    localStorage.setItem('timeRemaining', Math.floor(timeRemaining)); 
-
-                    lastUpdateTime = now; 
-                    timerInterval = requestAnimationFrame(countdownStep); 
-                } else {
-                    cancelAnimationFrame(timerInterval); 
-                    isTimerRunning = false;
-                    alert('Vote is over!');
-                    document.getElementById("startButton").disabled = false;
-                    document.getElementById("stopButton").disabled = true;
-                }
-            }
-
             function stopCountdown() {
-                cancelAnimationFrame(timerInterval);
+                clearInterval(timerInterval);
                 isTimerRunning = false;
+                localStorage.setItem('isTimerRunning', 'false');
                 document.getElementById("startButton").disabled = false;
                 document.getElementById("stopButton").disabled = true;
             }
 
             function resetCountdown() {
-                const confirmReset = confirm("Are you sure you want to reset the timer?");
-                if (confirmReset) {
+                if (confirm("Are you sure you want to reset the timer?")) {
                     stopCountdown();
                     timeRemaining = 10 * 60 * 60;
                     localStorage.setItem('timeRemaining', timeRemaining);
-                    localStorage.setItem('timer', '10:00:00');
-                    updateTimerDisplay(timeRemaining * 1000);
+                    localStorage.setItem('isTimerRunning', 'false');
+                    updateTimerDisplay();
                 }
-            }
-
-            updateTimerDisplay(timeRemaining * 1000); 
-            if (localStorage.getItem('timeRemaining') && !isTimerRunning) {
-                startCountdown();
             }
 
             document.getElementById("startButton").addEventListener("click", startCountdown);
             document.getElementById("stopButton").addEventListener("click", stopCountdown);
             document.getElementById("resetButton").addEventListener("click", resetCountdown);
 
-            document.addEventListener('visibilitychange', function() {
-                if (document.hidden && isTimerRunning) {
-                    localStorage.setItem('timeRemaining', timeRemaining);
-                }
-            });
-
-            window.addEventListener('focus', function() {
-                if (document.visibilityState === 'visible' && !isTimerRunning) {
-                    startCountdown();
-                }
-            });
+            updateTimerDisplay();
+            if (isTimerRunning) startCountdown();
         });
-
         // Hamburger Display
         function toggleSidebar() {
             const sidebar = document.querySelector(".sidebar");

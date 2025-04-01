@@ -35,11 +35,25 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                     <li class="nav-item" style="font-family: Poppins, sans-serif;"><a class="nav-link active" href="#" style="font-family: Poppins, sans-serif;">Home</a></li>
                     <li class="nav-item" style="font-family: Poppins, sans-serif;"><a class="nav-link" href="#" style="font-family: Poppins, sans-serif;">Candidates</a></li>
                     <li class="nav-item" style="font-family: Poppins, sans-serif;"></li>
-                </ul><button class="btn btn-primary ms-md-2" id="voteButton" type="button" style="font-family: Poppins, sans-serif;background: rgba(56,57,59,0);border-radius: 6px;border: 2.05263px solid #fbf9e4;" onclick="window.location.href='../private/vote.php';">VOTE NOW</button>
-
+                </ul><button class="btn btn-primary ms-md-2" id="voteButton" type="button" style="font-family: Poppins, sans-serif;background: rgba(56,57,59,0);border-radius: 6px;border: 2.05263px solid #fbf9e4;" onclick="navigateToVote()">VOTE NOW</button>
+                <p id="votingMessage" style="display:none;"></p>
             </div>
         </div>
     </nav>
+    <div class="modal fade" id="votingClosedModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel">Voting Closed</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">Voting is now closed. You can no longer access the voting page.</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container" style="margin-top:141px;">
         <div class="row justify-content-around">
             <div class="col-md-6 col-xxl-8">
@@ -110,57 +124,42 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                 <script>
                     document.addEventListener("DOMContentLoaded", function() {
                         function updateTimer() {
-                            const savedTime = localStorage.getItem('timer');
+                            const isTimerRunning = localStorage.getItem('isTimerRunning') === 'true';
+                            if (!isTimerRunning) return;
+
+                            const savedTime = localStorage.getItem('timeRemaining');
                             if (savedTime) {
-                                document.querySelector("#timer .timer-display").textContent = savedTime;
+                                const timeInSeconds = parseInt(savedTime);
+                                const hours = Math.floor(timeInSeconds / 3600);
+                                const minutes = Math.floor((timeInSeconds % 3600) / 60);
+                                const seconds = timeInSeconds % 60;
+
+                                const formattedTime = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                                document.querySelector("#timer .timer-display").textContent = formattedTime;
                             }
                         }
 
-                        window.addEventListener('storage', function(event) {
-                            if (event.key === 'timer') {
-                                updateTimer();
-                            }
-                        });
+                        function checkTimerStatus() {
+                            const isTimerRunning = localStorage.getItem('isTimerRunning') === 'true';
+                            updateVoteButton(isTimerRunning);
+                            if (isTimerRunning) setInterval(updateTimer, 1000);
+                        }
 
-                        updateTimer();
+                        function updateVoteButton(isTimerActive) {
+                            document.getElementById("voteButton").style.display = isTimerActive ? "inline" : "none";
+                            document.getElementById("votingMessage").style.display = isTimerActive ? "none" : "block";
+                        }
+
+                        window.onload = checkTimerStatus;
                     });
 
-                    function updateVoteButton(isTimerActive) {
-                        var voteButton = document.getElementById("voteButton");
-                        var message = document.getElementById("votingMessage");
-
-                        if (!isTimerActive) {
-                            voteButton.style.display = "none";
-                            message.style.display = "block";
-                        } else {
-                            voteButton.style.display = "inline";
-                            message.style.display = "none";
-                        }
-                    }
-
-                    function checkTimerStatus() {
-                        const savedTime = localStorage.getItem('timer');
-                        if (savedTime === "00:00:00") {
-                            updateVoteButton(false);
-                        } else {
-                            updateVoteButton(true);
-                        }
-                    }
-
-                    function timerStopped() {
-                        updateVoteButton(false);
-                    }
-
-                    window.onload = function() {
-                        checkTimerStatus();
-                    };
-
                     function navigateToVote() {
-                        const savedTime = localStorage.getItem('timer');
-                        if (savedTime === "00:00:00") {
-                            return false; // Prevent navigation to the vote page
+                        if (localStorage.getItem('isTimerRunning') !== 'true') {
+                            var myModal = new bootstrap.Modal(document.getElementById('votingClosedModal'));
+                            myModal.show();
+                            return false;
                         } else {
-                            window.location.href = '../private/vote.php'; // Redirect to the vote page      
+                            window.location.href = '../tryTimer12hr/Vote.php';
                         }
                     }
                 </script>
