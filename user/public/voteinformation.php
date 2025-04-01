@@ -35,7 +35,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                     <li class="nav-item" style="font-family: Poppins, sans-serif;"><a class="nav-link active" href="#" style="font-family: Poppins, sans-serif;">Home</a></li>
                     <li class="nav-item" style="font-family: Poppins, sans-serif;"><a class="nav-link" href="#" style="font-family: Poppins, sans-serif;">Candidates</a></li>
                     <li class="nav-item" style="font-family: Poppins, sans-serif;"></li>
-                </ul><button class="btn btn-primary ms-md-2" type="button" style="font-family: Poppins, sans-serif;background: rgba(56,57,59,0);border-radius: 6px;border: 2.05263px solid #fbf9e4;" onclick="window.location.href='../private/vote.php';">VOTE NOW</button>
+                </ul><button class="btn btn-primary ms-md-2" id="voteButton" type="button" style="font-family: Poppins, sans-serif;background: rgba(56,57,59,0);border-radius: 6px;border: 2.05263px solid #fbf9e4;" onclick="window.location.href='../private/vote.php';">VOTE NOW</button>
 
             </div>
         </div>
@@ -47,8 +47,8 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                     <div class="simple-slider">
                         <div class="swiper-container">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide" style="background: url(&quot;../../assets/img/crocodile%20farm.png&quot;) center center / cover no-repeat;"></div>
-                                <div class="swiper-slide" style="background: url(&quot;../../assets/img/undergroundriver(2).png&quot;) center center / cover no-repeat;"></div>
+                                <div class="swiper-slide" style="background: url(&quot;../../assets/img/crocodile-farm.png&quot;) center center / cover no-repeat;"></div>
+                                <div class="swiper-slide" style="background: url(&quot;../../assets/img/undergroundriver2.png&quot;) center center / cover no-repeat;"></div>
                                 <div class="swiper-slide" style="background: url(&quot;../../assets/img/undergroundriver.png&quot;) center center / cover no-repeat;"></div>
                             </div>
                             <div class="visually-hidden visible swiper-pagination"></div>
@@ -99,7 +99,10 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                     </ul>
                     <div id="heading-partylists-1" class="heading-partylists" style="border-bottom:1px solid rgba(33,37,41,0.23);"></div>
                 </div>
-            </div><div style="position:fixed;bottom:30px;right:50px;text-align:right;width:auto;padding:5px;background:rgba(255, 255, 255, 0.2);backdrop-filter:blur(10px);border-radius:10px;font-size:55px;font-family:'Arial', sans-serif;margin-top:50px;">
+            </div>
+            <!--Timer-->
+            <div
+                style="position: fixed; bottom: 50px; right: 50px; text-align: right; width: auto; padding: 5px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px);border-radius:10px; font-size: 30px; font-weight: Bold; font-family: 'Arial', sans-serif; margin-top:50px;">
                 <div class="timer" id="timer">
                     <div class="timer-display">00:00:00</div>
                 </div>
@@ -112,16 +115,61 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                                 document.querySelector("#timer .timer-display").textContent = savedTime;
                             }
                         }
+
                         window.addEventListener('storage', function(event) {
                             if (event.key === 'timer') {
                                 updateTimer();
                             }
                         });
+
                         updateTimer();
                     });
+
+                    function updateVoteButton(isTimerActive) {
+                        var voteButton = document.getElementById("voteButton");
+                        var message = document.getElementById("votingMessage");
+
+                        if (!isTimerActive) {
+                            voteButton.style.display = "none";
+                            message.style.display = "block";
+                        } else {
+                            voteButton.style.display = "inline";
+                            message.style.display = "none";
+                        }
+                    }
+
+                    function checkTimerStatus() {
+                        const savedTime = localStorage.getItem('timer');
+                        if (savedTime === "00:00:00") {
+                            updateVoteButton(false);
+                        } else {
+                            updateVoteButton(true);
+                        }
+                    }
+
+                    function timerStopped() {
+                        updateVoteButton(false);
+                    }
+
+                    window.onload = function() {
+                        checkTimerStatus();
+                    };
+
+                    function navigateToVote() {
+                        const savedTime = localStorage.getItem('timer');
+                        if (savedTime === "00:00:00") {
+                            return false; // Prevent navigation to the vote page
+                        } else {
+                            window.location.href = '../private/vote.php'; // Redirect to the vote page      
+                        }
+                    }
                 </script>
             </div>
-        </div><script src="../../bootstrap/js/bootstrap.min.js"></script><script src="../../assets/js/Simple-Slider-swiper-bundle.min.js"></script><script src="../../assets/js/Simple-Slider.js"></script><script src="../../assets/js/untitled.js"></script>
+        </div>
+        <script src="../../bootstrap/js/bootstrap.min.js"></script>
+        <script src="../../assets/js/Simple-Slider-swiper-bundle.min.js"></script>
+        <script src="../../assets/js/Simple-Slider.js"></script>
+        <script src="../../assets/js/untitled.js"></script>
     </div>
     <footer class="text-center py-4" style="margin-bottom: -589px;">
         <footer class="text-white bg-dark" style="margin-bottom: -36px;">
@@ -135,17 +183,17 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                         <ul class="list-unstyled">
                             <li class="d-xxl-flex align-items-xxl-center" style="margin-bottom: 3px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-facebook" style="width: 14.9868px;margin-right: 15px;margin-left: 16px;margin-bottom: 3px;">
                                     <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"></path>
-                                </svg><a class="link-light" href="https://www.facebook.com/profile.php?id=100063733196484" style="margin-bottom: 3px;">Official Page PTCI</a></li>
+                                </svg><a class="link-light" href="https://www.facebook.com/profile.php?id=100063733196484" style="margin-bottom: 3px; text-decoration:none;">Official Page PTCI</a></li>
                             <li class="d-xxl-flex align-items-xxl-center" style="margin-bottom: 3px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-facebook" style="width: 14.9868px;margin-right: 15px;margin-left: 16px;margin-bottom: 3px;">
                                     <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"></path>
-                                </svg><a class="link-light" href="https://www.facebook.com/profile.php?id=100064562656878" style="margin-bottom: 3px;">PTCI&nbsp;Student Council</a></li>
+                                </svg><a class="link-light" href="https://www.facebook.com/profile.php?id=100064562656878" style="margin-bottom: 3px; text-decoration:none;">PTCI&nbsp;Student Council</a></li>
                             <li class="d-xxl-flex align-items-xxl-center" style="margin-bottom: 3px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-facebook" style="width: 14.9868px;margin-right: 15px;margin-left: 16px;">
                                     <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"></path>
-                                </svg><a class="link-light" href="https://www.facebook.com/profile.php?id=61566114403265">IC2&nbsp;</a></li>
+                                </svg><a class="link-light" href="https://www.facebook.com/profile.php?id=61566114403265" style=" text-decoration:none;">IC2&nbsp;</a></li>
                         </ul>
                     </div>
                     <div class="col-lg-3 text-center text-lg-start d-flex flex-column align-items-center order-first align-items-lg-start order-lg-last item social" style="padding-left: 51px;">
-                        <h3 class="fs-6 text-white" style="margin-top: 29px;">Directory</h3><a class="link-light" href="index.html" style="margin-bottom: 3px;">Home</a><a class="link-light" href="candidates.html" style="margin-bottom: 3px;">Candidates</a>
+                        <h3 class="fs-6 text-white" style="margin-top: 29px;">Directory</h3><a class="link-light" href="index.html" style="margin-bottom: 3px; text-decoration:none;">Home</a><a class="link-light" href="candidates.html" style="margin-bottom: 3px; text-decoration:none;">Candidates</a>
                     </div>
                 </div>
                 <hr>
