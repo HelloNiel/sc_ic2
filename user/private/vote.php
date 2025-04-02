@@ -87,7 +87,6 @@ if (isset($_GET['error']) || isset($_GET['success'])) {
     <link rel="stylesheet" href="../../assets/css/Simple-Slider.css" />
     <link rel="stylesheet" href="../../assets/css/styles.css" />
     <link rel="stylesheet" href="../../assets/css/untitled.css" />
-    <link rel="website icon" type="png" sizes="32x32" href="../../img/logo/PTCI-logo.png">
   </head>
 
   <body style="background: #fbf9e4; margin-top: 124px; margin-bottom: 46px">
@@ -223,7 +222,7 @@ if (isset($_GET['error']) || isset($_GET['success'])) {
       <div
         class="container flex-row justify-content-center justify-content-md-start"
         id="pres-wrapper"
-        style="margin-top: 24px; padding-top: 65px; background: #86a2bc"
+        style="margin-top: 24px; padding-top: 65px;"
       >
         <div
           class="d-flex flex-column justify-content-center align-items-center"
@@ -232,14 +231,14 @@ if (isset($_GET['error']) || isset($_GET['success'])) {
             style="
               font-family: Poppins, sans-serif;
               font-size: 33px;
-              color: rgb(255, 255, 255);
+              color: rgb(75, 90, 105);
               font-weight: bold;
               margin-bottom: 4px;
             "
           >
             Candidates for President
           </h1>
-          <div style="width: 148px; background: #fbf9e4; height: 3px"></div>
+          <div style="width: 148px; background: #5b88b2; height: 3px"></div>
         </div>
 
         <div
@@ -418,7 +417,7 @@ mysqli_close($conn);
             <p style="margin-bottom: 2px; margin-left: 27px">
               •&nbsp; Select your preferred candidates for each position and
               click 'Submit Vote' to finalize your choices.
-            </p
+            </p>
             <p style="margin-left: 27px; margin-top: 7px">
               •&nbsp; Ensure that you have reviewed your selections carefully
               before submitting, as changes cannot be made after submission.

@@ -36,9 +36,9 @@ $sheet->getStyle('A1')->getFont()->setBold(true)->setSize(14);
 $sheet->getStyle('A1')->getAlignment()->setHorizontal('center');
 
 // width
-$sheet->getColumnDimension('A')->setWidth(25);
-$sheet->getColumnDimension('B')->setWidth(20); 
-$sheet->getColumnDimension('C')->setWidth(20);
+$sheet->getColumnDimension('A')->setWidth(33.3);
+$sheet->getColumnDimension('B')->setWidth(28.3); 
+$sheet->getColumnDimension('C')->setWidth(28.3);
 
 // space after the title
 $sheet->getRowDimension(1)->setRowHeight(30);
@@ -103,6 +103,18 @@ while ($row = mysqli_fetch_assoc($result_vice_president)) {
     $sheet->getRowDimension($row_num)->setRowHeight(20);
     $row_num++;
 }
+
+// stelcom signature
+$row_num += 2; 
+$signature_cell = 'C' . $row_num;
+$label_cell = 'C' . ($row_num + 1);
+
+$sheet->setCellValue($signature_cell, '____________________________');
+$sheet->getStyle($signature_cell)->getAlignment()->setHorizontal('center');
+
+$sheet->setCellValue($label_cell, 'Stelcom Chairperson');
+$sheet->getStyle($label_cell)->getAlignment()->setHorizontal('center');
+$sheet->getStyle($label_cell)->getFont()->setBold(true);
 
 mysqli_close($conn);
 

@@ -38,15 +38,15 @@
 <div class="container">
     <aside class="carousel">
         <div class="carousel__wrapper">
-            <div class="item" id="slide-0"><img src="../../assets/image-home/lennith.jpg" alt=""
+            <div class="item" id="slide-0"><img src="../../assets/image-home/lennith.png" alt=""
                     width="418" height="418" /></div>
-            <div class="item" id="slide-1"><img src="../../assets/image-home/gen.jpg" alt=""
+            <div class="item" id="slide-1"><img src="../../assets/image-home/gen.png" alt=""
                     width="418" height="418" /></div>
-            <div class="item" id="slide-2"><img src="../../assets/image-home/jamie.jpg" alt=""
+            <div class="item" id="slide-2"><img src="../../assets/image-home/jamie.png" alt=""
                     width="418" height="418" /></div>
-            <div class="item" id="slide-3"><img src="../../assets/image-home/lovelie.jpg" alt=""
+            <div class="item" id="slide-3"><img src="../../assets/image-home/lovelie.png" alt=""
                     width="418" height="418" /></div>
-            <div class="item" id="slide-4"><img src="../../assets/image-home/velly.jpg" alt=""
+            <div class="item" id="slide-4"><img src="../../assets/image-home/velly.png" alt=""
                     width="418" height="418" /></div>
         </div>
     </aside>
