@@ -124,26 +124,40 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
 
                 <script>
                     document.addEventListener("DOMContentLoaded", function() {
-                        function updateTimer() {
+                        function calculateRemainingTime() {
                             const isTimerRunning = localStorage.getItem('isTimerRunning') === 'true';
-                            if (!isTimerRunning) return;
+                            const storedStartTime = parseInt(localStorage.getItem('startTime')) || 0;
+                            const totalDuration = 10 * 60 * 60; // 10 hours in seconds
 
-                            const savedTime = localStorage.getItem('timeRemaining');
-                            if (savedTime) {
-                                const timeInSeconds = parseInt(savedTime);
-                                const hours = Math.floor(timeInSeconds / 3600);
-                                const minutes = Math.floor((timeInSeconds % 3600) / 60);
-                                const seconds = timeInSeconds % 60;
+                            if (isTimerRunning && storedStartTime) {
+                                let elapsedTime = Math.floor((Date.now() - storedStartTime) / 1000);
+                                return Math.max(totalDuration - elapsedTime, 0);
+                            }
+                            return 0;
+                        }
 
-                                const formattedTime = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-                                document.querySelector("#timer .timer-display").textContent = formattedTime;
+                        function updateTimer() {
+                            const timeInSeconds = calculateRemainingTime();
+                            const hours = Math.floor(timeInSeconds / 3600);
+                            const minutes = Math.floor((timeInSeconds % 3600) / 60);
+                            const seconds = timeInSeconds % 60;
+
+                            const formattedTime = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                            document.querySelector("#timer .timer-display").textContent = formattedTime;
+
+                            if (timeInSeconds === 0) {
+                                updateVoteButton(false);
+                                clearInterval(timerInterval);
                             }
                         }
 
                         function checkTimerStatus() {
                             const isTimerRunning = localStorage.getItem('isTimerRunning') === 'true';
                             updateVoteButton(isTimerRunning);
-                            if (isTimerRunning) setInterval(updateTimer, 1000);
+                            updateTimer();
+                            if (isTimerRunning) {
+                                timerInterval = setInterval(updateTimer, 1000);
+                            }
                         }
 
                         function updateVoteButton(isTimerActive) {
@@ -151,7 +165,8 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                             document.getElementById("votingMessage").style.display = isTimerActive ? "none" : "block";
                         }
 
-                        window.onload = checkTimerStatus;
+                        let timerInterval;
+                        checkTimerStatus();
                     });
 
                     function navigateToVote() {
