@@ -10,11 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap & CSS -->
     <link rel="stylesheet" href="../../assets/css/home.css" />
-<<<<<<< HEAD
         <link rel="stylesheet" href="../../src/stelcom-bootswatch/bootstrap.min.css" />
-=======
-        <link rel="stylesheet" href="../../assets/bootstrap/bootswatch/bootstrap.min.css" />
->>>>>>> dd28669f4d39d5381146fd9d3ae649e608af67ac
 
     <script src="script.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
