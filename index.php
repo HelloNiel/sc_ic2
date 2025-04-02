@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Selection</title>
     <link href="./assets/bootstrap/bootswatch/bootstrap.min.css" rel="stylesheet">
+     <link rel="website icon" type="png" sizes="32x32" href="../img/logo/PTCI-logo.png">
 </head>
 <body class="d-flex justify-content-center align-items-center" style="height: 100vh; background-color: #f8f9fa;">
     
