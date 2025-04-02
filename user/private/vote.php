@@ -417,7 +417,7 @@ mysqli_close($conn);
             <p style="margin-bottom: 2px; margin-left: 27px">
               •&nbsp; Select your preferred candidates for each position and
               click 'Submit Vote' to finalize your choices.
-            </p>
+            </p
             <p style="margin-left: 27px; margin-top: 7px">
               •&nbsp; Ensure that you have reviewed your selections carefully
               before submitting, as changes cannot be made after submission.
