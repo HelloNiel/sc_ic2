@@ -18,20 +18,27 @@
             <div class="logo">Admin</div>
             <ul class="menu list-unstyled">
                 <div class="menu-label">Information</div>
-                <li><a href="dashboard.php">Dashboard</a></li>
-                <li><a href="candidates.php">Candidates</a></li>
-                <div class="menu-label">Account</div>
-                <li><a href="createcandidates.php">Create Student Council</a></li>
-                <li><a href="createstelcom.php">Create Stelcom</a></li>
-                <li><a href="createadmin.php">Create Admin</a></li>
-                <div class="menu-label">Configuration</div>
-                <li><a href="#">Start/End</a></li>
+                    <li><a href="dashboard.php">Dashboard</a></li>
+                    <li><a href="candidates.php">Candidates</a></li>            
+                    <div class="menu-label">Account</div>
+                    <li><a href="createcandidates.php">Create Student Council</a></li>
+                    <li><a href="createstelcom.php">Create Stelcom</a></li>
+                    <li><a href="createadmin.php">Create Admin</a></li>
+
+
+                    <div class="menu-label">Configuration</div>
+                    <li><a href="#">Start/End</a></li>
             </ul>
 
             <div class="footer">
                 <a href="/logout" class="text-decoration-none">Logout</a>
             </div>
         </div>
+        <div class="hamburger" onclick="toggleSidebar()">
+            &#9776;
+        </div>  
+
+        <!-- Hamburger Icon -->
         <div class="hamburger" onclick="toggleSidebar()">
             &#9776;
         </div>
@@ -58,8 +65,10 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             let timerInterval;
-            let timeRemaining = parseInt(localStorage.getItem('timeRemaining')) || 10 * 60 * 60;
+            let timeRemaining;
             let isTimerRunning = localStorage.getItem('isTimerRunning') === 'true';
+            let storedStartTime = parseInt(localStorage.getItem('startTime')) || 0;
+            const totalDuration = 10 * 60 * 60; // 10 hours in seconds
 
             function updateTimerDisplay() {
                 let hours = Math.floor(timeRemaining / 3600);
@@ -68,26 +77,36 @@
                 document.querySelector("#timer .timer-display").textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
             }
 
+            function calculateRemainingTime() {
+                if (isTimerRunning && storedStartTime) {
+                    let elapsedTime = Math.floor((Date.now() - storedStartTime) / 1000);
+                    return Math.max(totalDuration - elapsedTime, 0);
+                }
+                return totalDuration;
+            }
+
             function startCountdown() {
                 if (!isTimerRunning) {
                     isTimerRunning = true;
                     localStorage.setItem('isTimerRunning', 'true');
                     localStorage.setItem('startTime', Date.now());
-                    timerInterval = setInterval(() => {
-                        if (timeRemaining > 0) {
-                            timeRemaining--;
-                            localStorage.setItem('timeRemaining', timeRemaining);
-                            updateTimerDisplay();
-                        } else {
-                            clearInterval(timerInterval);
-                            isTimerRunning = false;
-                            localStorage.setItem('isTimerRunning', 'false');
-                            alert('Vote is over!');
-                        }
-                    }, 1000);
-                    document.getElementById("startButton").disabled = true;
-                    document.getElementById("stopButton").disabled = false;
+                    timeRemaining = totalDuration;
                 }
+
+                timerInterval = setInterval(() => {
+                    if (timeRemaining > 0) {
+                        timeRemaining--;
+                        updateTimerDisplay();
+                    } else {
+                        clearInterval(timerInterval);
+                        isTimerRunning = false;
+                        localStorage.setItem('isTimerRunning', 'false');
+                        alert('Vote is over!');
+                    }
+                }, 1000);
+
+                document.getElementById("startButton").disabled = true;
+                document.getElementById("stopButton").disabled = false;
             }
 
             function stopCountdown() {
@@ -101,9 +120,9 @@
             function resetCountdown() {
                 if (confirm("Are you sure you want to reset the timer?")) {
                     stopCountdown();
-                    timeRemaining = 10 * 60 * 60;
-                    localStorage.setItem('timeRemaining', timeRemaining);
+                    localStorage.removeItem('startTime');
                     localStorage.setItem('isTimerRunning', 'false');
+                    timeRemaining = totalDuration;
                     updateTimerDisplay();
                 }
             }
@@ -112,8 +131,12 @@
             document.getElementById("stopButton").addEventListener("click", stopCountdown);
             document.getElementById("resetButton").addEventListener("click", resetCountdown);
 
+            timeRemaining = calculateRemainingTime();
             updateTimerDisplay();
-            if (isTimerRunning) startCountdown();
+
+            if (isTimerRunning) {
+                startCountdown();
+            }
         });
         // Hamburger Display
         function toggleSidebar() {
