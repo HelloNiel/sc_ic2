@@ -18,8 +18,7 @@ function getVoteData($conn) {
     $president_votes = array();
     $sql_president = "SELECT candidate_id, COUNT(*) as vote_count 
                      FROM president_votes 
-                     GROUP BY candidate_id 
-                     ORDER BY COUNT(*) DESC";
+                     GROUP BY candidate_id";
     $result = $conn->query($sql_president);
     if ($result) {
         while($row = $result->fetch_assoc()) {
@@ -28,13 +27,13 @@ function getVoteData($conn) {
                 'votes' => (int)$row['vote_count']
             );
         }
+        shuffle($president_votes);
     }
 
     $vp_votes = array();
     $sql_vp = "SELECT candidate_id, COUNT(*) as vote_count 
                FROM vice_president_votes 
-               GROUP BY candidate_id 
-               ORDER BY COUNT(*) DESC";
+               GROUP BY candidate_id";
     $result = $conn->query($sql_vp);
     if ($result) {
         while($row = $result->fetch_assoc()) {
@@ -43,12 +42,15 @@ function getVoteData($conn) {
                 'votes' => (int)$row['vote_count']
             );
         }
+        shuffle($vp_votes);
     }
 
     return array(
         'total_voters' => $total_possible_voters,
         'president' => $president_votes,
-        'vp' => $vp_votes
+        'vp' => $vp_votes,
+        array_rand( $row )
+
     );
 }
 

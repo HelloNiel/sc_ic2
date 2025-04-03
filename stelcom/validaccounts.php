@@ -86,11 +86,28 @@ if (!isset($_SESSION['username'])) {
                         <li class="page-item <?php echo ($page == 1) ? 'disabled' : ''; ?>">
                             <a class="page-link" href="?page=<?php echo $page - 1; ?>">Previous</a>
                         </li>
-                        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                        <li class="page-item <?php echo ($page == $i) ? 'active' : ''; ?>">
-                            <a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
-                        </li>
-                        <?php endfor; ?>
+                        <?php
+                        $maxVisible = 7; // Maximum number of visible page links
+                        $halfVisible = floor($maxVisible / 2);
+                        $start = max(1, min($page - $halfVisible, $totalPages - $maxVisible + 1));
+                        $end = min($totalPages, $start + $maxVisible - 1);
+                        
+                        if ($start > 1) {
+                            echo '<li class="page-item"><a class="page-link" href="?page=1">1</a></li>';
+                            if ($start > 2) echo '<li class="page-item disabled"><span class="page-link">...</span></li>';
+                        }
+                        
+                        for ($i = $start; $i <= $end; $i++): ?>
+                            <li class="page-item <?php echo ($page == $i) ? 'active' : ''; ?>">
+                                <a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                            </li>
+                        <?php endfor;
+                        
+                        if ($end < $totalPages) {
+                            if ($end < $totalPages - 1) echo '<li class="page-item disabled"><span class="page-link">...</span></li>';
+                            echo '<li class="page-item"><a class="page-link" href="?page=' . $totalPages . '">' . $totalPages . '</a></li>';
+                        }
+                        ?>
                         <li class="page-item <?php echo ($page == $totalPages) ? 'disabled' : ''; ?>">
                             <a class="page-link" href="?page=<?php echo $page + 1; ?>">Next</a>
                         </li>

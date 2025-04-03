@@ -9,23 +9,43 @@ if ($result) {
     $total_possible_voters = $row['total'];
 }
 
-// Get president votes
+// Get president votes and candidate info
 $president_votes = array();
-$sql_president = "SELECT candidate_id, COUNT(*) as vote_count FROM president_votes GROUP BY candidate_id";
+$sql_president = "SELECT pc.id, pc.full_name, pc.course, pc.slogan, pc.image, COUNT(pv.id) as vote_count 
+                 FROM president_candidates pc
+                 LEFT JOIN president_votes pv ON pc.id = pv.candidate_id
+                 GROUP BY pc.id 
+                 ORDER BY vote_count DESC";
 $result = $conn->query($sql_president);
 if ($result) {
     while($row = $result->fetch_assoc()) {
-        $president_votes[$row['candidate_id']] = $row['vote_count'];
+        $president_votes[$row['id']] = [
+            'votes' => $row['vote_count'],
+            'name' => $row['full_name'],
+            'course' => $row['course'],
+            'slogan' => $row['slogan'],
+            'image' => $row['image']
+        ];
     }
 }
 
-// Get vice president votes
+// Get vice president votes and candidate info
 $vp_votes = array();
-$sql_vp = "SELECT candidate_id, COUNT(*) as vote_count FROM vice_president_votes GROUP BY candidate_id";
+$sql_vp = "SELECT vpc.id, vpc.full_name, vpc.course, vpc.slogan, vpc.image, COUNT(vpv.id) as vote_count 
+           FROM vice_president_candidates vpc
+           LEFT JOIN vice_president_votes vpv ON vpc.id = vpv.candidate_id
+           GROUP BY vpc.id
+           ORDER BY vote_count DESC";
 $result = $conn->query($sql_vp);
 if ($result) {
     while($row = $result->fetch_assoc()) {
-        $vp_votes[$row['candidate_id']] = $row['vote_count'];
+        $vp_votes[$row['id']] = [
+            'votes' => $row['vote_count'],
+            'name' => $row['full_name'],
+            'course' => $row['course'],
+            'slogan' => $row['slogan'],
+            'image' => $row['image']
+        ];
     }
 }
 
@@ -74,7 +94,7 @@ echo json_encode([
         font-weight: bold;
         opacity: 0;
         transform: translateY(0);
-        animation: fadeUpAndOut 0.6s ease-out;
+        transition: 0.6s;      
       }
 
       @keyframes fadeUpAndOut {
@@ -95,10 +115,73 @@ echo json_encode([
       .card {
         position: relative;
         overflow: visible;
+        width: 300px;
+        margin: 15px;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        border-radius: 12px;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15) !important;
       }
 
       .vote-count {
         transition: all 0.5s ease-in-out;
+      }
+
+      #president-cards, #vp-cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        padding: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .card-header {
+        background-color: #f8f9fa;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+        padding: 15px;
+      }
+
+      .card-body {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .card img {
+        border-radius: 50%;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      }
+
+      .progress {
+        width: 100% !important;
+        transform: none !important;
+        margin-top: 15px;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      @media (max-width: 768px) {
+        .card {
+          width: calc(100% - 30px) !important;
+          margin: 10px;
+        }
+        
+        #president-cards, #vp-cards {
+          padding: 10px;
+        }
+      }
+
+      @media (min-width: 769px) and (max-width: 1200px) {
+        .card {
+          width: calc(50% - 30px);
+        }
       }
     </style>
   </head>
@@ -142,26 +225,31 @@ echo json_encode([
     </nav>
     <div class="container" style="transform: translateY(130px)">
       <div class="row">
-        <div class="col-md-6" style="width: 635px; padding: 25px">
-          <span
-            class="d-xxl-flex justify-content-xxl-center"
-            style="font-weight: bold; font-size: 31px; margin-bottom: 28px"
-            >PRESIDENT CANDIDATES</span
-          >
+        <!-- President Section -->
+        <div class="col-12 mb-4">
+          <span class="d-flex justify-content-center"
+            style="font-weight: bold; font-size: 31px; margin-bottom: 28px">
+            PRESIDENT CANDIDATES
+          </span>
           <!-- President Cards -->
-          <div id="president-cards">
-            <?php for ($i = 1; $i <= 3; $i++) { 
-                $votes = isset($president_votes[$i]) ? $president_votes[$i] : 0;
-                $percentage = $total_possible_voters > 0 ? ($votes / $total_possible_voters) * 100 : 0;
+          <div id="president-cards" class="container-fluid">
+            <?php 
+            // Sort president votes by count
+            arsort($president_votes);
+            foreach ($president_votes as $id => $candidate) { 
+                $percentage = $total_possible_voters > 0 ? ($candidate['votes'] / $total_possible_voters) * 100 : 0;
             ?>
-            <div class="card bg-light mb-3" style="box-shadow: 0px 0px 9px rgba(85, 89, 92, 0.32)">
-                <div class="card-header"><span>Unknown Candidate</span></div>
+            <div class="card bg-light" style="width: 300px; box-shadow: 0px 0px 9px rgba(85, 89, 92, 0.32)">
+                <div class="card-header"><span><?php echo htmlspecialchars($candidate['name']); ?></span></div>
                 <div class="card-body" style="padding-right: 38px">
-                    <img src="assets/img/unknown-img.jpg" width="100" />
+                    <img src="../user/private/uploads/<?php echo htmlspecialchars($candidate['image']); ?>" 
+                         width="100" 
+                         onerror="this.onerror=null; this.src='assets/img/unknown-img.jpg';" />
                     <div style="width: 100%">
-                        <h4 class="card-title" style="margin-top: 5px; font-size: 27px">?????</h4>
+                        <h4 class="card-title" style="margin-top: 5px; font-size: 27px"><?php echo htmlspecialchars($candidate['course']); ?></h4>
+                        <p class="card-text" style="font-size: 14px"><?php echo htmlspecialchars($candidate['slogan']); ?></p>
                         <h4 class="card-title vote-count" style="font-size: 13px">
-                            vote count: <?php echo $votes; ?> of <?php echo $total_possible_voters; ?> possible voters
+                            vote count: <?php echo $candidate['votes']; ?> of <?php echo $total_possible_voters; ?> possible voters
                         </h4>
                         <div class="progress" style="transform: translate(20px); width: 100%; margin-top: 14px; height: 19.9868px;">
                             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
@@ -174,26 +262,32 @@ echo json_encode([
             <?php } ?>
           </div>
         </div>
-        <div class="col-md-6" style="padding: 25px">
-          <span
-            class="d-xxl-flex justify-content-xxl-center"
-            style="font-weight: bold; font-size: 31px; margin-bottom: 28px"
-            >VICE&nbsp;PRESIDENT CANDIDATES</span
-          >
+
+        <!-- Vice President Section -->
+        <div class="col-12">
+          <span class="d-flex justify-content-center"
+            style="font-weight: bold; font-size: 31px; margin-bottom: 28px">
+            VICE PRESIDENT CANDIDATES
+          </span>
           <!-- Vice President Cards -->
-          <div id="vp-cards">
-            <?php for ($i = 1; $i <= 2; $i++) { 
-                $votes = isset($vp_votes[$i]) ? $vp_votes[$i] : 0;
-                $percentage = $total_possible_voters > 0 ? ($votes / $total_possible_voters) * 100 : 0;
+          <div id="vp-cards" class="container-fluid">
+            <?php 
+            // Sort vice president votes by count
+            arsort($vp_votes);
+            foreach ($vp_votes as $id => $candidate) { 
+                $percentage = $total_possible_voters > 0 ? ($candidate['votes'] / $total_possible_voters) * 100 : 0;
             ?>
-            <div class="card bg-light mb-3" style="box-shadow: 0px 0px 9px rgba(85, 89, 92, 0.32)">
-                <div class="card-header"><span>Unknown Candidate</span></div>
+            <div class="card bg-light" style="width: 300px; box-shadow: 0px 0px 9px rgba(85, 89, 92, 0.32)">
+                <div class="card-header"><span><?php echo htmlspecialchars($candidate['name']); ?></span></div>
                 <div class="card-body" style="padding-right: 38px">
-                    <img src="assets/img/unknown-img.jpg" width="100" />
+                    <img src="../user/private/uploads/<?php echo htmlspecialchars($candidate['image']); ?>" 
+                         width="100" 
+                         onerror="this.onerror=null; this.src='assets/img/unknown-img.jpg';" />
                     <div style="width: 100%">
-                        <h4 class="card-title" style="margin-top: 5px; font-size: 27px">?????</h4>
+                        <h4 class="card-title" style="margin-top: 5px; font-size: 27px"><?php echo htmlspecialchars($candidate['course']); ?></h4>
+                        <p class="card-text" style="font-size: 14px"><?php echo htmlspecialchars($candidate['slogan']); ?></p>
                         <h4 class="card-title vote-count" style="font-size: 13px">
-                            vote count: <?php echo $votes; ?> of <?php echo $total_possible_voters; ?> possible voters
+                            vote count: <?php echo $candidate['votes']; ?> of <?php echo $total_possible_voters; ?> possible voters
                         </h4>
                         <div class="progress" style="transform: translate(20px); width: 100%; margin-top: 14px; height: 19.9868px;">
                             <div class="progress-bar-vc progress-bar-striped progress-bar-animated" role="progressbar" 
@@ -230,7 +324,7 @@ echo json_encode([
         const barClass = type === 'president' ? 'progress-bar' : 'progress-bar-vc';
         
         return `
-            <div class="card bg-light mb-3" data-id="${candidate.id}" style="box-shadow: 0px 0px 9px rgba(85, 89, 92, 0.32)">
+            <div class="card bg-light" data-id="${candidate.id}" style="width: 300px; box-shadow: 0px 0px 9px rgba(85, 89, 92, 0.32)">
                 <div class="card-header"><span>Unknown Candidate</span></div>
                 <div class="card-body" style="padding-right: 38px">
                     <img src="assets/img/unknown-img.jpg" width="100" />
@@ -239,14 +333,12 @@ echo json_encode([
                         <h4 class="card-title vote-count" style="font-size: 13px">
                             vote count: ${votes} of ${totalVoters} possible voters
                         </h4>
-                        <div class="progress" style="transform: translate(20px); width: 100%; margin-top: 14px; height: 19.9868px;">
-                            <div class="${barClass} progress-bar-striped progress-bar-animated" 
-                                 role="progressbar" 
-                                 aria-valuenow="${percentage}" 
-                                 aria-valuemin="0" 
-                                 aria-valuemax="100" 
-                                 style="width: ${percentage}%">
-                            </div>
+                        <div class="${barClass} progress-bar-striped progress-bar-animated" 
+                             role="progressbar" 
+                             aria-valuenow="${percentage}" 
+                             aria-valuemin="0" 
+                             aria-valuemax="100" 
+                             style="width: ${percentage}%">
                         </div>
                     </div>
                 </div>
